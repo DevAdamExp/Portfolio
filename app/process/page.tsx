@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PhaseNeuron from './components/PhaseNeuron';
 import SynapticPath from './components/SynapticPath';
 import ContentPanel from './components/ContentPanel';
-import PulseBackground from './components/PulseBackground';
 import FloatingMetadata from './components/FloatingMetadata';
 import Navbar from '../components/Navbar';
 import { phases } from './data/phases';
@@ -17,8 +16,16 @@ const nodePositions = [
     { x: 750, y: 120 }
 ];
 
+const terminalLines = [
+    { prompt: 'var(--fg-cinema)', text: ' initializing neural_algorithm v3.0...', accent: false },
+    { prompt: 'var(--fg-cinema)', text: ' loading cognitive_frameworks...', accent: false },
+    { prompt: 'var(--fg-cinema)', text: ' mapping problem_space...', accent: false },
+    { prompt: 'var(--acc-red)',   text: ' READY: awaiting problem input', accent: true },
+];
+
 export default function ProcessPage() {
     const [activePhase, setActivePhase] = useState<number | null>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
     const handlePhaseClick = (id: number) => {
         setActivePhase(activePhase === id ? null : id);
@@ -28,12 +35,20 @@ export default function ProcessPage() {
         ? phases.find(p => p.id === activePhase) || null
         : null;
 
+    useEffect(() => {
+        if (activePhase && contentRef.current) {
+            const timer = setTimeout(() => {
+                contentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 400);
+            return () => clearTimeout(timer);
+        }
+    }, [activePhase]);
+
     return (
-        <main className="relative min-h-screen bg-[var(--bg-void)] text-[var(--fg-cinema)] overflow-x-hidden selection:bg-[var(--acc-red)] selection:text-white">
-            <PulseBackground />
+        <main className="relative min-h-screen text-[var(--fg-cinema)] overflow-x-hidden selection:bg-[var(--acc-red)] selection:text-white">
             <Navbar />
 
-            {/* Full width padding wrapper - matches Navbar */}
+            {/* Full width padding wrapper */}
             <div className="relative z-10 pt-32 pb-32 w-full px-6 md:px-12 lg:px-24">
                 {/* Centered content container */}
                 <div className="max-w-7xl mx-auto">
@@ -72,7 +87,7 @@ export default function ProcessPage() {
                         </p>
                     </motion.div>
 
-                    {/* Neural Network Visualization - Desktop Only */}
+                    {/* Neural Network Visualization — Desktop Only */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -129,8 +144,8 @@ export default function ProcessPage() {
 
                     {/* Mobile Vertical Process List */}
                     <div className="md:hidden flex flex-col gap-8 mb-24 relative pl-8">
-                        {/* Connecting Line */}
-                        <div className="absolute left-[39px] top-4 bottom-4 w-px bg-zinc-800" />
+                        {/* Connecting Line — centered on node circles */}
+                        <div className="absolute left-[60px] top-4 bottom-4 w-px bg-zinc-800" />
 
                         {phases.map((phase, i) => (
                             <motion.div
@@ -143,37 +158,51 @@ export default function ProcessPage() {
                             >
                                 {/* Node */}
                                 <div className={`
-                                    relative z-10 w-14 h-14 rounded-full border-2 flex items-center justify-center bg-[#050505] transition-all duration-300
+                                    relative z-10 w-14 h-14 rounded-full border-2 flex items-center justify-center bg-[#050505] transition-all duration-300 flex-shrink-0
                                     ${activePhase === phase.id
                                         ? 'border-[#D10000] shadow-[0_0_15px_rgba(209,0,0,0.4)] scale-110'
-                                        : 'border-zinc-800'
+                                        : 'border-zinc-800 group-hover:border-zinc-600'
                                     }
                                 `}>
-                                    <span className={`text-lg transition-colors ${activePhase === phase.id ? 'text-white' : 'text-zinc-600'}`}>
+                                    <span className={`text-lg transition-colors ${activePhase === phase.id ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-400'}`}>
                                         {phase.icon}
                                     </span>
                                 </div>
 
                                 {/* Text Info */}
-                                <div className="flex flex-col">
-                                    <span className={`text-[10px] font-mono tracking-widest uppercase mb-1 transition-colors ${activePhase === phase.id ? 'text-[#D10000]' : 'text-zinc-500'}`}>
+                                <div className="flex flex-col min-w-0">
+                                    <span className={`text-[10px] font-mono tracking-widest uppercase mb-0.5 transition-colors ${activePhase === phase.id ? 'text-[#D10000]' : 'text-zinc-500'}`}>
                                         Step 0{phase.id}
                                     </span>
-                                    <span className={`text-xl font-bebas tracking-wide transition-colors ${activePhase === phase.id ? 'text-white' : 'text-zinc-400'}`}>
+                                    <span className={`text-xl font-bebas tracking-wide transition-colors ${activePhase === phase.id ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-200'}`}>
                                         {phase.code}
                                     </span>
+                                    <span className={`text-xs font-mono truncate transition-colors ${activePhase === phase.id ? 'text-zinc-400' : 'text-zinc-700'}`}>
+                                        {phase.subtitle}
+                                    </span>
                                 </div>
+
+                                {/* Active Indicator */}
+                                {activePhase === phase.id && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="ml-auto w-1.5 h-1.5 rounded-full bg-[#D10000] flex-shrink-0"
+                                    />
+                                )}
                             </motion.div>
                         ))}
                     </div>
 
-                    {/* Content Panel */}
-                    <ContentPanel
-                        phase={activePhaseData}
-                        onClose={() => setActivePhase(null)}
-                    />
+                    {/* Content Panel — ref used for auto-scroll */}
+                    <div ref={contentRef}>
+                        <ContentPanel
+                            phase={activePhaseData}
+                            onClose={() => setActivePhase(null)}
+                        />
+                    </div>
 
-                    {/* Instruction Text */}
+                    {/* Instruction Text — only when no phase selected */}
                     {!activePhase && (
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -181,9 +210,13 @@ export default function ProcessPage() {
                             transition={{ delay: 1.5, duration: 0.8 }}
                             className="text-center mt-16"
                         >
-                            <p className="text-sm font-mono text-[var(--fg-muted)] tracking-widest">
+                            <motion.p
+                                animate={{ opacity: [0.4, 1, 0.4] }}
+                                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                                className="text-sm font-mono text-[var(--fg-muted)] tracking-widest"
+                            >
                                 SELECT A PHASE TO EXPLORE
-                            </p>
+                            </motion.p>
                         </motion.div>
                     )}
 
@@ -195,29 +228,64 @@ export default function ProcessPage() {
                         className="max-w-3xl mx-auto mt-32"
                     >
                         <div className="bg-[#0A0A0A]/60 backdrop-blur-sm border border-[var(--color-border)] p-6">
-                            <div className="flex items-center gap-2 mb-4">
+                            {/* Window Chrome */}
+                            <div className="flex items-center gap-2 mb-5">
                                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                                 <span className="ml-3 text-[10px] font-mono text-gray-600">neural_algorithm.log</span>
                             </div>
 
-                            <div className="font-mono text-xs space-y-1 text-[var(--fg-muted)]">
-                                <p><span className="text-[var(--fg-cinema)]">&gt;</span> initializing neural_algorithm v3.0...</p>
-                                <p><span className="text-[var(--fg-cinema)]">&gt;</span> loading cognitive_frameworks...</p>
-                                <p><span className="text-[var(--acc-red)]">&gt;</span> <span className="text-[var(--acc-red)]">READY:</span> awaiting problem input</p>
-                                <p className="text-[var(--fg-muted)] pt-2">
-                                    {
-                                        // This is how I think. Not linear, but iterative.
-                                    }
-                                    <br />
-                                    {
-                                        // Each phase informs the next. Each iteration refines.
-                                    }
-                                </p>
+                            <div className="font-mono text-xs space-y-1.5 text-[var(--fg-muted)]">
+                                {/* Animated log lines */}
+                                {terminalLines.map((line, i) => (
+                                    <motion.p
+                                        key={i}
+                                        initial={{ opacity: 0, x: -8 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.4 + i * 0.18, duration: 0.35 }}
+                                    >
+                                        <span style={{ color: line.prompt }}>&gt;</span>
+                                        <span className={line.accent ? 'text-[var(--acc-red)]' : ''}>{line.text}</span>
+                                    </motion.p>
+                                ))}
+
+                                {/* Comment lines */}
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 2.2, duration: 0.4 }}
+                                    className="pt-2 text-zinc-700"
+                                >
+                                    <span className="text-zinc-600">//</span> This is how I think. Not linear, but iterative.
+                                </motion.p>
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 2.38, duration: 0.4 }}
+                                    className="text-zinc-700"
+                                >
+                                    <span className="text-zinc-600">//</span> Each phase informs the next. Each iteration refines.
+                                </motion.p>
+
+                                {/* Blinking cursor */}
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 2.55, duration: 0.4 }}
+                                    className="pt-1 flex items-center gap-0.5"
+                                >
+                                    <span className="text-[var(--fg-cinema)]">&gt;</span>
+                                    <motion.span
+                                        className="inline-block w-[7px] h-[13px] bg-[var(--fg-cinema)] ml-0.5 align-middle"
+                                        animate={{ opacity: [1, 0, 1] }}
+                                        transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
+                                    />
+                                </motion.p>
                             </div>
                         </div>
                     </motion.div>
+
                 </div>
             </div>
 

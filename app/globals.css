@@ -9,10 +9,10 @@
 
   html,
   body {
-    background-color: var(--bg-void);
+    background-color: transparent;
     color: var(--fg-cinema);
     overscroll-behavior: none;
-    /* Prevents bounce revealing white background */
+    /* Canvas provides the visible background via fixed z-0 element */
   }
 
   :root {
@@ -65,10 +65,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll; /* Permanently reserve space for the scrollbar to prevent layout shift */
 }
 
 body {
-  background: var(--color-bg);
+  background: transparent;
   color: var(--color-text-primary);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;

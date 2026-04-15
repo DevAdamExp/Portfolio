@@ -20,7 +20,7 @@ export default function SystemFooter() {
     }, []);
 
     return (
-        <footer className="relative bg-[var(--bg-void)] border-t border-[var(--color-border)] py-12 overflow-hidden">
+        <footer className="relative border-t border-[var(--color-border)] py-12 overflow-hidden">
             {/* Background Grid */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
                 style={{

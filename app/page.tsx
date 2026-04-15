@@ -15,7 +15,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <main className={`relative min-h-screen bg-[var(--bg-void)] text-[var(--fg-cinema)] selection:bg-[var(--acc-red)] selection:text-white ${isLoading ? 'h-screen overflow-hidden' : 'overflow-x-hidden'}`}>
+    <main className={`relative min-h-screen text-[var(--fg-cinema)] selection:bg-[var(--acc-red)] selection:text-white ${isLoading ? 'h-screen overflow-hidden' : 'overflow-x-hidden'}`}>
       <AnimatePresence mode="wait">
         {isLoading && <LoadingScreen key="loader" onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>

@@ -28,7 +28,7 @@ export default function ExperiencePage() {
     return (
         <main
             ref={containerRef}
-            className="relative min-h-screen bg-[#050505] text-[#E0E0E0] selection:bg-[#E0E0E0] selection:text-[#050505] overflow-x-hidden perspective-2000 antialiased"
+            className="relative min-h-screen text-[#E0E0E0] selection:bg-[#E0E0E0] selection:text-[#050505] overflow-x-hidden perspective-2000 antialiased"
         >
             {/* --- THE SHUTTER (LOADER) --- */}
             <div className="fixed inset-0 z-[100] pointer-events-none flex flex-col">
@@ -48,7 +48,7 @@ export default function ExperiencePage() {
 
             {/* --- ATMOSPHERE --- */}
             <div className="fixed inset-0 z-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[#020202]" />
+                {/* Removed opaque bg-[#020202] to allow global SystemBackground to show */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
                     style={{
                         backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')"

@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         : projects.filter(p => p.category === activeFilter);
 
     return (
-        <main className="relative min-h-screen bg-[#050505] text-white selection:bg-[#D10000] selection:text-white font-sans">
+        <main className="relative min-h-screen text-white selection:bg-[#D10000] selection:text-white font-sans">
 
             {/* 1. LAYER: BACKGROUND */}
             {/* 1. LAYER: BACKGROUND - Moved to layout.tsx */}
