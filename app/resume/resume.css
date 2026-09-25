@@ -1,0 +1,229 @@
+/* CV layout: a single-column A4 sheet that reads well on screen, in print and
+   when parsed by applicant-tracking systems. Colours are fixed (paper is
+   always white) regardless of the site theme. */
+
+.cv-screen {
+  min-height: 100vh;
+  padding: 0 1rem 4rem;
+}
+
+.cv-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 1rem 0;
+  background: var(--bg);
+}
+
+.cv-page {
+  --cv-ink: #111113;
+  --cv-body: #2e2e33;
+  --cv-muted: #5f5f67;
+  --cv-rule: #d9d9de;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 14mm 15mm;
+  background: #fff;
+  color: var(--cv-body);
+  font-family: var(--font-sans);
+  font-size: 9.75pt;
+  line-height: 1.38;
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.06),
+    0 12px 40px -12px rgb(0 0 0 / 0.25);
+  color-scheme: light;
+}
+
+.cv-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8mm;
+  padding-bottom: 3.5mm;
+  border-bottom: 1px solid var(--cv-ink);
+}
+
+.cv-name {
+  color: var(--cv-ink);
+  font-size: 20pt;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.cv-title {
+  margin-top: 1mm;
+  color: var(--cv-ink);
+  font-size: 11pt;
+}
+
+.cv-contact {
+  margin-top: 2mm;
+  color: var(--cv-muted);
+  font-size: 9pt;
+}
+
+.cv-sep {
+  color: #a1a1aa;
+}
+
+.cv-photo {
+  width: 22mm;
+  height: 22mm;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cv-section {
+  margin-top: 4mm;
+}
+
+.cv-section > h2 {
+  margin-bottom: 1.6mm;
+  padding-bottom: 1mm;
+  border-bottom: 1px solid var(--cv-rule);
+  color: var(--cv-ink);
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cv-entry + .cv-entry {
+  margin-top: 2.5mm;
+}
+
+.cv-entry-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4mm;
+}
+
+.cv-entry-head h3 {
+  color: var(--cv-ink);
+  font-size: 10pt;
+  font-weight: 600;
+}
+
+.cv-at {
+  font-weight: 400;
+}
+
+.cv-date {
+  flex-shrink: 0;
+  color: var(--cv-muted);
+  font-size: 9pt;
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-entry ul {
+  margin-top: 1mm;
+  padding-left: 4mm;
+  list-style: disc;
+}
+
+.cv-entry li {
+  padding-left: 0.5mm;
+}
+
+.cv-entry li::marker {
+  color: var(--cv-muted);
+}
+
+.cv-entry li + li {
+  margin-top: 0.4mm;
+}
+
+.cv-project p {
+  margin-top: 0.5mm;
+}
+
+.cv-muted {
+  color: var(--cv-muted);
+}
+
+.cv-skills {
+  display: grid;
+  gap: 0.8mm;
+}
+
+.cv-skills > div {
+  display: grid;
+  grid-template-columns: 30mm 1fr;
+  gap: 3mm;
+}
+
+.cv-skills dt {
+  color: var(--cv-ink);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .cv-page {
+    padding: 8mm 6mm;
+    min-height: 0;
+  }
+
+  .cv-entry-head {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cv-skills > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 10mm 13mm;
+}
+
+@media print {
+  html,
+  body,
+  .cv-screen {
+    background: #fff !important;
+    padding: 0;
+    min-height: 0;
+  }
+
+  .cv-toolbar {
+    display: none;
+  }
+
+  .cv-page {
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv-entry {
+    break-inside: avoid;
+  }
+
+  .cv-section > h2 {
+    break-after: avoid;
+  }
+}

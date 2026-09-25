@@ -1,24 +1,19 @@
 {
-  "name": "protfolio",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cv:pdf": "node scripts/export-cv.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
-    "@types/three": "^0.182.0",
-    "framer-motion": "^12.23.26",
-    "maath": "^0.10.8",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-icons": "^5.5.0",
-    "three": "^0.182.0"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -27,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "playwright-core": "^1.56.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
