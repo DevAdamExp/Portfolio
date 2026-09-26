@@ -1,85 +1,81 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Inter, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { profile, siteUrl } from "@/content/profile";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  display: "swap",
-});
+const description = `${profile.name} is a full-stack engineer building agentic AI systems, real-time voice agents and production web platforms with Python, FastAPI, Next.js and TypeScript.`;
 
 export const metadata: Metadata = {
-  title: "Muhammad Adam | Full Stack Engineer & Solution Architect",
-  description: "Portfolio of Muhammad Adam - A Full Stack Engineer and Solution Architect specializing in AI-powered solutions, scalable architectures, and modern web technologies.",
-  applicationName: "Muhammad Adam Portfolio",
-  authors: [{ name: "Muhammad Adam", url: "https://github.com/AdamChoudary" }],
-  keywords: ["Full Stack Engineer", "Solution Architect", "AI Developer", "Next.js", "Python", "FastAPI", "React", "TypeScript", "Islamabad", "Pakistan"],
-  creator: "Muhammad Adam",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${profile.name} — ${profile.title}`,
+    template: `%s — ${profile.name}`,
+  },
+  description,
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: profile.links.github?.href }],
+  creator: profile.name,
+  keywords: [
+    "Agentic AI",
+    "Full Stack Developer",
+    "AI Engineer",
+    "Voice Agents",
+    "LLM",
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "LangGraph",
+    "OpenAI Agents SDK",
+    "Islamabad",
+  ],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio-url.com", // TODO: Update with actual URL
-    title: "Muhammad Adam | Full Stack Engineer",
-    description: "Building AI-powered solutions and scalable architectures.",
-    siteName: "Muhammad Adam Portfolio",
+    url: "/",
+    siteName: profile.name,
+    title: `${profile.name} — ${profile.title}`,
+    description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Adam | Full Stack Engineer",
-    description: "Building AI-powered solutions and scalable architectures.",
-    creator: "@yourhandle", // TODO: Update if available
+    title: `${profile.name} — ${profile.title}`,
+    description,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0c" },
+  ],
 };
 
-import SingularityCursor from "./components/ui/SingularityCursor";
+// Runs before paint so the page never flashes the wrong theme.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})()`;
 
-
-import SystemBackgroundWrapper from "./components/3d/SystemBackgroundWrapper";
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${bebasNeue.variable} ${inter.variable} ${playfair.variable} antialiased`}
-      >
-        <SystemBackgroundWrapper />
-        <SingularityCursor />
-        {children}
-      </body>
+    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
