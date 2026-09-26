@@ -9,7 +9,7 @@ export default function CompanyLogo({ name, logo, size = 40 }: { name: string; l
       style={{ width: size, height: size }}
     >
       {logo ? (
-        <Image src={logo} alt={`${name} logo`} width={size} height={size} className="size-full object-contain p-1.5" />
+        <Image src={logo} alt={`${name} logo`} width={size} height={size} className="size-full object-contain p-1" />
       ) : (
         <span aria-hidden>{initials(name)}</span>
       )}

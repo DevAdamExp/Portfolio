@@ -7,6 +7,7 @@ import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { formatMonth } from "@/lib/format";
 import CompanyLogo from "../components/CompanyLogo";
+import EducationList from "../components/EducationList";
 import ExperienceList from "../components/ExperienceList";
 import ProjectList from "../components/ProjectList";
 import Section from "../components/Section";
@@ -112,6 +113,14 @@ export default function Home() {
 
       <Section id="skills" title="Skills" description="The tools I use in production, grouped by where they sit in the stack.">
         <SkillsList />
+      </Section>
+
+      <Section
+        id="education"
+        title="Education & certifications"
+        description="Formal training in AI engineering. Open any certificate to view the original."
+      >
+        <EducationList />
       </Section>
 
       <Section id="approach" title="How I work" description={principlesIntro}>

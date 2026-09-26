@@ -1,4 +1,4 @@
-import type { Education, Language, Principle } from "./types";
+import type { Certification, Education, Language, Principle } from "./types";
 
 export const education: Education[] = [
   {
@@ -6,6 +6,36 @@ export const education: Education[] = [
     program: "AI Engineering Diploma",
     start: "2023-06",
     details: "Generative AI, agentic systems and cloud-native computing.",
+  },
+];
+
+/** Newest first. PDFs and preview images live in /public/certificates/. */
+export const certifications: Certification[] = [
+  {
+    name: "Agentic AI Professional Level 2 Developer",
+    issuer: "PIAIC",
+    date: "2026-01",
+    credentialId: "2026030215846",
+    url: "/certificates/piaic-agentic-ai-level-2.pdf",
+    image: "/certificates/piaic-agentic-ai-level-2.webp",
+  },
+  {
+    name: "Agentic AI Level 1 Developer",
+    issuer: "PIAIC",
+    date: "2026-01",
+    credentialId: "2026010215846",
+    url: "/certificates/piaic-agentic-ai-level-1.pdf",
+    image: "/certificates/piaic-agentic-ai-level-1.webp",
+    // Level 2 supersedes it on the one-page CV.
+    onCv: false,
+  },
+  {
+    name: "Introduction to LangGraph",
+    issuer: "LangChain Academy",
+    date: "2024-11",
+    credentialId: "nmozasavts",
+    url: "/certificates/langchain-introduction-to-langgraph.pdf",
+    image: "/certificates/langchain-introduction-to-langgraph.webp",
   },
 ];
 

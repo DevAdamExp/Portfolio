@@ -36,7 +36,7 @@
   color: var(--cv-body);
   font-family: var(--font-sans);
   font-size: 9.75pt;
-  line-height: 1.38;
+  line-height: 1.36;
   border-radius: 4px;
   box-shadow:
     0 0 0 1px rgb(0 0 0 / 0.06),
@@ -106,6 +106,10 @@
 
 .cv-entry + .cv-entry {
   margin-top: 2.5mm;
+}
+
+.cv-line + .cv-line {
+  margin-top: 0.8mm;
 }
 
 .cv-entry-head {

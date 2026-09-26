@@ -27,7 +27,7 @@ All portfolio and CV content lives in typed files under `content/` — see `cont
 - `experience.ts` — `Experience[]`, newest first; omit `end` for the current role
 - `projects.ts` — `Project[]`; `slug` drives `/projects/[slug]`, `featured` shows on home, `onCv` on the CV, `architecture` (`FlowStep[]`) renders as a one-line flow in project lists (`ArchitectureInline`) and a "How it works" walkthrough on project pages (`ArchitectureSteps`)
 - `skills.ts` — skill groups with a one-line `description`
-- `education.ts` — education, languages, and the "How I work" principles
+- `education.ts` — education, `certifications` (PDFs and preview images in `public/certificates/`; `onCv: false` hides one from the CV), languages, and the "How I work" principles
 - `types.ts` — the schema for all of the above
 
 The home page, project pages and `/resume` all read from these files — never hard-code content in components. Tech logos and brand colours are resolved by name in `lib/tech.tsx` (Simple Icons via `react-icons/si`, extra Simple Icons paths in `lib/brand-icons.tsx`, or an SVG in `public/logos/tech/`), with `darkColor` for brands too dark on the dark theme; company logos come from `public/logos/companies/` with an initials fallback (`CompanyLogo`). Only write numbers/metrics that the owner has confirmed.
@@ -48,7 +48,7 @@ The look is deliberately calm and text-first: one centred column, neutral greys,
 
 | Route | Notes |
 |-------|-------|
-| `/` | Intro (portrait, headline, current-role card, core stack), Experience (hairline timeline), Selected projects, Skills, How I work, Contact panel (`app/(site)/page.tsx`) |
+| `/` | Intro (portrait, headline, current-role card, core stack), Experience (hairline timeline), Selected projects, Skills, Education & certifications, How I work, Contact panel (`app/(site)/page.tsx`) |
 | `/projects` | All projects, grouped into products and AI agents |
 | `/projects/[slug]` | Project write-up (overview, problem, how it works, what I built, outcome, stack), statically generated |
 | `/resume` | Single-column A4 CV generated from `content/`, with print CSS in `app/resume/resume.css`; outside the `(site)` group so it has no site header |

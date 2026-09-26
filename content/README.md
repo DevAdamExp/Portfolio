@@ -10,7 +10,7 @@ TypeScript flags a missing or misspelled field when you run `npm run build`.
 | `experience.ts` | Work history (newest first) |
 | `projects.ts` | Projects, their detail pages, what is featured / on the CV |
 | `skills.ts` | Skill groups and the logos next to them |
-| `education.ts` | Education, languages, and the "How I work" principles |
+| `education.ts` | Education, certifications, languages, and the "How I work" principles |
 | `types.ts` | The schema for all of the above, with comments on every field |
 
 ## Add a job
@@ -63,6 +63,26 @@ architecture: [
 
 Keep labels short (one or two words); four or five steps reads best.
 
+## Add a certificate
+
+Put the certificate PDF in `/public/certificates/` and add an entry to
+`certifications` in `education.ts` (newest first):
+
+```ts
+{
+  name: "Introduction to LangGraph",
+  issuer: "LangChain Academy",
+  date: "2024-11",                                   // YYYY-MM
+  credentialId: "nmozasavts",                        // optional
+  url: "/certificates/introduction-to-langgraph.pdf", // opens in a new tab
+  image: "/certificates/introduction-to-langgraph.webp", // optional preview
+  // onCv: false,                                    // hide it from the CV
+}
+```
+
+For the preview, export the first page of the PDF as an image about 480px
+wide. The CV has room for two or three certificates on one page.
+
 ## Add a skill
 
 Add the name to a group in `skills.ts`. If the name has an entry in
@@ -94,9 +114,10 @@ LangGraph, LiveKit, CrewAI and MCP live in `lib/brand-icons.tsx` because
 For a tool that isn't in Simple Icons, save a single-colour SVG to
 `/public/logos/tech/` and register it with `{ logo: "/logos/tech/name.svg" }`.
 
-**Company logos** go in `/public/logos/companies/`. Use a square SVG or PNG
-(at least 96×96) on a transparent or white background, then set `logo` on the
-experience entry. Without a logo the company shows its initials.
+**Company logos** go in `/public/logos/companies/`. Use a square SVG, PNG or
+WebP (at least 96×96, ideally with a transparent background), then set `logo`
+on the experience entry, e.g. `logo: "/logos/companies/the-visa-consultancy.webp"`.
+Without a logo the company shows its initials.
 
 ## The CV
 

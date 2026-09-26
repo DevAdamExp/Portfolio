@@ -130,6 +130,20 @@ export interface Education {
   details?: string;
 }
 
+export interface Certification {
+  name: string;
+  issuer: string;
+  /** Issue date, e.g. "2026-01". */
+  date: YearMonth;
+  credentialId?: string;
+  /** Link to view or verify it, e.g. a PDF in /public/certificates/. */
+  url?: string;
+  /** Preview image under /public, shown next to the certificate on the site. */
+  image?: string;
+  /** List it on the CV. Defaults to true. */
+  onCv?: boolean;
+}
+
 export interface Language {
   name: string;
   level: string;
