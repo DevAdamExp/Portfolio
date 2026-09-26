@@ -6,6 +6,7 @@ export const profile: Profile = {
   headline: "I build agentic AI systems end to end — from the model loop to the interface people use.",
   intro:
     "I'm a full-stack engineer based in Islamabad, focused on LLM agents, real-time voice AI, and the APIs, data pipelines and interfaces that make them dependable in production.",
+  coreStack: ["Python", "FastAPI", "TypeScript", "Next.js", "LangGraph", "OpenAI Agents SDK"],
   cvSummary:
     "Full-stack engineer with 2+ years shipping production web platforms and agentic AI systems: Next.js and TypeScript front ends, Python/FastAPI services, LLM orchestration with the OpenAI Agents SDK and LangGraph, real-time voice agents on LiveKit and Vapi, and the Docker, Redis and Nginx infrastructure behind them.",
   location: "Islamabad, Pakistan",

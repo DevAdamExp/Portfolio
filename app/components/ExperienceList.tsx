@@ -8,12 +8,16 @@ import TechList from "./TechList";
 export default function ExperienceList() {
   return (
     <ol className="grid gap-14">
-      {experience.map((job) => {
+      {experience.map((job, index) => {
         const current = !job.end;
+        const last = index === experience.length - 1;
         const related = (job.projects ?? []).map(getProject).filter((p) => !!p);
 
         return (
-          <li key={`${job.company}-${job.start}`} className="grid gap-x-4 sm:grid-cols-[40px_1fr]">
+          <li key={`${job.company}-${job.start}`} className="relative grid gap-x-5 sm:grid-cols-[40px_1fr]">
+            {!last && (
+              <span aria-hidden className="absolute -bottom-12 left-5 top-12 hidden w-px bg-line sm:block" />
+            )}
             <div className="hidden sm:block">
               <CompanyLogo name={job.company} logo={job.logo} />
             </div>

@@ -23,7 +23,7 @@ A **Next.js 16 App Router** portfolio using TypeScript and Tailwind CSS v4. Ever
 
 All portfolio and CV content lives in typed files under `content/` — see `content/README.md` for the editing guide:
 
-- `profile.ts` — name, title, `headline` and `intro` for the home page, contact, links, CV options (`cv.showPhoto`, `cv.pdf`)
+- `profile.ts` — name, title, `headline`, `intro` and `coreStack` for the home page intro, contact, links, CV options (`cv.showPhoto`, `cv.pdf`)
 - `experience.ts` — `Experience[]`, newest first; omit `end` for the current role
 - `projects.ts` — `Project[]`; `slug` drives `/projects/[slug]`, `featured` shows on home, `onCv` on the CV, `architecture` (`FlowStep[]`) renders as a one-line flow in project lists (`ArchitectureInline`) and a "How it works" walkthrough on project pages (`ArchitectureSteps`)
 - `skills.ts` — skill groups with a one-line `description`
@@ -38,7 +38,7 @@ The look is deliberately calm and text-first: one centred column, neutral greys,
 
 `app/globals.css` is the single source of truth: colour tokens (`--bg`, `--surface`, `--fg`, `--fg-muted`, `--fg-subtle`, `--border`, `--accent`, …) for light and dark, exposed to Tailwind via `@theme inline` as `bg-bg`, `text-fg`, `text-muted`, `text-subtle`, `border-line`, `text-accent`, etc. Reusable classes: `.container-page` (the single 44rem column), `.section-title`, `.link`, `.btn` / `.btn-primary` / `.btn-secondary`, `.chip` / `.chip-sm`, `.prose-list`, `.fade-in`.
 
-- Readability: body text is 16px (17px from `md`) at 1.7 line height; running text uses `text-muted` (≥ 9:1 contrast), meta text `text-subtle`. Section headings are `Section` titles (20px semibold) with an optional one-line description.
+- Readability: body text is 16px (17px from `md`) at 1.7 line height; running text uses `text-muted` (≥ 9:1 contrast), meta text `text-subtle`. Section headings are `Section` titles (20px semibold) with an optional one-line description; each section starts with a hairline rule.
 - Fonts: Geist (sans) and Geist Mono via `next/font` in `app/layout.tsx`. Mono is only for small metadata such as dates and architecture flows.
 - Theme: `data-theme` on `<html>` is set before paint by the inline script in `layout.tsx`; the `dark:` variant keys off it. Use tokens rather than `dark:` where possible.
 - Responsive: check 360, 390, 768 and 1440px; grid children holding wide content need `min-w-0`.
@@ -48,7 +48,7 @@ The look is deliberately calm and text-first: one centred column, neutral greys,
 
 | Route | Notes |
 |-------|-------|
-| `/` | Intro, Experience, Selected projects, Skills, How I work, Contact (`app/(site)/page.tsx`) |
+| `/` | Intro (portrait, headline, current-role card, core stack), Experience (hairline timeline), Selected projects, Skills, How I work, Contact panel (`app/(site)/page.tsx`) |
 | `/projects` | All projects, grouped into products and AI agents |
 | `/projects/[slug]` | Project write-up (overview, problem, how it works, what I built, outcome, stack), statically generated |
 | `/resume` | Single-column A4 CV generated from `content/`, with print CSS in `app/resume/resume.css`; outside the `(site)` group so it has no site header |

@@ -72,8 +72,9 @@ letter tile. Each group's `description` appears under its title.
 ## Home page intro
 
 `headline` is the large sentence at the top of the home page and `intro` is
-the paragraph under it. The "Currently …" line comes from the experience
-entry without an `end` date.
+the paragraph under it. The current-role card below it comes from the
+experience entry without an `end` date, and `coreStack` is the row of logos
+under that (keep it to five or six tools).
 
 ## Logos
 

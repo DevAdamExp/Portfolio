@@ -23,6 +23,8 @@ export interface Profile {
   headline: string;
   /** Two or three sentences under the headline. */
   intro: string;
+  /** The tools you reach for first, shown with their logos under the intro. */
+  coreStack: string[];
   /** Two to three sentences for the top of the CV. */
   cvSummary: string;
   location: string;

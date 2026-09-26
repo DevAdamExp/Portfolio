@@ -5,11 +5,16 @@ import { principles, principlesIntro } from "@/content/education";
 import { experience } from "@/content/experience";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
+import { formatMonth } from "@/lib/format";
+import CompanyLogo from "../components/CompanyLogo";
 import ExperienceList from "../components/ExperienceList";
 import ProjectList from "../components/ProjectList";
 import Section from "../components/Section";
 import SkillsList from "../components/SkillsList";
 import SocialLinks from "../components/SocialLinks";
+import TechList from "../components/TechList";
+
+const stagger = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
 export default function Home() {
   const current = experience.find((job) => !job.end);
@@ -23,38 +28,57 @@ export default function Home() {
             <Image
               src={profile.photo.src}
               alt={profile.photo.alt}
-              width={56}
-              height={56}
+              width={64}
+              height={64}
               priority
-              className="size-14 rounded-full border border-line object-cover"
+              className="size-16 rounded-full border border-line object-cover"
             />
           )}
           <div className="leading-snug">
-            <h1 className="font-semibold tracking-tight text-fg">{profile.name}</h1>
+            <h1 className="text-[17px] font-semibold tracking-tight text-fg">{profile.name}</h1>
             <p className="text-[15px] text-muted">{profile.title}</p>
+            <p className="text-sm text-subtle">{profile.location}</p>
           </div>
         </div>
 
         <p
-          className="fade-in mt-8 text-[1.625rem] font-semibold leading-[1.3] tracking-[-0.02em] text-balance text-fg md:text-[2rem]"
-          style={{ "--i": 1 } as React.CSSProperties}
+          className="fade-in mt-10 text-[1.75rem] font-semibold leading-[1.2] tracking-[-0.025em] text-balance text-fg md:text-[2.25rem]"
+          style={stagger(1)}
         >
           {profile.headline}
         </p>
 
-        <p className="fade-in mt-5 text-pretty text-muted" style={{ "--i": 2 } as React.CSSProperties}>
+        <p className="fade-in mt-5 text-pretty text-muted md:text-lg md:leading-relaxed" style={stagger(2)}>
           {profile.intro}
         </p>
 
         {current && (
-          <p className="fade-in mt-5 text-[15px] text-muted" style={{ "--i": 3 } as React.CSSProperties}>
-            <span className="mr-2 inline-block size-2 -translate-y-px rounded-full bg-accent align-middle" aria-hidden />
-            Currently {current.role} at <span className="font-medium text-fg">{current.company}</span>
-            {profile.availability && <span className="text-subtle"> · {profile.availability}</span>}
-          </p>
+          <a
+            href="#experience"
+            className="fade-in group mt-8 flex items-center gap-4 rounded-xl border border-line bg-surface p-4 transition-colors hover:border-line-strong"
+            style={stagger(3)}
+          >
+            <CompanyLogo name={current.company} logo={current.logo} />
+            <div className="min-w-0 flex-1 leading-snug">
+              <p className="font-medium text-fg">{current.role}</p>
+              <p className="text-sm text-muted">
+                {current.company} · since {formatMonth(current.start)}
+                {profile.availability && <span className="text-subtle"> · {profile.availability}</span>}
+              </p>
+            </div>
+            <span className="hidden shrink-0 items-center gap-1.5 text-xs font-medium text-accent sm:inline-flex">
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              Current
+            </span>
+          </a>
         )}
 
-        <div className="fade-in mt-8 flex flex-wrap items-center gap-3" style={{ "--i": 4 } as React.CSSProperties}>
+        <div className="fade-in mt-6" style={stagger(4)}>
+          <p className="mb-2.5 text-sm text-subtle">Core stack</p>
+          <TechList items={profile.coreStack} size="sm" label="Core stack" />
+        </div>
+
+        <div className="fade-in mt-8 flex flex-wrap items-center gap-3" style={stagger(5)}>
           <a href={`mailto:${profile.email}`} className="btn btn-primary">
             <FiMail className="size-4" aria-hidden />
             Get in touch
@@ -67,14 +91,14 @@ export default function Home() {
         </div>
       </section>
 
-      <Section id="experience" title="Experience">
+      <Section id="experience" title="Experience" description="Roles, scope and what I delivered, most recent first.">
         <ExperienceList />
       </Section>
 
       <Section
         id="projects"
         title="Selected projects"
-        description="Each one links to a write-up of the problem, the architecture and what I built."
+        description="Each one links to a write-up of the problem, how the system works and what I built."
       >
         <ProjectList items={featured} />
         <Link
@@ -103,16 +127,25 @@ export default function Home() {
       </Section>
 
       <Section id="contact" title="Contact">
-        <p className="max-w-[34rem] text-xl font-semibold leading-snug tracking-tight text-balance text-fg">
-          Building something with agents, voice or LLMs? I&apos;d like to hear about it.
-        </p>
-        <p className="mt-3 text-muted">
-          The best way to reach me is email —{" "}
-          <a href={`mailto:${profile.email}`} className="link">
-            {profile.email}
-          </a>
-          .
-        </p>
+        <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
+          <p className="max-w-[32rem] text-xl font-semibold leading-snug tracking-tight text-balance text-fg md:text-2xl">
+            Building something with agents, voice or LLMs? I&apos;d like to hear about it.
+          </p>
+          <p className="mt-3 text-pretty text-muted">
+            Email is the best way to reach me. I&apos;m happy to talk through architecture, a tricky integration or an
+            idea you&apos;re exploring.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a href={`mailto:${profile.email}`} className="btn btn-primary">
+              <FiMail className="size-4" aria-hidden />
+              {profile.email}
+            </a>
+            <a href={profile.cv.pdf} className="btn btn-secondary" download>
+              <FiDownload className="size-4" aria-hidden />
+              Download CV
+            </a>
+          </div>
+        </div>
       </Section>
     </>
   );

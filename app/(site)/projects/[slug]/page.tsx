@@ -54,16 +54,22 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <article>
-      <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg">
-        <FiArrowLeft className="size-3.5" aria-hidden />
-        Projects
-      </Link>
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-subtle">
+        <Link href="/projects" className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-fg">
+          <FiArrowLeft className="size-3.5" aria-hidden />
+          Projects
+        </Link>
+        <span aria-hidden>/</span>
+        <span aria-current="page" className="text-fg">
+          {project.name}
+        </span>
+      </nav>
 
       <header className="fade-in mt-8">
         <h1 className="text-[1.75rem] font-semibold tracking-[-0.02em] text-fg md:text-[2.25rem]">{project.name}</h1>
         <p className="mt-2 text-lg text-balance text-muted md:text-xl">{project.tagline}</p>
 
-        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-line py-5 text-sm sm:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 rounded-xl border border-line bg-surface px-5 py-4 text-sm sm:grid-cols-4">
           {facts.map((fact) => (
             <div key={fact.label}>
               <dt className="text-subtle">{fact.label}</dt>
@@ -91,7 +97,7 @@ export default async function ProjectPage({ params }: Props) {
       </header>
 
       {project.image && (
-        <figure className="mt-10 overflow-hidden rounded-xl border border-line bg-surface">
+        <figure className="mt-10 rounded-2xl border border-line bg-surface p-1.5">
           <Image
             src={project.image.src}
             alt={project.image.alt}
@@ -99,7 +105,7 @@ export default async function ProjectPage({ params }: Props) {
             height={1000}
             sizes="(min-width: 768px) 672px, 100vw"
             priority
-            className="h-auto w-full"
+            className="h-auto w-full rounded-xl"
           />
         </figure>
       )}
@@ -140,23 +146,31 @@ export default async function ProjectPage({ params }: Props) {
         <TechList items={project.stack} label={`${project.name} stack`} />
       </Block>
 
-      <nav aria-label="More projects" className="mt-16 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
+      <nav aria-label="More projects" className="mt-16 grid gap-3 border-t border-line pt-8 text-sm sm:grid-cols-2">
         {prev ? (
-          <Link href={`/projects/${prev.slug}`} className="group">
+          <Link
+            href={`/projects/${prev.slug}`}
+            className="rounded-xl border border-line bg-surface p-4 transition-colors hover:border-line-strong"
+          >
             <span className="flex items-center gap-1 text-subtle">
               <FiArrowLeft className="size-3.5" aria-hidden /> Previous
             </span>
-            <span className="mt-1 block font-medium text-fg group-hover:underline">{prev.name}</span>
+            <span className="mt-1 block font-medium text-fg">{prev.name}</span>
+            <span className="block text-muted">{prev.tagline}</span>
           </Link>
         ) : (
-          <span />
+          <span className="hidden sm:block" />
         )}
         {next && (
-          <Link href={`/projects/${next.slug}`} className="group text-right">
-            <span className="flex items-center justify-end gap-1 text-subtle">
+          <Link
+            href={`/projects/${next.slug}`}
+            className="rounded-xl border border-line bg-surface p-4 transition-colors hover:border-line-strong sm:text-right"
+          >
+            <span className="flex items-center gap-1 text-subtle sm:justify-end">
               Next <FiArrowRight className="size-3.5" aria-hidden />
             </span>
-            <span className="mt-1 block font-medium text-fg group-hover:underline">{next.name}</span>
+            <span className="mt-1 block font-medium text-fg">{next.name}</span>
+            <span className="block text-muted">{next.tagline}</span>
           </Link>
         )}
       </nav>

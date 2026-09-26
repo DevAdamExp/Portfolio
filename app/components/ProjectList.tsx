@@ -6,9 +6,9 @@ import { ArchitectureInline } from "./ArchitectureFlow";
 
 export default function ProjectList({ items }: { items: Project[] }) {
   return (
-    <ul className="divide-y divide-line border-y border-line">
+    <ul className="divide-y divide-line border-b border-line">
       {items.map((project) => (
-        <li key={project.slug}>
+        <li key={project.slug} className="first:*:pt-0">
           <Link href={`/projects/${project.slug}`} className="group block py-6">
             <div className="flex items-baseline justify-between gap-4">
               <h3 className="flex items-center gap-1.5 font-semibold tracking-tight text-fg">
