@@ -19,10 +19,16 @@ export interface Profile {
   name: string;
   /** Current title, used in the page header, CV and metadata. */
   title: string;
-  /** One sentence shown under your name on the home page. */
+  /** The large headline at the top of the home page. */
   headline: string;
-  /** Short paragraphs for the home page intro. */
-  bio: string[];
+  /** Part of the headline to show in the accent gradient. Must appear in `headline`. */
+  headlineAccent?: string;
+  /** Two or three sentences under the headline. */
+  intro: string;
+  /** Short focus areas, shown in the profile card on the home page. */
+  focus: string[];
+  /** The handful of tools you reach for first, shown in the profile card. */
+  coreStack: string[];
   /** Two to three sentences for the top of the CV. */
   cvSummary: string;
   location: string;
@@ -69,6 +75,14 @@ export interface Experience {
   onCv?: boolean;
 }
 
+/** One step in a project's architecture flow, e.g. { label: "Voice agent", detail: "OpenAI Realtime API", tech: "OpenAI" }. */
+export interface FlowStep {
+  label: string;
+  detail?: string;
+  /** Tech name whose logo is shown for this step. */
+  tech?: string;
+}
+
 export type ProjectKind = "Product" | "Client work" | "AI agent" | "Open source";
 export type ProjectStatus = "Live" | "Private" | "Archived";
 
@@ -98,12 +112,16 @@ export interface Project {
   approach: string[];
   /** Results. Only add numbers you can back up. */
   outcomes?: string[];
+  /** How the system fits together, in request order. Shown as a diagram on cards and the project page. */
+  architecture?: FlowStep[];
   /** Show on the CV under "Selected projects". */
   onCv?: boolean;
 }
 
 export interface SkillGroup {
   title: string;
+  /** One line describing what you do with these tools. */
+  description?: string;
   /** Tech names; icons are resolved from lib/tech.tsx. */
   skills: string[];
 }

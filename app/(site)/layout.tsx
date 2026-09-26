@@ -11,9 +11,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main" className="container-page pt-12 md:pt-20">
-        {children}
-      </main>
+      <main id="main">{children}</main>
       <SiteFooter />
     </>
   );

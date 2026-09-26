@@ -18,7 +18,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle colour theme"
-      className="grid size-8 place-items-center rounded-md text-muted transition-colors hover:bg-surface-hover hover:text-fg"
+      className="grid size-9 place-items-center rounded-lg text-muted transition-colors hover:bg-surface-hover hover:text-fg"
     >
       <FiSun className="hidden size-4 dark:block" aria-hidden />
       <FiMoon className="size-4 dark:hidden" aria-hidden />

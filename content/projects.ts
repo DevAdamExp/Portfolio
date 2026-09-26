@@ -30,6 +30,13 @@ export const projects: Project[] = [
     outcomes: [
       "Turns a multi-day, consultation-heavy process into a guided flow where compliant documents are drafted in minutes.",
     ],
+    architecture: [
+      { label: "Founder", detail: "Guided intake in Next.js", tech: "Next.js" },
+      { label: "TALYA agent", detail: "LangGraph orchestration", tech: "LangGraph" },
+      { label: "Retrieval", detail: "Legal templates in Pinecone", tech: "Pinecone" },
+      { label: "Drafting", detail: "OpenAI generates statutes", tech: "OpenAI" },
+      { label: "Documents", detail: "FastAPI assembles filings", tech: "FastAPI" },
+    ],
   },
   {
     slug: "ouiimi",
@@ -51,6 +58,12 @@ export const projects: Project[] = [
       "Integrated Stripe Connect to split each payment between the platform and the business.",
       "Wrote sync jobs that push listing data in bulk to map and directory services and keep it consistent.",
     ],
+    architecture: [
+      { label: "Customer", detail: "Books in the Next.js app", tech: "Next.js" },
+      { label: "Scheduling", detail: "Multi-staff availability", tech: "MongoDB" },
+      { label: "Payments", detail: "Stripe Connect split", tech: "Stripe" },
+      { label: "Listing sync", detail: "Bulk jobs to map directories" },
+    ],
   },
   {
     slug: "jordan-voice-agent",
@@ -70,6 +83,13 @@ export const projects: Project[] = [
       "Built the agent on LiveKit with the OpenAI Realtime API for speech-to-speech conversation that callers can interrupt naturally.",
       "Exposed ticketing and account lookups as tools through a FastAPI service, so the agent can act, not just answer.",
       "Added escalation rules that transfer the call to a person with the conversation context attached.",
+    ],
+    architecture: [
+      { label: "Caller", detail: "Inbound phone call" },
+      { label: "LiveKit", detail: "Real-time audio room", tech: "LiveKit" },
+      { label: "Voice agent", detail: "OpenAI Realtime API", tech: "OpenAI" },
+      { label: "Tools", detail: "Tickets and accounts via FastAPI", tech: "FastAPI" },
+      { label: "Handoff", detail: "Escalation with context" },
     ],
   },
   {
@@ -91,6 +111,12 @@ export const projects: Project[] = [
       "Built property search and booking with Next.js on PostgreSQL, with map-based discovery through the Google Maps API.",
       "Syndicated listing data through location aggregators (Yext, Uberall) so property details stay accurate across the web.",
     ],
+    architecture: [
+      { label: "Guest", detail: "Search and booking in Next.js", tech: "Next.js" },
+      { label: "Listings", detail: "Vetted properties in PostgreSQL", tech: "PostgreSQL" },
+      { label: "Maps", detail: "Discovery via Google Maps", tech: "Google Maps" },
+      { label: "Syndication", detail: "Yext and Uberall aggregators" },
+    ],
   },
   {
     slug: "fontis-onboarding-agent",
@@ -109,6 +135,13 @@ export const projects: Project[] = [
       "Identifies returning customers with a PostgreSQL lookup and collects details from new ones.",
       "Sends a secure registration link by SMS to complete sign-up and writes the result back to the CRM.",
     ],
+    architecture: [
+      { label: "Caller", detail: "Inbound phone call" },
+      { label: "Vapi agent", detail: "Conversational intake", tech: "Vapi" },
+      { label: "Lookup", detail: "Existing customer in PostgreSQL", tech: "PostgreSQL" },
+      { label: "Sign-up", detail: "Secure link by SMS", tech: "FastAPI" },
+      { label: "CRM", detail: "Record written back" },
+    ],
   },
   {
     slug: "hvac-scheduling-agent",
@@ -124,6 +157,12 @@ export const projects: Project[] = [
     approach: [
       "Built a Vapi agent that qualifies the caller's request and checks live calendar availability.",
       "Books appointments directly into GoHighLevel and triggers follow-ups through Zapier.",
+    ],
+    architecture: [
+      { label: "Caller", detail: "Service request by phone" },
+      { label: "Vapi agent", detail: "Qualifies the job", tech: "Vapi" },
+      { label: "Calendar", detail: "Live availability in GoHighLevel", tech: "GoHighLevel" },
+      { label: "Follow-up", detail: "Zapier automations", tech: "Zapier" },
     ],
   },
   {
@@ -144,6 +183,12 @@ export const projects: Project[] = [
       "Built an image-led site with restrained motion, optimised for fast loads on mobile.",
       "Added an inquiry flow with transactional email through Resend that routes each request automatically.",
       "Structured pages and metadata around local wedding and event search terms.",
+    ],
+    architecture: [
+      { label: "Visitor", detail: "Image-led Next.js site", tech: "Next.js" },
+      { label: "Inquiry", detail: "Booking request form" },
+      { label: "Routing", detail: "Transactional email via Resend", tech: "Resend" },
+      { label: "Venue team", detail: "Request reaches the right contact" },
     ],
   },
 ];

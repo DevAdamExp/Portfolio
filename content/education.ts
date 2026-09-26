@@ -14,6 +14,10 @@ export const languages: Language[] = [
   { name: "Urdu", level: "Native" },
 ];
 
+/** Shown above the principles in the "How I work" section. */
+export const principlesIntro =
+  "I care about clear architecture, typed contracts from database to UI, and software that is simple to operate once it ships.";
+
 /** "How I work" on the home page. Keep each one short and concrete. */
 export const principles: Principle[] = [
   {
