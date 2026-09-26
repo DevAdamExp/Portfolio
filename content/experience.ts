@@ -9,6 +9,7 @@ import type { Experience } from "./types";
 export const experience: Experience[] = [
   {
     company: "The Visa Consultancy",
+    logo: "/logos/companies/the-visa-consultancy.webp",
     role: "Agentic AI Full Stack Developer",
     type: "Full-time",
     start: "2026-05",

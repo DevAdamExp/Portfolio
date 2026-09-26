@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowLeft, FiDownload } from "react-icons/fi";
-import { education, languages } from "@/content/education";
+import { certifications, education, languages } from "@/content/education";
 import { experience } from "@/content/experience";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { skills } from "@/content/skills";
-import { formatPeriod, hostname } from "@/lib/format";
+import { formatMonth, formatPeriod, hostname } from "@/lib/format";
 import PrintButton from "./PrintButton";
 import "./resume.css";
 
@@ -129,19 +129,27 @@ export default function ResumePage() {
         </section>
 
         <section className="cv-section">
-          <h2>Education</h2>
+          <h2>Education &amp; certifications</h2>
           {education.map((item) => (
-            <article key={item.institution} className="cv-entry">
-              <div className="cv-entry-head">
-                <h3>
-                  {item.program}
-                  <span className="cv-at"> — {item.institution}</span>
-                </h3>
-                <p className="cv-date">{formatPeriod(item.start, item.end)}</p>
-              </div>
-              {item.details && <p>{item.details}</p>}
-            </article>
+            <div key={item.institution} className="cv-entry-head cv-line">
+              <h3>
+                {item.program}
+                <span className="cv-at"> — {item.institution}</span>
+              </h3>
+              <p className="cv-date">{formatPeriod(item.start, item.end)}</p>
+            </div>
           ))}
+          {certifications
+            .filter((cert) => cert.onCv !== false)
+            .map((cert) => (
+              <div key={cert.name} className="cv-entry-head cv-line">
+                <h3>
+                  {cert.name}
+                  <span className="cv-at"> — {cert.issuer}</span>
+                </h3>
+                <p className="cv-date">{formatMonth(cert.date)}</p>
+              </div>
+            ))}
         </section>
       </main>
     </div>
