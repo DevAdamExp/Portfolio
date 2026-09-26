@@ -3,12 +3,9 @@ import type { Profile } from "./types";
 export const profile: Profile = {
   name: "Muhammad Adam",
   title: "Agentic AI Full Stack Developer",
-  headline: "I build agentic AI systems end to end.",
-  headlineAccent: "agentic AI systems",
+  headline: "I build agentic AI systems end to end — from the model loop to the interface people use.",
   intro:
-    "From the model loop to the interface people use: LLM agents, real-time voice AI, and the APIs, data pipelines and full-stack platforms that make them dependable in production.",
-  focus: ["Agentic AI", "Voice agents", "Full-stack platforms"],
-  coreStack: ["Python", "FastAPI", "Next.js", "TypeScript"],
+    "I'm a full-stack engineer based in Islamabad, focused on LLM agents, real-time voice AI, and the APIs, data pipelines and interfaces that make them dependable in production.",
   cvSummary:
     "Full-stack engineer with 2+ years shipping production web platforms and agentic AI systems: Next.js and TypeScript front ends, Python/FastAPI services, LLM orchestration with the OpenAI Agents SDK and LangGraph, real-time voice agents on LiveKit and Vapi, and the Docker, Redis and Nginx infrastructure behind them.",
   location: "Islamabad, Pakistan",

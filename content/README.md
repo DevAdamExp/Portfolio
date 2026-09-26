@@ -6,7 +6,7 @@ TypeScript flags a missing or misspelled field when you run `npm run build`.
 
 | File | What it controls |
 | --- | --- |
-| `profile.ts` | Name, title, headline, intro, profile card, contact details, links, CV options |
+| `profile.ts` | Name, title, headline, intro, contact details, links, CV options |
 | `experience.ts` | Work history (newest first) |
 | `projects.ts` | Projects, their detail pages, what is featured / on the CV |
 | `skills.ts` | Skill groups and the logos next to them |
@@ -43,14 +43,15 @@ When you leave a role, add its `end` date.
 Add an object to `projects.ts`. The `slug` becomes the URL (`/projects/<slug>`).
 Set `featured: true` to show it on the home page and `onCv: true` to list it on
 the CV. Screenshots go in `/public/projects/` — real screenshots only, ideally
-16:10 at around 1600px wide. The screenshot appears at the top of the project
-page; cards show the architecture diagram instead.
+16:10 at around 1600px wide. The screenshot appears on the project page.
 
 Write `problem` in your user's or client's terms, `approach` as what you
 designed and built, and `outcomes` only with results you can back up.
 
-`architecture` is the system diagram shown on the project card and the
-project page. List the steps in request order; `tech` adds that tool's logo:
+`architecture` describes how the system fits together. It shows as a short
+flow under each project in the list ("Caller → LiveKit → Voice agent …") and
+as a step-by-step "How it works" section on the project page. List the steps
+in request order; `tech` adds that tool's logo:
 
 ```ts
 architecture: [
@@ -60,7 +61,7 @@ architecture: [
 ],
 ```
 
-Keep labels short (one or two words); cards show four or five steps best.
+Keep labels short (one or two words); four or five steps reads best.
 
 ## Add a skill
 
@@ -68,13 +69,11 @@ Add the name to a group in `skills.ts`. If the name has an entry in
 `lib/tech.tsx` it shows that logo in its brand colour; otherwise it shows a
 letter tile. Each group's `description` appears under its title.
 
-## Home page hero
+## Home page intro
 
-`headline` is the large heading and `headlineAccent` is the part of it shown
-in the green-to-cyan gradient. `intro` sits under it. `focus` and
-`coreStack` fill the `engineer.ts` card next to the headline. The numbers
-under the hero are calculated from your experience and projects, so they
-update themselves.
+`headline` is the large sentence at the top of the home page and `intro` is
+the paragraph under it. The "Currently …" line comes from the experience
+entry without an `end` date.
 
 ## Logos
 

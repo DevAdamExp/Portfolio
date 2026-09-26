@@ -19,16 +19,10 @@ export interface Profile {
   name: string;
   /** Current title, used in the page header, CV and metadata. */
   title: string;
-  /** The large headline at the top of the home page. */
+  /** The large sentence at the top of the home page. */
   headline: string;
-  /** Part of the headline to show in the accent gradient. Must appear in `headline`. */
-  headlineAccent?: string;
   /** Two or three sentences under the headline. */
   intro: string;
-  /** Short focus areas, shown in the profile card on the home page. */
-  focus: string[];
-  /** The handful of tools you reach for first, shown in the profile card. */
-  coreStack: string[];
   /** Two to three sentences for the top of the CV. */
   cvSummary: string;
   location: string;

@@ -17,39 +17,40 @@ There are no automated tests in this project.
 
 ## Architecture
 
-A **Next.js 16 App Router** portfolio using TypeScript and Tailwind CSS v4. Every page is statically generated and rendered as Server Components; the only client components are `ThemeToggle`, `MobileNav` (below `lg`) and `PrintButton` on `/resume`. Keep it that way — the site is deliberately lightweight: no animation libraries, WebGL or client-side data fetching.
+A **Next.js 16 App Router** portfolio using TypeScript and Tailwind CSS v4. Every page is statically generated and rendered as Server Components; the only client components are `ThemeToggle` and `PrintButton` on `/resume`. Keep it that way — the site is deliberately calm and lightweight: no animation libraries, WebGL or client-side data fetching.
 
 ### Content layer
 
 All portfolio and CV content lives in typed files under `content/` — see `content/README.md` for the editing guide:
 
-- `profile.ts` — name, title, `headline`/`headlineAccent`/`intro` for the hero, `focus`/`coreStack` for the `engineer.ts` card, contact, links, CV options (`cv.showPhoto`, `cv.pdf`)
+- `profile.ts` — name, title, `headline` and `intro` for the home page, contact, links, CV options (`cv.showPhoto`, `cv.pdf`)
 - `experience.ts` — `Experience[]`, newest first; omit `end` for the current role
-- `projects.ts` — `Project[]`; `slug` drives `/projects/[slug]`, `featured` shows on home, `onCv` on the CV, `architecture` (`FlowStep[]`) renders the system diagram on cards (`ArchitecturePreview`) and project pages (`ArchitectureSteps`)
+- `projects.ts` — `Project[]`; `slug` drives `/projects/[slug]`, `featured` shows on home, `onCv` on the CV, `architecture` (`FlowStep[]`) renders as a one-line flow in project lists (`ArchitectureInline`) and a "How it works" walkthrough on project pages (`ArchitectureSteps`)
 - `skills.ts` — skill groups with a one-line `description`
 - `education.ts` — education, languages, and the "How I work" principles
 - `types.ts` — the schema for all of the above
 
-The home page, project pages and `/resume` all read from these files — never hard-code content in components. The hero stats are derived from content (`Hero.tsx`), not typed in. Tech logos and brand colours are resolved by name in `lib/tech.tsx` (Simple Icons via `react-icons/si`, extra Simple Icons paths in `lib/brand-icons.tsx`, or an SVG in `public/logos/tech/`), with `darkColor` for brands too dark on the dark theme; company logos come from `public/logos/companies/` with an initials fallback (`CompanyLogo`). Only write numbers/metrics that the owner has confirmed.
+The home page, project pages and `/resume` all read from these files — never hard-code content in components. Tech logos and brand colours are resolved by name in `lib/tech.tsx` (Simple Icons via `react-icons/si`, extra Simple Icons paths in `lib/brand-icons.tsx`, or an SVG in `public/logos/tech/`), with `darkColor` for brands too dark on the dark theme; company logos come from `public/logos/companies/` with an initials fallback (`CompanyLogo`). Only write numbers/metrics that the owner has confirmed.
 
 ### Design system
 
-`app/globals.css` is the single source of truth: colour tokens (`--bg`, `--surface`, `--surface-2`, `--fg`, `--fg-muted`, `--fg-subtle`, `--border`, `--accent`, `--accent-2`, `--glow`, …) for light and dark, exposed to Tailwind via `@theme inline` as `bg-bg`, `bg-surface`, `text-fg`, `text-muted`, `text-subtle`, `border-line`, `text-accent`, `bg-accent-soft`, etc. Reusable classes: `.container-page` (the 72rem page grid), `.eyebrow`, `.text-gradient`, `.card` / `.card-hover`, `.btn` / `.btn-sm` / `.btn-primary` / `.btn-secondary`, `.chip` / `.chip-sm`, `.badge` / `.badge-accent`, `.check-list`, `.bg-grid` + `.fade-mask`, `.fade-in`.
+The look is deliberately calm and text-first: one centred column, neutral greys, generous spacing, and colour only where it carries meaning (brand-coloured tech logos, the green "current"/"live" markers). Avoid gradients, glows, background patterns, code-window mockups, stat counters and card grids — they were tried and read as a template, not as a senior engineer.
 
-- Layout: every home section uses `Section` (eyebrow, title, description; `layout="split"` puts the heading in a sticky left column on `lg`). Sections are full-width with a top hairline; content sits in `.container-page`.
-- Responsive: check 360, 390, 768, 1024 and 1440px. Grid children that hold wide content need `min-w-0`; nav collapses into `MobileNav` below `lg`.
-- Fonts: Geist (sans) and Geist Mono via `next/font` in `app/layout.tsx`. Mono is for code, dates and small metadata.
+`app/globals.css` is the single source of truth: colour tokens (`--bg`, `--surface`, `--fg`, `--fg-muted`, `--fg-subtle`, `--border`, `--accent`, …) for light and dark, exposed to Tailwind via `@theme inline` as `bg-bg`, `text-fg`, `text-muted`, `text-subtle`, `border-line`, `text-accent`, etc. Reusable classes: `.container-page` (the single 44rem column), `.section-title`, `.link`, `.btn` / `.btn-primary` / `.btn-secondary`, `.chip` / `.chip-sm`, `.prose-list`, `.fade-in`.
+
+- Readability: body text is 16px (17px from `md`) at 1.7 line height; running text uses `text-muted` (≥ 9:1 contrast), meta text `text-subtle`. Section headings are `Section` titles (20px semibold) with an optional one-line description.
+- Fonts: Geist (sans) and Geist Mono via `next/font` in `app/layout.tsx`. Mono is only for small metadata such as dates and architecture flows.
 - Theme: `data-theme` on `<html>` is set before paint by the inline script in `layout.tsx`; the `dark:` variant keys off it. Use tokens rather than `dark:` where possible.
-- Colour: the emerald→cyan accent (`--accent`, `--accent-2`) is for eyebrows, the headline highlight, status badges and diagram connectors; tech logos use their brand colours. Everything else stays neutral.
-- Motion: CSS only, opacity/transform, ≤ 200ms for interactions and one page-load fade, all behind `prefers-reduced-motion`. No WebGL, custom cursors, loaders or animation libraries.
+- Responsive: check 360, 390, 768 and 1440px; grid children holding wide content need `min-w-0`.
+- Motion: CSS only, opacity/transform, ≤ 200ms for interactions and one quiet page-load fade, all behind `prefers-reduced-motion`. No WebGL, custom cursors, loaders or animation libraries.
 
 ### Route structure
 
 | Route | Notes |
 |-------|-------|
-| `/` | Hero (headline, `engineer.ts` card, stats), Experience timeline, Selected projects, Skills, How I work, Contact (`app/(site)/page.tsx`) |
-| `/projects` | All project cards, grouped into products and AI agents |
-| `/projects/[slug]` | Project write-up (problem, architecture, what I built, outcome) with a sticky facts/stack sidebar, statically generated |
+| `/` | Intro, Experience, Selected projects, Skills, How I work, Contact (`app/(site)/page.tsx`) |
+| `/projects` | All projects, grouped into products and AI agents |
+| `/projects/[slug]` | Project write-up (overview, problem, how it works, what I built, outcome, stack), statically generated |
 | `/resume` | Single-column A4 CV generated from `content/`, with print CSS in `app/resume/resume.css`; outside the `(site)` group so it has no site header |
 | `/experience`, `/skills`, `/process`, `/contact` | Redirect to home-page anchors (`next.config.ts`) |
 
