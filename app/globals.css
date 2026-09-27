@@ -4,157 +4,107 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ───────────────────────────────────────────────────────────────────────────
-   Design tokens — the single source of truth for colour, type and motion.
-   "Paper" (light) is the default; "Velvet night" (dark) applies from the
-   system setting or the toggle.
+   Design tokens — the single source of truth for colour, type and space.
+   Light is the default; "velvet night" (dark) applies from the system
+   setting or the toggle.
 
-   Colour roles: wine = something you can act on, navy = structure,
-   ink = content, green = live. Contrast (WCAG) against --bg is noted.
+   Colour roles: wine = something you can act on, ink = content,
+   green = live. Contrast (WCAG) against --bg is noted.
    ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --bg: #f7f3ec; /* warm paper */
-  --surface: #fffdf8; /* raised paper: mats, chips, tables */
-  --surface-sunk: #efe9df; /* hover wells */
-  --fg: #15131c; /* ink, 16.6:1 */
-  --fg-muted: #3b3743; /* running text, 10.5:1 */
-  --fg-subtle: #625c68; /* meta, 5.8:1 */
-  --accent: #7b1e34; /* wine, 9.1:1 */
-  --accent-hover: #5f1427; /* maroon */
-  --accent-contrast: #f7f3ec; /* text on the accent (selection) */
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-sunk: #f3f1ed;
+  --fg: #121319; /* 17.8:1 */
+  --fg-muted: #3d3f4b; /* running text, 10.0:1 */
+  --fg-subtle: #666977; /* meta, 5.2:1 */
+  --accent: #7b1e34; /* wine, 9.7:1 */
+  --accent-hover: #5f1427;
   --accent-fill: #7b1e34; /* primary buttons */
   --accent-fill-hover: #5f1427;
-  --accent-fill-fg: #f7f3ec; /* 9.1:1 on wine */
+  --accent-fill-fg: #ffffff;
   --navy: #1e2f55;
   --live: #1f6b46;
-  --velvet: #a3263d; /* decorative only, never small text */
-  --border: rgb(21 19 28 / 0.12);
-  --border-strong: rgb(21 19 28 / 0.24);
+  --border: rgb(18 19 25 / 0.1);
+  --border-strong: rgb(18 19 25 / 0.2);
   --ring: #7b1e34;
-  --band: #5e1427; /* the velvet contact band */
+  --band: #5e1427; /* the contact card */
   --band-fg: #f7f3ec;
   --band-muted: #e8d9d6;
-  --shadow-art: 0 1px 0 var(--border), 0 30px 60px -30px rgb(21 19 28 / 0.35);
-
-  /* Hero painting, back to front */
-  --art-mat: #fffdf8;
-  --art-ground: #ede4d6;
-  --art-sun: #a3263d;
-  --art-b1: #d9b7bb;
-  --art-b2: #34497a;
-  --art-b3: #6e1a2e;
-  --art-b4: #1e2f55;
-  --art-b5: #15131c;
-  --art-line: rgb(247 243 236 / 0.85);
-
-  /* Horizon on the contact band */
-  --horizon-back: #1e2f55;
-  --horizon-mid: #4e1222;
-
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1119;
-    --surface: #151a25;
-    --surface-sunk: #0a0d14;
-    --fg: #f4efe7; /* 16.5:1 */
-    --fg-muted: #cfc8be; /* 11.4:1 */
-    --fg-subtle: #a39c94; /* 7.0:1 */
-    --accent: #e0788a; /* velvet rose, 6.5:1 */
+    --bg: #0b0e15;
+    --surface: #11151f;
+    --surface-sunk: #171c28;
+    --fg: #f2f1ee; /* 17.1:1 */
+    --fg-muted: #c6c7cf; /* 11.5:1 */
+    --fg-subtle: #9a9caa; /* 7.1:1 */
+    --accent: #e0788a; /* velvet rose, 6.6:1 */
     --accent-hover: #eb95a4;
-    --accent-contrast: #0e1119;
-    --accent-fill: #a3263d; /* velvet buttons */
+    --accent-fill: #a3263d;
     --accent-fill-hover: #b3304a;
-    --accent-fill-fg: #f4efe7; /* 6.3:1 on velvet */
+    --accent-fill-fg: #f4efe7;
     --navy: #9db3e0;
     --live: #6ccb9a;
-    --velvet: #c8435b;
-    --border: rgb(244 239 231 / 0.1);
-    --border-strong: rgb(244 239 231 / 0.2);
+    --border: rgb(242 241 238 / 0.09);
+    --border-strong: rgb(242 241 238 / 0.18);
     --ring: #e0788a;
     --band: #3f0e1b;
     --band-fg: #f4efe7;
     --band-muted: #e3cfd2;
-    --shadow-art: 0 1px 0 var(--border), 0 30px 60px -30px rgb(0 0 0 / 0.6);
-    --art-mat: #151a25;
-    --art-ground: #121a2e;
-    --art-sun: #c8435b;
-    --art-b1: #3a4e80;
-    --art-b2: #7a2236;
-    --art-b3: #22345e;
-    --art-b4: #4e1222;
-    --art-b5: #07090f;
-    --art-line: rgb(244 239 231 / 0.38);
-    --horizon-back: #22345e;
-    --horizon-mid: #2a0a13;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #0e1119;
-  --surface: #151a25;
-  --surface-sunk: #0a0d14;
-  --fg: #f4efe7;
-  --fg-muted: #cfc8be;
-  --fg-subtle: #a39c94;
+  --bg: #0b0e15;
+  --surface: #11151f;
+  --surface-sunk: #171c28;
+  --fg: #f2f1ee;
+  --fg-muted: #c6c7cf;
+  --fg-subtle: #9a9caa;
   --accent: #e0788a;
   --accent-hover: #eb95a4;
-  --accent-contrast: #0e1119;
   --accent-fill: #a3263d;
   --accent-fill-hover: #b3304a;
   --accent-fill-fg: #f4efe7;
   --navy: #9db3e0;
   --live: #6ccb9a;
-  --velvet: #c8435b;
-  --border: rgb(244 239 231 / 0.1);
-  --border-strong: rgb(244 239 231 / 0.2);
+  --border: rgb(242 241 238 / 0.09);
+  --border-strong: rgb(242 241 238 / 0.18);
   --ring: #e0788a;
   --band: #3f0e1b;
   --band-fg: #f4efe7;
   --band-muted: #e3cfd2;
-  --shadow-art: 0 1px 0 var(--border), 0 30px 60px -30px rgb(0 0 0 / 0.6);
-  --art-mat: #151a25;
-  --art-ground: #121a2e;
-  --art-sun: #c8435b;
-  --art-b1: #3a4e80;
-  --art-b2: #7a2236;
-  --art-b3: #22345e;
-  --art-b4: #4e1222;
-  --art-b5: #07090f;
-  --art-line: rgb(244 239 231 / 0.38);
-  --horizon-back: #22345e;
-  --horizon-mid: #2a0a13;
   color-scheme: dark;
 }
 
 :root {
-  /* Fonts: Newsreader for display, Inter for reading, IBM Plex Mono for small metadata. */
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-code: var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  /* One family: Geist for everything, Geist Mono only for small metadata. */
+  --font-body: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Fluid type scale, linear from a 360px to a 1440px viewport. */
   --step--1: clamp(0.875rem, 0.8542rem + 0.0926vw, 0.9375rem); /* 14 → 15px */
-  --step-0: clamp(1.0625rem, 1.0208rem + 0.1852vw, 1.1875rem); /* 17 → 19px, body */
-  --step-1: clamp(1.1875rem, 1.1042rem + 0.3704vw, 1.4375rem); /* 19 → 23px, lead */
-  --step-2: clamp(1.375rem, 1.25rem + 0.5556vw, 1.75rem); /* 22 → 28px, item titles */
-  --step-3: clamp(1.875rem, 1.5833rem + 1.2963vw, 2.75rem); /* 30 → 44px, section titles */
-  --step-4: clamp(2.375rem, 1.8333rem + 2.4074vw, 4rem); /* 38 → 64px, page titles */
-  --step-5: clamp(2.625rem, 2rem + 2.7778vw, 4.5rem); /* 42 → 72px, home headline */
+  --step-0: clamp(1.0625rem, 1.0417rem + 0.0926vw, 1.125rem); /* 17 → 18px, body */
+  --step-1: clamp(1.1875rem, 1.1458rem + 0.1852vw, 1.3125rem); /* 19 → 21px, lead */
+  --step-2: clamp(1.25rem, 1.2083rem + 0.1852vw, 1.375rem); /* 20 → 22px, item titles */
+  --step-3: clamp(1.5rem, 1.3667rem + 0.5926vw, 2rem); /* 24 → 32px, section titles */
+  --step-4: clamp(2rem, 1.7333rem + 1.1852vw, 3rem); /* 32 → 48px, page titles */
+  --step-5: clamp(2.25rem, 1.85rem + 1.7778vw, 3.75rem); /* 36 → 60px, home headline */
 
   /* Space */
-  --gutter: clamp(1.25rem, 0.6667rem + 2.5926vw, 3rem);
-  --gap: clamp(1rem, 0.6667rem + 1.4815vw, 2rem);
-  --space-section: clamp(4.5rem, 3rem + 6.6667vw, 9rem);
-  --header-h: 4.5rem;
+  --gutter: clamp(1.25rem, 0.8333rem + 1.8519vw, 2.5rem);
+  --space-section: clamp(5rem, 4rem + 4.4444vw, 8rem);
+  --header-h: 4rem;
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-sine: cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 @theme inline {
@@ -168,20 +118,16 @@
   --color-line-strong: var(--border-strong);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --color-accent-contrast: var(--accent-contrast);
   --color-navy: var(--navy);
   --color-live: var(--live);
   --color-band: var(--band);
   --color-band-fg: var(--band-fg);
   --color-band-muted: var(--band-muted);
   --font-sans: var(--font-body);
-  --font-serif: var(--font-serif);
   --font-mono: var(--font-code);
   --text-small: var(--step--1);
   --text-body: var(--step-0);
   --text-lead: var(--step-1);
-  --text-step-2: var(--step-2);
-  --text-step-3: var(--step-3);
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -204,7 +150,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "cv11", "ss01";
   }
 
   p {
@@ -213,7 +158,7 @@
 
   ::selection {
     background: var(--accent);
-    color: var(--accent-contrast);
+    color: var(--bg);
   }
 
   :focus-visible {
@@ -238,128 +183,64 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
-   Layout
+   Components
    ─────────────────────────────────────────────────────────────────────────── */
 
 @layer components {
-  /* The page container: 76rem of content plus fluid gutters. */
+  /* The page container: 64rem of content plus fluid gutters. */
   .container-page {
     width: 100%;
-    max-width: calc(76rem + 2 * var(--gutter));
+    max-width: calc(64rem + 2 * var(--gutter));
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
 
-  .grid-12 {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--gap);
-  }
-
   /* Comfortable line length for running text. */
   .measure {
-    max-width: 40rem;
-  }
-
-  /* A section: a hairline, then a title rail on the left and the content on the right (from 1024px). */
-  .section {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--gap);
-    row-gap: 2.5rem;
-    margin-top: var(--space-section);
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-rail,
-  .section-body {
-    grid-column: 1 / -1;
-    min-width: 0;
-  }
-
-  .section-rail-description {
-    margin-top: 0.75rem;
-    max-width: 24rem;
-    font-size: var(--step--1);
-    line-height: 1.55;
-    color: var(--fg-subtle);
-  }
-
-  @media (min-width: 1024px) {
-    .section {
-      padding-top: 3.5rem;
-    }
-
-    .section-rail {
-      grid-column: 1 / 5;
-    }
-
-    .section-body {
-      grid-column: 5 / 13;
-    }
-  }
-
-  @media (min-width: 1024px) and (min-height: 700px) {
-    .section-rail {
-      position: sticky;
-      top: calc(var(--header-h) + 2rem);
-      align-self: start;
-    }
+    max-width: 42rem;
   }
 
   /* ─── Type ─────────────────────────────────────────────────────────────── */
 
   .display-hero {
-    font-family: var(--font-serif);
     font-size: var(--step-5);
-    font-weight: 500;
-    line-height: 1.02;
-    letter-spacing: -0.022em;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
     text-wrap: balance;
     color: var(--fg);
   }
 
   .display-page {
-    font-family: var(--font-serif);
     font-size: var(--step-4);
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
     text-wrap: balance;
     color: var(--fg);
   }
 
-  .display-hero em,
-  .display-page em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-  }
-
   .section-title {
-    font-family: var(--font-serif);
     font-size: var(--step-3);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     text-wrap: balance;
     color: var(--fg);
   }
 
   .item-title {
-    font-family: var(--font-serif);
     font-size: var(--step-2);
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
     text-wrap: balance;
     color: var(--fg);
   }
 
   .lead {
     font-size: var(--step-1);
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--fg-muted);
   }
 
@@ -367,18 +248,17 @@
   .meta {
     font-family: var(--font-code);
     font-size: 0.8125rem;
-    line-height: 1.45;
-    letter-spacing: 0.01em;
+    line-height: 1.5;
     color: var(--fg-subtle);
   }
 
-  /* Small mono uppercase label above a heading. */
+  /* Small uppercase label above a heading. */
   .eyebrow {
     font-family: var(--font-code);
     font-size: 0.75rem;
     font-weight: 500;
     line-height: 1.4;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--fg-subtle);
   }
@@ -386,7 +266,6 @@
   /* ─── Links and buttons ────────────────────────────────────────────────── */
 
   .link {
-    color: inherit;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
@@ -396,7 +275,6 @@
   }
 
   .link:hover {
-    color: var(--accent);
     text-decoration-color: currentColor;
   }
 
@@ -405,33 +283,24 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 3rem;
-    padding-inline: 1.375rem;
+    height: 2.75rem;
+    padding-inline: 1.125rem;
     border: 1px solid transparent; /* visible in forced-colours mode */
-    border-radius: 999px;
-    font-size: 1rem;
-    font-weight: 550;
+    border-radius: 0.625rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
     line-height: 1;
     white-space: nowrap;
     transition:
       background-color 150ms ease,
       border-color 150ms ease,
-      color 150ms ease,
-      transform 240ms var(--ease-out);
-  }
-
-  .btn:hover {
-    transform: translateY(-1px);
-  }
-
-  .btn:active {
-    transform: none;
+      color 150ms ease;
   }
 
   .btn-sm {
-    height: 2.5rem;
-    padding-inline: 1.125rem;
-    font-size: 0.9375rem;
+    height: 2.375rem;
+    padding-inline: 0.875rem;
+    font-size: 0.875rem;
   }
 
   .btn-primary {
@@ -445,14 +314,24 @@
 
   .btn-secondary {
     border-color: var(--border-strong);
+    background: var(--surface);
     color: var(--fg);
   }
 
   .btn-secondary:hover {
-    border-color: var(--fg);
+    border-color: var(--fg-subtle);
   }
 
-  /* Buttons on the velvet band */
+  /* Buttons on the wine contact card */
+  .btn-light {
+    background: var(--band-fg);
+    color: var(--band);
+  }
+
+  .btn-light:hover {
+    background: #ffffff;
+  }
+
   .btn-ghost {
     border-color: color-mix(in srgb, var(--band-fg) 40%, transparent);
     color: var(--band-fg);
@@ -467,7 +346,7 @@
     place-items: center;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 999px;
+    border-radius: 0.625rem;
     color: var(--fg-muted);
     transition:
       background-color 150ms ease,
@@ -479,21 +358,27 @@
     color: var(--fg);
   }
 
-  /* Focus rings on the velvet band use the band's text colour. */
-  #contact {
-    --ring: var(--band-fg);
+  /* ─── Cards, chips and lists ───────────────────────────────────────────── */
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    transition: border-color 150ms ease;
   }
 
-  /* ─── Chips and lists ──────────────────────────────────────────────────── */
+  a.card:hover {
+    border-color: var(--border-strong);
+  }
 
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    height: 2.125rem;
-    padding-inline: 0.75rem;
+    gap: 0.4375rem;
+    height: 2rem;
+    padding-inline: 0.6875rem;
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: 0.5rem;
     font-size: 0.875rem;
     line-height: 1;
     color: var(--fg);
@@ -502,20 +387,20 @@
   }
 
   .chip-sm {
-    height: 1.875rem;
-    padding-inline: 0.625rem;
-    gap: 0.4375rem;
+    height: 1.75rem;
+    padding-inline: 0.5625rem;
+    gap: 0.375rem;
     font-size: 0.8125rem;
   }
 
   .prose-list {
     display: grid;
-    gap: 0.625rem;
+    gap: 0.5rem;
   }
 
   .prose-list > li {
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 1.25rem;
   }
 
   .prose-list > li::before {
@@ -523,506 +408,74 @@
     position: absolute;
     left: 0.125rem;
     top: calc(0.82em - 1px);
-    width: 0.625rem;
+    width: 0.5rem;
     height: 2px;
+    border-radius: 1px;
     background: var(--accent);
   }
 
-  /* Green "current" / "live" dot with a soft halo. */
+  /* Green "current" / "live" marker. */
   .live-dot {
-    position: relative;
     display: inline-block;
     flex-shrink: 0;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
     background: var(--live);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 20%, transparent);
   }
 
-  .live-dot::after {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    border-radius: inherit;
-    background: var(--live);
-    opacity: 0.2;
-  }
-
-  /* Underline that grows from the left on hover of the parent `.group`. */
-  .grow-underline {
-    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-    transition: background-size 320ms var(--ease-out);
-  }
-
-  .group:hover .grow-underline,
-  .group:focus-visible .grow-underline {
-    background-size: 100% 1px;
+  /* Focus rings on the wine contact card use the card's text colour. */
+  #contact {
+    --ring: var(--band-fg);
   }
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
-   Art — "Groove No. 1", the horizon strip and the project covers.
-   Only transforms animate, each band on its own layer, so the painting runs
-   on the compositor. Colours come from tokens, so the theme toggle recolours
-   everything without a re-render.
-   ─────────────────────────────────────────────────────────────────────────── */
-
-@layer components {
-  .art-frame {
-    padding: clamp(0.625rem, 0.4rem + 1vw, 1rem);
-    background: var(--art-mat);
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow-art);
-  }
-
-  .art {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: var(--art-ground);
-    contain: strict;
-    isolation: isolate;
-  }
-
-  @media (min-width: 1024px) {
-    .art {
-      aspect-ratio: 4 / 5;
-    }
-  }
-
-  .art svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .art-sun,
-  .art-sun-rise {
-    position: absolute;
-    inset: 0;
-  }
-
-  .art-bob {
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
-
-  .art-band {
-    height: 100%;
-  }
-
-  .art-grain {
-    position: absolute;
-    inset: 0;
-    opacity: 0.14;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
-
-  .art-line {
-    fill: none;
-    stroke: var(--art-line);
-    stroke-width: 2.5;
-    vector-effect: non-scaling-stroke;
-  }
-
-  .fill-sun {
-    fill: var(--art-sun);
-  }
-  .fill-b1 {
-    fill: var(--art-b1);
-  }
-  .fill-b2 {
-    fill: var(--art-b2);
-  }
-  .fill-b3 {
-    fill: var(--art-b3);
-  }
-  .fill-b4 {
-    fill: var(--art-b4);
-  }
-  .fill-b5 {
-    fill: var(--art-b5);
-  }
-
-  .art-caption {
-    margin-top: 0.875rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--fg-subtle);
-  }
-
-  .art-caption-title {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--fg);
-  }
-
-  /* Horizon: the contact band's lower edge, a slow shoreline into the page. */
-  .horizon {
-    position: relative;
-    height: clamp(5rem, 3rem + 8vw, 10rem);
-    overflow: hidden;
-    contain: strict;
-  }
-
-  .horizon svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .fill-h1 {
-    fill: var(--horizon-back);
-  }
-  .fill-h2 {
-    fill: var(--horizon-mid);
-  }
-  .fill-h3 {
-    fill: var(--bg);
-  }
-
-  /* ─── Project covers: four colour schemes, fixed in both themes ────────── */
-
-  .cover {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .cover-paper {
-    --g: #ede4d6;
-    --s: #a3263d;
-    --b0: #d9b7bb;
-    --b1: #34497a;
-    --b2: #6e1a2e;
-    --b3: #1e2f55;
-    --b4: #15131c;
-    --ln: rgb(247 243 236 / 0.85);
-  }
-
-
-  /* At night the paper scheme takes the hero painting's night colours. */
-  [data-theme="dark"] .cover-paper {
-    --g: #121a2e;
-    --s: #c8435b;
-    --b0: #3a4e80;
-    --b1: #7a2236;
-    --b2: #22345e;
-    --b3: #4e1222;
-    --b4: #07090f;
-    --ln: rgb(244 239 231 / 0.38);
-  }
-
-  .cover-navy {
-    --g: #1e2f55;
-    --s: #e9c4c9;
-    --b0: #34497a;
-    --b1: #6e1a2e;
-    --b2: #15213d;
-    --b3: #a3263d;
-    --b4: #0e1119;
-    --ln: rgb(247 243 236 / 0.4);
-  }
-
-  .cover-wine {
-    --g: #6e1a2e;
-    --s: #f3ede3;
-    --b0: #a3263d;
-    --b1: #1e2f55;
-    --b2: #4e1222;
-    --b3: #15213d;
-    --b4: #15131c;
-    --ln: rgb(247 243 236 / 0.45);
-  }
-
-  .cover-ink {
-    --g: #15131c;
-    --s: #a3263d;
-    --b0: #34497a;
-    --b1: #5e1427;
-    --b2: #1e2f55;
-    --b3: #7b1e34;
-    --b4: #07090f;
-    --ln: rgb(247 243 236 / 0.35);
-  }
-
-  .c-ground {
-    fill: var(--g);
-  }
-  .c-sun {
-    fill: var(--s);
-  }
-  .c-0 {
-    fill: var(--b0);
-  }
-  .c-1 {
-    fill: var(--b1);
-  }
-  .c-2 {
-    fill: var(--b2);
-  }
-  .c-3 {
-    fill: var(--b3);
-  }
-  .c-4 {
-    fill: var(--b4);
-  }
-  .c-line {
-    fill: none;
-    stroke: var(--ln);
-    stroke-width: 3;
-  }
-
-  /* A framed cover, used for project plates, banners and thumbnails. */
-  .cover-frame {
-    padding: 0.5rem;
-    background: var(--art-mat);
-    border: 1px solid var(--border-strong);
-    transition: border-color 240ms ease;
-  }
-
-  .cover-canvas {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-
-  .group:hover .cover-frame {
-    border-color: var(--accent);
-  }
-}
-
-/* ───────────────────────────────────────────────────────────────────────────
-   Motion. Only opacity and transform animate. Everything here sits behind
-   prefers-reduced-motion, and the Pause control (data-motion="paused") stops
-   everything that loops: the painting, the horizon, the flow pulse and the
-   live dots.
-   Screen only, so printing never catches content mid-animation.
+   Motion — a quiet fade on page load and a short rise as sections scroll
+   in. Only opacity and transform animate, on screens only, and nothing
+   moves for visitors who ask for reduced motion.
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (prefers-reduced-motion: no-preference) {
-  /* One quiet fade on page load, staggered with --i. */
   .fade-in {
-    animation: fade-in 700ms var(--ease-out) backwards;
-    animation-delay: calc(var(--i, 0) * 90ms);
+    animation: fade-in 600ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
   }
 
-  /* The painting and the horizon (only inside .motion, so still versions stay still) */
-  .motion .art-sun-rise {
-    animation: art-sun-rise 1.8s var(--ease-out) 250ms both;
-  }
-
-  .motion .art-sun {
-    animation: art-sun 26s var(--ease-sine) infinite alternate;
-    will-change: transform;
-  }
-
-  .motion .art-bob {
-    animation: art-bob var(--bob) var(--ease-sine) infinite alternate;
-  }
-
-  .motion .art-band {
-    animation: art-drift var(--drift) linear infinite;
-    will-change: transform;
-  }
-
-  /* The live dot breathes. */
-  .live-dot::after {
-    animation: live-pulse 3s var(--ease-in-out) infinite;
-  }
-
-  /* A request travelling through "How it works". */
-  .flow-pulse {
-    animation: flow-pulse calc(var(--n, 4) * 1.2s) var(--ease-sine) infinite;
-  }
-
-  /* Covers respond to hover. */
-  .cover .c-front,
-  .cover .c-sun {
-    transform-box: fill-box;
-    transition: transform 900ms var(--ease-out);
-  }
-
-  .cover .c-arcs {
-    transform-box: view-box;
-    transform-origin: var(--cx) var(--cy);
-    transition: transform 900ms var(--ease-out);
-  }
-
-  .group:hover .cover .c-front {
-    transform: translateX(-3%);
-  }
-
-  .group:hover .cover .c-sun {
-    transform: translateY(-4%);
-  }
-
-  .group:hover .cover .c-arcs {
-    transform: scale(1.03);
-  }
-
-  /* Scroll reveals, where the browser supports scroll-driven animations.
-     Content is always visible without them. */
+  /* Content is always visible where scroll-driven animations aren't supported. */
   @supports (animation-timeline: view()) {
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 25%;
-    }
-
-    .timeline::before {
-      transform-origin: top;
-      animation: draw linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 55%;
+      animation-range: entry 0% entry 20%;
     }
   }
-}
-
-:root[data-motion="paused"] .motion,
-:root[data-motion="paused"] .motion *,
-:root[data-motion="paused"] .live-dot::after {
-  animation-play-state: paused !important;
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(8px);
   }
 }
 
 @keyframes reveal {
   from {
     opacity: 0.001;
-    transform: translateY(28px);
+    transform: translateY(16px);
   }
 }
 
-@keyframes draw {
-  from {
-    transform: scaleY(0);
-  }
-}
-
-@keyframes art-drift {
-  from {
-    transform: translate3d(var(--from), 0, 0);
-  }
-  to {
-    transform: translate3d(var(--to), 0, 0);
-  }
-}
-
-@keyframes art-bob {
-  from {
-    transform: translate3d(0, calc(var(--bob-y) * -1), 0);
-  }
-  to {
-    transform: translate3d(0, var(--bob-y), 0);
-  }
-}
-
-@keyframes art-sun {
-  from {
-    transform: translate3d(0, -2%, 0) scale(1);
-  }
-  to {
-    transform: translate3d(0, 3.5%, 0) scale(1.03);
-  }
-}
-
-@keyframes art-sun-rise {
-  from {
-    transform: translate3d(0, 18%, 0);
-  }
-}
-
-@keyframes live-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0;
-    transform: scale(1.6);
-  }
-}
-
-@keyframes flow-pulse {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  8% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-}
-
-/* Nothing moves with reduced motion, so the Pause control isn't needed. */
-@media (prefers-reduced-motion: reduce) {
-  .motion-toggle {
-    display: none !important;
-  }
-}
-
-/* The Pause / Play label follows data-motion, so server and client markup match. */
-.motion-label-play {
-  display: none;
-}
-
-:root[data-motion="paused"] .motion-label-pause {
-  display: none;
-}
-
-:root[data-motion="paused"] .motion-label-play {
-  display: inline;
-}
-
-/* ───────────────────────────────────────────────────────────────────────────
-   View transitions: project covers morph from the list to the project page
-   (the rest of the page swaps instantly, then fades in), and the theme toggle
-   reveals the new theme in a circle. Browsers without the API just navigate.
-   ─────────────────────────────────────────────────────────────────────────── */
-
+/* The theme toggle reveals the new theme in a circle where view transitions are supported. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
-/* One image morphs: the new cover scales from the old one's box, so two
-   differently cropped paintings never cross-fade into a double exposure. */
-::view-transition-group(.vt-morph) {
-  animation-duration: 560ms;
-  animation-timing-function: var(--ease-out);
-}
-
-::view-transition-old(.vt-morph) {
-  animation: none;
-  opacity: 0;
-}
-
-::view-transition-new(.vt-morph) {
-  animation: none;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 :root[data-theme-switching]::view-transition-new(root) {
-  animation: theme-reveal 640ms var(--ease-in-out);
+  animation: theme-reveal 560ms var(--ease-in-out);
 }
 
 @keyframes theme-reveal {

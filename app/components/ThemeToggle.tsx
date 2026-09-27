@@ -5,7 +5,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 
 /** Keep the phone's address-bar colour in step with the chosen theme, not just the OS setting. */
 function syncThemeColor(theme: string | undefined) {
-  const color = theme === "dark" ? "#0e1119" : "#f7f3ec";
+  const color = theme === "dark" ? "#0b0e15" : "#fbfaf8";
   document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.setAttribute("content", color));
 }
 

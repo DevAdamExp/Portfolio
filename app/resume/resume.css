@@ -1,7 +1,7 @@
 /* CV layout: a single-column A4 sheet that reads well on screen, in print and
    when parsed by applicant-tracking systems. Colours are fixed (paper is
    always white) regardless of the site theme; the only brand touches are the
-   serif name and the wine rules and headings. */
+   wine header rule and section headings. */
 
 .cv-screen {
   min-height: 100vh;
@@ -65,10 +65,9 @@
 
 .cv-name {
   color: var(--cv-ink);
-  font-family: var(--font-serif);
-  font-size: 22pt;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-size: 20pt;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 

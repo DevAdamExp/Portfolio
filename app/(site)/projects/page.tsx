@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
-import ProjectPlates from "../../components/ProjectPlates";
+import ProjectCards from "../../components/ProjectCards";
 import Section from "../../components/Section";
 
 export const metadata: Metadata = {
@@ -14,23 +14,23 @@ export default function ProjectsPage() {
   const products = projects.filter((p) => p.kind !== "AI agent");
 
   return (
-    <div className="container-page pt-[clamp(2.5rem,1rem+3.5vw,4.5rem)]">
-      <header className="max-w-[52rem]">
+    <div className="container-page pt-[clamp(3rem,2rem+4vw,6rem)]">
+      <header className="max-w-[44rem]">
         <p className="eyebrow fade-in">{projects.length} projects</p>
-        <h1 className="display-page fade-in mt-4" style={{ "--i": 1 } as React.CSSProperties}>
+        <h1 className="display-page fade-in mt-3" style={{ "--i": 1 } as React.CSSProperties}>
           {site.projectsPage.title}
         </h1>
-        <p className="lead fade-in mt-6 max-w-[40rem]" style={{ "--i": 2 } as React.CSSProperties}>
+        <p className="lead fade-in mt-5" style={{ "--i": 2 } as React.CSSProperties}>
           {site.projectsPage.intro}
         </p>
       </header>
 
-      <Section id="products" title={site.projectsPage.products} className="mt-[clamp(3.5rem,2rem+5vw,6rem)]">
-        <ProjectPlates items={products} />
+      <Section id="products" title={site.projectsPage.products} className="mt-[clamp(3.5rem,2.5rem+4vw,5.5rem)]">
+        <ProjectCards items={products} />
       </Section>
 
       <Section id="agents" title={site.projectsPage.agents} description={site.projectsPage.agentsDescription}>
-        <ProjectPlates items={agents} />
+        <ProjectCards items={agents} />
       </Section>
     </div>
   );

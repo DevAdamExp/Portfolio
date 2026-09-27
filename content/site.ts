@@ -2,8 +2,8 @@ import type { SiteCopy } from "./types";
 
 /**
  * Copy for the parts of the site that aren't about a job or a project:
- * section titles and intros, the /projects intro, the contact band that ends
- * every page, and the caption under the hero painting.
+ * section titles and intros, the /projects intro, the contact card that ends
+ * every page, and the 404 page.
  */
 export const site: SiteCopy = {
   sections: {
@@ -37,17 +37,8 @@ export const site: SiteCopy = {
     heading: "Working on something with AI agents? Let’s talk.",
     body: "Email is best. I’m happy to talk through an architecture, a tricky integration or an idea you’re still shaping.",
   },
-  art: {
-    title: "Groove No. 1",
-    year: "2026",
-    caption: "Five waves drifting at their own pace.",
-    label: "Slowly drifting bands of blush, navy, wine and ink under a velvet-red sun.",
-    stillLabel: "Bands of blush, navy, wine and ink under a velvet-red sun.",
-  },
   notFound: {
     heading: "This page isn’t here.",
     body: "It may have moved during a redesign.",
-    artTitle: "Groove No. 404",
-    artCaption: "Still life.",
   },
 };

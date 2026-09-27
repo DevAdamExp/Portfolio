@@ -11,7 +11,7 @@ TypeScript flags a missing or misspelled field when you run `npm run build`.
 | `projects.ts` | Projects, their detail pages, what is featured / on the CV |
 | `skills.ts` | Skill groups and the logos next to them |
 | `education.ts` | Education, languages, and the "How I work" principles |
-| `site.ts` | Section titles and intros, the `/projects` intro, the contact band at the end of every page, the painting's caption |
+| `site.ts` | Section titles and intros, the `/projects` intro, the contact card at the end of every page, the 404 page |
 | `types.ts` | The schema for all of the above, with comments on every field |
 
 ## Add a job
@@ -64,12 +64,6 @@ architecture: [
 
 Keep labels short (one or two words); four or five steps reads best.
 
-Every project gets a generated cover painting, drawn from its `slug` so it
-never changes between builds: wave bands for products and client work (one
-band per architecture step) and rising arcs for AI agents. The colours are
-picked from the slug too; if two covers look alike, set one yourself with
-`cover: { scheme: "paper" }` (`"paper"`, `"navy"`, `"wine"` or `"ink"`).
-
 ## Add a skill
 
 Add the name to a group in `skills.ts`. If the name has an entry in
@@ -79,7 +73,7 @@ letter tile. Each group's `description` appears under its title.
 ## Home page intro
 
 `headline` is the large sentence at the top of the home page; the words after
-" — " are set in wine italic, so keep that dash if you want the two-tone
+" — " are set in a quieter grey, so keep that dash if you want the two-tone
 look. `intro` is the paragraph under it: say plainly what your work does,
 with concrete examples. The "Now" line comes from the experience entry
 without an `end` date. `coreStack` (five or six tools) is named in a sentence
@@ -89,8 +83,8 @@ beside the Skills section.
 
 Write like you talk: short, plain, first-person sentences with specific
 examples, and only facts you can back up. Section titles and intros, the
-contact band ("Working on something with AI agents? Let's talk.") and the
-painting's caption live in `site.ts`.
+contact card ("Working on something with AI agents? Let's talk.") and the
+404 page live in `site.ts`.
 
 ## Logos
 

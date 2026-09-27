@@ -2,10 +2,9 @@
 
 Personal site and CV. Built with Next.js 16 (App Router), TypeScript and
 Tailwind CSS v4. Every page is static, and the home page ships no client
-JavaScript beyond the framework runtime, a theme toggle and a pause control
-for the painting. The art — a slowly drifting SVG painting in the hero, a
-wavy horizon on the contact band and a generated cover for each project — is
-drawn at build time and moved with CSS alone.
+JavaScript beyond the framework runtime and a theme toggle. The design is
+deliberately simple: one sans-serif family, clean cards, wine accents and a
+dark "velvet night" theme.
 
 ## Develop
 

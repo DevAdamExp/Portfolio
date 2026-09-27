@@ -2,15 +2,7 @@ import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { profile } from "@/content/profile";
 
 /** Icon links to GitHub, LinkedIn and (unless `email` is false, e.g. next to an email button) email. */
-export default function SocialLinks({
-  className = "",
-  tone = "page",
-  email = true,
-}: {
-  className?: string;
-  tone?: "page" | "band";
-  email?: boolean;
-}) {
+export default function SocialLinks({ className = "", email = true }: { className?: string; email?: boolean }) {
   const { github, linkedin } = profile.links;
   const items = [
     github && { href: github.href, label: github.label, Icon: FiGithub },
@@ -27,11 +19,7 @@ export default function SocialLinks({
             aria-label={label}
             title={label}
             {...(href.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
-            className={
-              tone === "band"
-                ? "grid size-10 place-items-center rounded-full text-band-muted transition-colors hover:bg-white/10 hover:text-band-fg"
-                : "icon-btn"
-            }
+            className="icon-btn"
           >
             <Icon className="size-[18px]" aria-hidden />
           </a>

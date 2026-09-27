@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import type { FlowStep } from "@/content/types";
 import { TechIcon } from "@/lib/tech";
@@ -17,23 +16,14 @@ export function ArchitectureInline({ steps }: { steps: FlowStep[] }) {
   );
 }
 
-/**
- * Numbered, vertical walkthrough of a system, used on project pages. A small
- * wine dot travels down the connector like a request moving through it.
- */
+/** Numbered, vertical walkthrough of a system, used on project pages. */
 export function ArchitectureSteps({ steps }: { steps: FlowStep[] }) {
   return (
-    <ol className="relative grid gap-6" style={{ "--n": steps.length } as CSSProperties}>
-      {steps.length > 1 && (
-        <span aria-hidden className="absolute bottom-7 left-[1.25rem] top-7 w-px bg-line-strong">
-          <span className="flow-pulse motion absolute inset-0 motion-reduce:hidden">
-            <span className="absolute left-1/2 top-0 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_0_4px_color-mix(in_srgb,var(--accent)_22%,transparent)]" />
-          </span>
-        </span>
-      )}
+    <ol className="relative grid gap-6">
+      {steps.length > 1 && <span aria-hidden className="absolute bottom-7 left-[1.25rem] top-7 w-px bg-line-strong" />}
       {steps.map((step, i) => (
         <li key={step.label} className="relative grid grid-cols-[2.5rem_1fr] gap-4">
-          <span className="grid size-10 place-items-center rounded-full border border-line-strong bg-surface">
+          <span className="grid size-10 place-items-center rounded-lg border border-line-strong bg-surface">
             {step.tech ? (
               <TechIcon name={step.tech} className="size-[18px]" />
             ) : (
