@@ -54,7 +54,7 @@ export const projects: Project[] = [
     problem:
       "Small service businesses lose margin to high platform fees and revenue to no-shows, while juggling staff calendars and listings spread across several map and directory services.",
     approach: [
-      "Built multi-staff scheduling with real-time availability, so a business can manage every team member's calendar in one place.",
+      "Built multi-staff scheduling with real-time availability, so a business can manage every team member’s calendar in one place.",
       "Integrated Stripe Connect to split each payment between the platform and the business.",
       "Wrote sync jobs that push listing data in bulk to map and directory services and keep it consistent.",
     ],
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     cover: { scheme: "ink" },
     problem: "HVAC companies were losing jobs to missed calls and slow, manual scheduling.",
     approach: [
-      "Built a Vapi agent that qualifies the caller's request and checks live calendar availability.",
+      "Built a Vapi agent that qualifies the caller’s request and checks live calendar availability.",
       "Books appointments directly into GoHighLevel and triggers follow-ups through Zapier.",
     ],
     architecture: [

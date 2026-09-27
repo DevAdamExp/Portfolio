@@ -24,7 +24,11 @@ export default function GrooveArt({
   return (
     <figure>
       <div className="art-frame">
-        <div className={`art ${still ? "" : "motion"}`} role="img" aria-label={site.art.label}>
+        <div
+          className={`art ${still ? "" : "motion"}`}
+          role="img"
+          aria-label={still ? site.art.stillLabel : site.art.label}
+        >
           {/* The sun rises from behind the waves once, on load, then drifts slowly. */}
           <div className="art-sun-rise">
             <div className="art-sun">
@@ -72,7 +76,7 @@ export default function GrooveArt({
         {!still && (
           <>
             {" "}
-            <MotionToggle className="link text-muted" />
+            <MotionToggle className="link" />
           </>
         )}
       </figcaption>

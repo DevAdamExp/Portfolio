@@ -9,7 +9,7 @@ export const site: SiteCopy = {
   sections: {
     work: {
       title: "Selected work",
-      description: "Products, client platforms and voice agents. Each has a short write-up: the problem, how it works and what I built.",
+      description: "Web platforms that are live today, and a voice agent that answers support calls.",
     },
     experience: {
       title: "Experience",
@@ -17,14 +17,17 @@ export const site: SiteCopy = {
     },
     skills: {
       title: "Skills",
-      description: "What I use in production, not everything I’ve ever touched.",
+      description: "Grouped by where each tool sits in the stack.",
     },
     // The description for "How I work" is `principlesIntro` in education.ts.
     approach: { title: "How I work" },
   },
+  dayToDay: "Day to day:",
   projectsPage: {
+    title: "Work",
     intro:
-      "Products, client platforms and AI agents I’ve built end to end. Each one has a short write-up: the problem, how the system fits together, what I built and the stack.",
+      "Web platforms, and AI agents that answer calls and take action in business systems. Each write-up covers the problem, how the system fits together and what I built.",
+    metaDescription: "Web platforms, AI products and voice agents I have designed and built.",
     products: "Products & platforms",
     agents: "AI & voice agents",
     agentsDescription: "Agents that talk to customers and take action in business systems through tools.",
@@ -37,7 +40,14 @@ export const site: SiteCopy = {
   art: {
     title: "Groove No. 1",
     year: "2026",
-    caption: "Five waves drifting at their own pace. Drawn in SVG, moved with CSS.",
+    caption: "Five waves drifting at their own pace.",
     label: "Slowly drifting bands of blush, navy, wine and ink under a velvet-red sun.",
+    stillLabel: "Bands of blush, navy, wine and ink under a velvet-red sun.",
+  },
+  notFound: {
+    heading: "This page isn’t here.",
+    body: "It may have moved during a redesign.",
+    artTitle: "Groove No. 404",
+    artCaption: "Still life.",
   },
 };

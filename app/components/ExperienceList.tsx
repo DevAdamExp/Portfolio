@@ -75,7 +75,7 @@ export default function ExperienceList() {
                   {related.map((project, i) => (
                     <span key={project.slug}>
                       {i > 0 && ", "}
-                      <Link href={`/projects/${project.slug}`} className="link text-muted">
+                      <Link href={`/projects/${project.slug}`} className="link text-muted hover:text-accent">
                         {project.name}
                       </Link>
                     </span>

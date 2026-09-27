@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function Block({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="reveal border-t border-line pt-8">
+    <section id={id} aria-labelledby={`${id}-title`} className="reveal border-t border-line pt-8 first:border-t-0 first:pt-0">
       <h2 id={`${id}-title`} className="item-title mb-5">
         {title}
       </h2>
@@ -48,7 +48,7 @@ function Neighbour({ project, direction }: { project: Project; direction: "prev"
       className={`group flex items-center gap-5 border-t border-line pt-6 ${next ? "sm:flex-row-reverse sm:text-right" : ""}`}
     >
       <ViewTransition name={`cover-${project.slug}`} share="vt-morph">
-        <div className="cover-frame w-28 shrink-0 !p-1 sm:w-32">
+        <div className="cover-frame w-28 shrink-0 p-1 sm:w-32">
           <div className="cover-canvas">
             <ProjectCover project={project} />
           </div>
@@ -101,12 +101,6 @@ export default async function ProjectPage({ params }: Props) {
     { id: "stack", title: "Stack" },
   ].filter((section) => !!section);
 
-  const steps = project.architecture?.length ?? 4;
-  const coverNote =
-    project.kind === "AI agent"
-      ? `${steps + 1} rings, rising like sound from a speaker.`
-      : `${steps} bands, one for each step in the system.`;
-
   return (
     <article className="container-page pt-[clamp(2rem,1rem+2.5vw,3.5rem)]">
       <nav aria-label="Breadcrumb" className="meta flex items-center gap-2">
@@ -158,13 +152,13 @@ export default async function ProjectPage({ params }: Props) {
       {/* Words first, then the cover as a quiet band. */}
       <ViewTransition name={`cover-${project.slug}`} share="vt-morph">
         <div className="cover-frame mt-[clamp(2.5rem,1.5rem+3vw,4rem)]">
-          <div className="cover-canvas md:!aspect-[3/1]">
+          <div className="cover-canvas md:aspect-[2/1]">
             <ProjectCover project={project} />
           </div>
         </div>
       </ViewTransition>
 
-      <div className="section !mt-[clamp(3.5rem,2rem+4vw,5.5rem)]">
+      <div className="section mt-[clamp(3.5rem,2rem+4vw,5.5rem)]">
         <aside className="section-rail hidden lg:block">
           <p className="eyebrow">On this page</p>
           <ul className="mt-4 grid gap-2 text-small">
@@ -176,9 +170,6 @@ export default async function ProjectPage({ params }: Props) {
               </li>
             ))}
           </ul>
-          <p className="mt-10 max-w-[16rem] text-small text-subtle">
-            <span className="font-serif italic text-fg">The cover</span> is generated from the project: {coverNote}
-          </p>
         </aside>
 
         <div className="section-body grid gap-14">

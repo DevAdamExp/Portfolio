@@ -15,7 +15,7 @@ export const experience: Experience[] = [
     // DRAFT: summary, highlights and stack are a starting point. Replace them
     // with the specifics of what you are building there.
     summary:
-      "Building agentic AI systems and full-stack applications that automate the consultancy's client and case workflows.",
+      "Building agentic AI systems and full-stack applications that automate the consultancy’s client and case workflows.",
     highlights: [
       "Build LLM agents for client intake, eligibility pre-screening and follow-ups, with human review on each decision.",
       "Own delivery end to end: Next.js interfaces, Python/FastAPI services and the tools the agents call.",

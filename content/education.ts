@@ -15,8 +15,7 @@ export const languages: Language[] = [
 ];
 
 /** Shown above the principles in the "How I work" section. */
-export const principlesIntro =
-  "Plain architecture, typed contracts from the database to the UI, and software that’s easy to run after it ships.";
+export const principlesIntro = "Four habits, in the order they come up on a project.";
 
 /** "How I work" on the home page. Keep each one short and concrete. */
 export const principles: Principle[] = [

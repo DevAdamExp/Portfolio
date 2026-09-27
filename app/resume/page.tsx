@@ -32,7 +32,7 @@ export default function ResumePage() {
 
   return (
     <div className="cv-screen">
-      <div className="cv-toolbar">
+      <nav aria-label="CV" className="cv-toolbar">
         <Link href="/" className="inline-flex items-center gap-1.5 text-small text-muted transition-colors hover:text-fg">
           <FiArrowLeft className="size-3.5" aria-hidden />
           Portfolio
@@ -44,7 +44,7 @@ export default function ResumePage() {
             Download PDF
           </a>
         </div>
-      </div>
+      </nav>
 
       <main className="cv-page">
         <header className="cv-header">

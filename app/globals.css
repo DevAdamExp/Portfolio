@@ -21,7 +21,10 @@
   --fg-subtle: #625c68; /* meta, 5.8:1 */
   --accent: #7b1e34; /* wine, 9.1:1 */
   --accent-hover: #5f1427; /* maroon */
-  --accent-contrast: #f7f3ec; /* text on wine */
+  --accent-contrast: #f7f3ec; /* text on the accent (selection) */
+  --accent-fill: #7b1e34; /* primary buttons */
+  --accent-fill-hover: #5f1427;
+  --accent-fill-fg: #f7f3ec; /* 9.1:1 on wine */
   --navy: #1e2f55;
   --live: #1f6b46;
   --velvet: #a3263d; /* decorative only, never small text */
@@ -59,15 +62,18 @@
     --fg: #f4efe7; /* 16.5:1 */
     --fg-muted: #cfc8be; /* 11.4:1 */
     --fg-subtle: #a39c94; /* 7.0:1 */
-    --accent: #eba3b1; /* claret rose, 9.4:1 */
-    --accent-hover: #f5c2cb;
+    --accent: #e0788a; /* velvet rose, 6.5:1 */
+    --accent-hover: #eb95a4;
     --accent-contrast: #0e1119;
+    --accent-fill: #a3263d; /* velvet buttons */
+    --accent-fill-hover: #b3304a;
+    --accent-fill-fg: #f4efe7; /* 6.3:1 on velvet */
     --navy: #9db3e0;
     --live: #6ccb9a;
     --velvet: #c8435b;
     --border: rgb(244 239 231 / 0.1);
     --border-strong: rgb(244 239 231 / 0.2);
-    --ring: #eba3b1;
+    --ring: #e0788a;
     --band: #3f0e1b;
     --band-fg: #f4efe7;
     --band-muted: #e3cfd2;
@@ -94,15 +100,18 @@
   --fg: #f4efe7;
   --fg-muted: #cfc8be;
   --fg-subtle: #a39c94;
-  --accent: #eba3b1;
-  --accent-hover: #f5c2cb;
+  --accent: #e0788a;
+  --accent-hover: #eb95a4;
   --accent-contrast: #0e1119;
+  --accent-fill: #a3263d;
+  --accent-fill-hover: #b3304a;
+  --accent-fill-fg: #f4efe7;
   --navy: #9db3e0;
   --live: #6ccb9a;
   --velvet: #c8435b;
   --border: rgb(244 239 231 / 0.1);
   --border-strong: rgb(244 239 231 / 0.2);
-  --ring: #eba3b1;
+  --ring: #e0788a;
   --band: #3f0e1b;
   --band-fg: #f4efe7;
   --band-muted: #e3cfd2;
@@ -171,6 +180,8 @@
   --text-small: var(--step--1);
   --text-body: var(--step-0);
   --text-lead: var(--step-1);
+  --text-step-2: var(--step-2);
+  --text-step-3: var(--step-3);
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -215,8 +226,7 @@
     text-underline-offset: 0.2em;
   }
 
-  time,
-  .tabular {
+  time {
     font-variant-numeric: tabular-nums;
   }
 }
@@ -307,7 +317,6 @@
     line-height: 1.02;
     letter-spacing: -0.022em;
     text-wrap: balance;
-    font-optical-sizing: auto;
     color: var(--fg);
   }
 
@@ -318,13 +327,11 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     text-wrap: balance;
-    font-optical-sizing: auto;
     color: var(--fg);
   }
 
   .display-hero em,
-  .display-page em,
-  .accent-italic {
+  .display-page em {
     font-style: italic;
     font-weight: 400;
     color: var(--accent);
@@ -346,6 +353,7 @@
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.01em;
+    text-wrap: balance;
     color: var(--fg);
   }
 
@@ -399,6 +407,7 @@
     gap: 0.5rem;
     height: 3rem;
     padding-inline: 1.375rem;
+    border: 1px solid transparent; /* visible in forced-colours mode */
     border-radius: 999px;
     font-size: 1rem;
     font-weight: 550;
@@ -426,16 +435,16 @@
   }
 
   .btn-primary {
-    background: var(--accent);
-    color: var(--accent-contrast);
+    background: var(--accent-fill);
+    color: var(--accent-fill-fg);
   }
 
   .btn-primary:hover {
-    background: var(--accent-hover);
+    background: var(--accent-fill-hover);
   }
 
   .btn-secondary {
-    border: 1px solid var(--border-strong);
+    border-color: var(--border-strong);
     color: var(--fg);
   }
 
@@ -445,7 +454,7 @@
 
   /* Buttons on the velvet band */
   .btn-ghost {
-    border: 1px solid color-mix(in srgb, var(--band-fg) 40%, transparent);
+    border-color: color-mix(in srgb, var(--band-fg) 40%, transparent);
     color: var(--band-fg);
   }
 
@@ -468,6 +477,11 @@
   .icon-btn:hover {
     background: var(--surface-sunk);
     color: var(--fg);
+  }
+
+  /* Focus rings on the velvet band use the band's text colour. */
+  #contact {
+    --ring: var(--band-fg);
   }
 
   /* ─── Chips and lists ──────────────────────────────────────────────────── */
@@ -508,9 +522,9 @@
     content: "";
     position: absolute;
     left: 0.125rem;
-    top: 0.82em;
+    top: calc(0.82em - 1px);
     width: 0.625rem;
-    height: 1.5px;
+    height: 2px;
     background: var(--accent);
   }
 
@@ -654,10 +668,6 @@
     contain: strict;
   }
 
-  .horizon .art-bob {
-    top: auto;
-  }
-
   .horizon svg {
     display: block;
     width: 100%;
@@ -694,8 +704,16 @@
   }
 
 
+  /* At night the paper scheme takes the hero painting's night colours. */
   [data-theme="dark"] .cover-paper {
-    --g: #d8ccb6;
+    --g: #121a2e;
+    --s: #c8435b;
+    --b0: #3a4e80;
+    --b1: #7a2236;
+    --b2: #22345e;
+    --b3: #4e1222;
+    --b4: #07090f;
+    --ln: rgb(244 239 231 / 0.38);
   }
 
   .cover-navy {
@@ -779,14 +797,15 @@
 /* ───────────────────────────────────────────────────────────────────────────
    Motion. Only opacity and transform animate. Everything here sits behind
    prefers-reduced-motion, and the Pause control (data-motion="paused") stops
-   the continuous pieces: the painting, the horizon and the small pulses.
+   everything that loops: the painting, the horizon, the flow pulse and the
+   live dots.
    Screen only, so printing never catches content mid-animation.
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (prefers-reduced-motion: no-preference) {
   /* One quiet fade on page load, staggered with --i. */
   .fade-in {
-    animation: fade-in 700ms var(--ease-out) both;
+    animation: fade-in 700ms var(--ease-out) backwards;
     animation-delay: calc(var(--i, 0) * 90ms);
   }
 
@@ -850,7 +869,7 @@
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 55%;
+      animation-range: entry 0% entry 25%;
     }
 
     .timeline::before {
@@ -860,18 +879,11 @@
       animation-range: cover 0% cover 55%;
     }
   }
-
-  @supports (animation-timeline: scroll()) {
-    .site-header {
-      animation: header-rule linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 80px;
-    }
-  }
 }
 
 :root[data-motion="paused"] .motion,
-:root[data-motion="paused"] .motion * {
+:root[data-motion="paused"] .motion *,
+:root[data-motion="paused"] .live-dot::after {
   animation-play-state: paused !important;
 }
 
@@ -892,12 +904,6 @@
 @keyframes draw {
   from {
     transform: scaleY(0);
-  }
-}
-
-@keyframes header-rule {
-  from {
-    border-bottom-color: transparent;
   }
 }
 
@@ -971,11 +977,6 @@
   }
 }
 
-/* A paused visitor sees the sun already risen. */
-:root[data-motion="paused"] .art-sun-rise {
-  animation: none !important;
-}
-
 /* The Pause / Play label follows data-motion, so server and client markup match. */
 .motion-label-play {
   display: none;
@@ -990,9 +991,9 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
-   View transitions: pages rise in, project covers morph from the list to the
-   project page, and the theme toggle reveals the new theme in a circle.
-   Browsers without the API simply navigate.
+   View transitions: project covers morph from the list to the project page
+   (the rest of the page swaps instantly, then fades in), and the theme toggle
+   reveals the new theme in a circle. Browsers without the API just navigate.
    ─────────────────────────────────────────────────────────────────────────── */
 
 ::view-transition-old(root),
@@ -1001,35 +1002,27 @@
   mix-blend-mode: normal;
 }
 
-::view-transition-old(.vt-page) {
-  animation: 180ms var(--ease-out) both vt-out;
-}
-
-::view-transition-new(.vt-page) {
-  animation: 420ms var(--ease-out) 80ms both vt-in;
-}
-
+/* One image morphs: the new cover scales from the old one's box, so two
+   differently cropped paintings never cross-fade into a double exposure. */
 ::view-transition-group(.vt-morph) {
   animation-duration: 560ms;
   animation-timing-function: var(--ease-out);
 }
 
+::view-transition-old(.vt-morph) {
+  animation: none;
+  opacity: 0;
+}
+
+::view-transition-new(.vt-morph) {
+  animation: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 :root[data-theme-switching]::view-transition-new(root) {
   animation: theme-reveal 640ms var(--ease-in-out);
-}
-
-@keyframes vt-out {
-  to {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes vt-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
 }
 
 @keyframes theme-reveal {

@@ -6,7 +6,7 @@ import { TechIcon } from "@/lib/tech";
 /** One-line text flow of a system, e.g. "Caller → LiveKit → Voice agent". */
 export function ArchitectureInline({ steps }: { steps: FlowStep[] }) {
   return (
-    <ol aria-label="Architecture" className="meta flex flex-wrap items-center gap-x-1.5 gap-y-1">
+    <ol className="meta flex flex-wrap items-center gap-x-1.5 gap-y-1">
       {steps.map((step, i) => (
         <li key={step.label} className="flex items-center gap-1.5">
           {i > 0 && <FiArrowRight aria-hidden className="size-3 opacity-70" />}

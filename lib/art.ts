@@ -7,7 +7,7 @@
 
 const round = (n: number) => Math.round(n * 10) / 10;
 
-export interface Wave {
+interface Wave {
   /** Width the wave must cover, in SVG units. */
   width: number;
   /** Distance between two crests. */
@@ -28,7 +28,7 @@ export interface Wave {
  * filled down to `bottom`. Because the period is exact, a layer that is
  * `width + period` wide and slides by one period loops seamlessly.
  */
-export function wavePath({ width, period, amp, base, phase = 0, bottom }: Wave) {
+function wavePath({ width, period, amp, base, phase = 0, bottom }: Wave) {
   const handle = 0.18 * period;
   const first = Math.floor(2 * phase) - 1;
   const xAt = (k: number) => (k / 2 - phase) * period;
@@ -60,7 +60,7 @@ export const HERO = { width: 1000, height: 1250, sun: { cx: 640, cy: 440, r: 220
  * which reads as depth; alternating directions make the slow "groove". Drift
  * and bob periods don't share factors, so the piece effectively never repeats.
  */
-export const HERO_BANDS = [
+const HERO_BANDS = [
   { base: 640, amp: 62, period: 1100, phase: 0.0, drift: 110, dir: -1, bob: 17 },
   { base: 760, amp: 56, period: 900, phase: 0.35, drift: 84, dir: 1, bob: 19 },
   { base: 880, amp: 50, period: 760, phase: 0.15, drift: 66, dir: -1, bob: 23 },
@@ -68,7 +68,7 @@ export const HERO_BANDS = [
   { base: 1120, amp: 38, period: 540, phase: 0.3, drift: 44, dir: -1, bob: 13 },
 ] as const;
 
-export interface BandLayer {
+interface BandLayer {
   /** Layer box, as percentages of the canvas. */
   top: number;
   height: number;
@@ -137,7 +137,7 @@ export const heroStill = HERO_BANDS.map((band) =>
    Horizon — the wavy shoreline at the bottom of the contact band
    ─────────────────────────────────────────────────────────────────────────── */
 
-export const HORIZON = { width: 1600, height: 220 };
+const HORIZON = { width: 1600, height: 220 };
 
 export const horizonLayers = bandLayers(
   [
@@ -152,11 +152,11 @@ export const horizonLayers = bandLayers(
    Project covers — the same slug always paints the same picture
    ─────────────────────────────────────────────────────────────────────────── */
 
-export const COVER_SCHEMES = ["paper", "navy", "wine", "ink"] as const;
+const COVER_SCHEMES = ["paper", "navy", "wine", "ink"] as const;
 export type CoverScheme = (typeof COVER_SCHEMES)[number];
 
 /** FNV-1a, 32-bit. */
-export function hash(text: string) {
+function hash(text: string) {
   let h = 2166136261;
   for (let i = 0; i < text.length; i++) {
     h ^= text.charCodeAt(i);
@@ -166,7 +166,7 @@ export function hash(text: string) {
 }
 
 /** Small seeded PRNG returning numbers in [0, 1). */
-export function mulberry32(seed: number) {
+function mulberry32(seed: number) {
   let a = seed;
   return () => {
     a = (a + 0x6d2b79f5) | 0;
@@ -178,7 +178,7 @@ export function mulberry32(seed: number) {
 
 export const COVER = { width: 1600, height: 1000 };
 
-export type CoverArt =
+type CoverArt =
   | {
       motif: "horizon";
       scheme: CoverScheme;

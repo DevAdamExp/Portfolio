@@ -3,12 +3,10 @@ import { IBM_Plex_Mono, Inter, Newsreader } from "next/font/google";
 import { profile, siteUrl } from "@/content/profile";
 import "./globals.css";
 
-// Newsreader's optical-size axis gives large headlines a true display cut.
 const newsreader = Newsreader({
   variable: "--font-newsreader",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
   display: "swap",
 });
 

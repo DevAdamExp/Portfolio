@@ -20,20 +20,20 @@ export default function SiteFooter() {
   return (
     <footer className="mt-[var(--space-section)]">
       <section id="contact" aria-labelledby="contact-title" className="bg-band text-band-fg">
-        <div className="container-page pt-[var(--space-section)] pb-10">
-          <p className="eyebrow reveal !text-band-muted">{site.contact.eyebrow}</p>
-          <h2 id="contact-title" className="display-page reveal mt-4 max-w-[18ch] !text-band-fg">
+        <div className="container-page reveal pt-[var(--space-section)] pb-10">
+          <p className="eyebrow text-band-muted">{site.contact.eyebrow}</p>
+          <h2 id="contact-title" className="display-page mt-4 max-w-[18ch] text-band-fg">
             {site.contact.heading}
           </h2>
-          <p className="reveal mt-6 max-w-[36rem] text-lead leading-[1.55] text-band-muted">{site.contact.body}</p>
+          <p className="mt-6 max-w-[36rem] text-lead leading-[1.55] text-band-muted">{site.contact.body}</p>
           <a
             href={`mailto:${profile.email}`}
-            className="reveal mt-8 inline-flex items-center gap-2 font-serif text-[var(--step-2)] italic text-band-fg underline decoration-band-muted/50 decoration-1 underline-offset-[0.2em] transition-colors hover:decoration-band-fg [overflow-wrap:anywhere]"
+            className="mt-8 inline-flex max-w-full items-center gap-2 font-serif text-step-2 italic text-band-fg underline decoration-band-muted/50 decoration-1 underline-offset-[0.2em] transition-colors hover:decoration-band-fg [overflow-wrap:anywhere]"
           >
-            {profile.email}
-            <FiArrowUpRight className="size-5 shrink-0 not-italic" aria-hidden />
+            <span className="min-w-0">{profile.email}</span>
+            <FiArrowUpRight className="size-5 shrink-0" aria-hidden />
           </a>
-          <div className="reveal mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a href={profile.cv.pdf} className="btn btn-ghost" download>
               <FiDownload className="size-4" aria-hidden />
               Download CV

@@ -5,6 +5,8 @@
  * edit here shows up everywhere. See content/README.md for a walkthrough.
  */
 
+import type { CoverScheme } from "@/lib/art";
+
 /** Year and month, e.g. "2026-05". */
 export type YearMonth = `${number}-${string}`;
 
@@ -116,7 +118,7 @@ export interface Project {
    * The generative cover art. Its colours are picked from the slug; set
    * `scheme` to choose them yourself ("paper", "navy", "wine" or "ink").
    */
-  cover?: { scheme?: "paper" | "navy" | "wine" | "ink" };
+  cover?: { scheme?: CoverScheme };
 }
 
 export interface SkillGroup {
@@ -145,10 +147,20 @@ export interface Principle {
   body: string;
 }
 
-/** Copy for the site's frame: section intros, the contact band and the hero art caption. */
+/** Copy for the site's frame: section intros, the contact band, the hero art caption and the 404 page. */
 export interface SiteCopy {
   sections: Record<"work" | "experience" | "skills" | "approach", { title: string; description?: string }>;
-  projectsPage: { intro: string; products: string; agents: string; agentsDescription: string };
+  /** Shown after the Skills description, followed by `profile.coreStack`. */
+  dayToDay: string;
+  projectsPage: {
+    title: string;
+    intro: string;
+    metaDescription: string;
+    products: string;
+    agents: string;
+    agentsDescription: string;
+  };
   contact: { eyebrow: string; heading: string; body: string };
-  art: { title: string; year: string; caption: string; label: string };
+  art: { title: string; year: string; caption: string; label: string; stillLabel: string };
+  notFound: { heading: string; body: string; artTitle: string; artCaption: string };
 }

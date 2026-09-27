@@ -67,20 +67,16 @@ export default function Home() {
           </p>
 
           {current && (
-            <p
-              className="fade-in mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-small text-muted"
-              style={stagger(3)}
-            >
-              <span className="live-dot" aria-hidden />
-              <span className="eyebrow">Now</span>
+            <p className="fade-in mt-7 text-small text-muted" style={stagger(3)}>
+              <span className="live-dot mr-2.5 align-middle" aria-hidden />
+              <span className="eyebrow mr-2">Now</span>
               <span>
-                {current.role} at{" "}
                 {current.companyUrl ? (
-                  <a href={current.companyUrl} target="_blank" rel="noreferrer" className="link text-fg">
+                  <a href={current.companyUrl} target="_blank" rel="noreferrer" className="link text-fg hover:text-accent">
                     {current.company}
                   </a>
                 ) : (
-                  <a href="#experience" className="link text-fg">
+                  <a href="#experience" className="link text-fg hover:text-accent">
                     {current.company}
                   </a>
                 )}
@@ -118,7 +114,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="fade-in col-span-12 lg:col-span-5 lg:col-start-8" style={stagger(2)}>
+        <div className="fade-in col-span-12 sm:col-span-9 md:col-span-7 lg:col-span-5 lg:col-start-8" style={stagger(2)}>
           <GrooveArt />
         </div>
       </section>
@@ -130,7 +126,7 @@ export default function Home() {
             href="/projects"
             className="group mt-12 inline-flex items-center gap-2 font-medium text-fg transition-colors hover:text-accent"
           >
-            <span className="grow-underline">All projects</span>
+            <span className="grow-underline">All work</span>
             <FiArrowRight
               className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
               aria-hidden
@@ -149,7 +145,7 @@ export default function Home() {
         <Section
           id="skills"
           title={site.sections.skills.title}
-          description={`${site.sections.skills.description} Day to day: ${list.format(profile.coreStack)}.`}
+          description={`${site.sections.skills.description} ${site.dayToDay} ${list.format(profile.coreStack)}.`}
         >
           <SkillsList />
         </Section>
@@ -158,10 +154,10 @@ export default function Home() {
           <ol className="grid gap-x-[var(--gap)] gap-y-12 md:grid-cols-2">
             {principles.map((principle, i) => (
               <li key={principle.title} className="reveal min-w-0 border-t border-line pt-6">
-                <p className="font-serif text-[var(--step-3)] leading-none italic text-accent" aria-hidden>
+                <p className="font-serif text-step-3 leading-none italic text-accent" aria-hidden>
                   {i + 1}.
                 </p>
-                <h3 className="mt-4 font-serif text-[1.375rem] font-medium leading-tight tracking-[-0.01em] text-fg">
+                <h3 className="mt-4 font-serif text-[1.375rem] font-medium leading-tight tracking-[-0.01em] text-balance text-fg">
                   {principle.title}
                 </h3>
                 <p className="mt-2.5 text-muted">{principle.body}</p>
