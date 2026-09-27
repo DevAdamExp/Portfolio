@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Page-to-page transitions with React's <ViewTransition>. Browsers without
+  // the View Transitions API navigate instantly; removing this flag does too.
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

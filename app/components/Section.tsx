@@ -1,3 +1,7 @@
+/**
+ * A page section: a hairline, then the title in a rail on the left (sticky on
+ * large screens) and the content on the right. Stacks below 1024px.
+ */
 export default function Section({
   id,
   title,
@@ -13,18 +17,14 @@ export default function Section({
 }) {
   const headingId = id ? `${id}-title` : undefined;
   return (
-    <section
-      id={id}
-      aria-labelledby={headingId}
-      className={`mt-20 border-t border-line pt-10 md:mt-24 md:pt-12 ${className}`}
-    >
-      <header className="mb-8">
+    <section id={id} aria-labelledby={headingId} className={`section ${className}`}>
+      <header className="section-rail reveal">
         <h2 id={headingId} className="section-title">
           {title}
         </h2>
-        {description && <p className="mt-1.5 text-[15px] text-pretty text-subtle">{description}</p>}
+        {description && <p className="section-rail-description">{description}</p>}
       </header>
-      {children}
+      <div className="section-body">{children}</div>
     </section>
   );
 }

@@ -23,7 +23,7 @@ export interface Profile {
   headline: string;
   /** Two or three sentences under the headline. */
   intro: string;
-  /** The tools you reach for first, shown with their logos under the intro. */
+  /** The tools you reach for first, named in a sentence beside the Skills section. */
   coreStack: string[];
   /** Two to three sentences for the top of the CV. */
   cvSummary: string;
@@ -112,6 +112,11 @@ export interface Project {
   architecture?: FlowStep[];
   /** Show on the CV under "Selected projects". */
   onCv?: boolean;
+  /**
+   * The generative cover art. Its colours are picked from the slug; set
+   * `scheme` to choose them yourself ("paper", "navy", "wine" or "ink").
+   */
+  cover?: { scheme?: "paper" | "navy" | "wine" | "ink" };
 }
 
 export interface SkillGroup {
@@ -138,4 +143,12 @@ export interface Language {
 export interface Principle {
   title: string;
   body: string;
+}
+
+/** Copy for the site's frame: section intros, the contact band and the hero art caption. */
+export interface SiteCopy {
+  sections: Record<"work" | "experience" | "skills" | "approach", { title: string; description?: string }>;
+  projectsPage: { intro: string; products: string; agents: string; agentsDescription: string };
+  contact: { eyebrow: string; heading: string; body: string };
+  art: { title: string; year: string; caption: string; label: string };
 }

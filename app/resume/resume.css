@@ -1,6 +1,7 @@
 /* CV layout: a single-column A4 sheet that reads well on screen, in print and
    when parsed by applicant-tracking systems. Colours are fixed (paper is
-   always white) regardless of the site theme. */
+   always white) regardless of the site theme; the only brand touches are the
+   serif name and the wine rules and headings. */
 
 .cv-screen {
   min-height: 100vh;
@@ -21,21 +22,23 @@
 }
 
 .cv-page {
-  --cv-ink: #111113;
+  --cv-ink: #15131c;
   --cv-body: #2e2e33;
   --cv-muted: #5f5f67;
-  --cv-rule: #d9d9de;
+  --cv-rule: #e6dedf;
+  --cv-wine: #7b1e34;
 
   box-sizing: border-box;
   width: 100%;
   max-width: 210mm;
   min-height: 297mm;
   margin: 0 auto;
-  padding: 14mm 15mm;
+  /* Same text width as the printed page (A4 minus 13mm side margins). */
+  padding: 14mm 13mm;
   background: #fff;
   color: var(--cv-body);
-  font-family: var(--font-sans);
-  font-size: 9.75pt;
+  font-family: var(--font-body);
+  font-size: 9.5pt;
   line-height: 1.38;
   border-radius: 4px;
   box-shadow:
@@ -55,14 +58,15 @@
   justify-content: space-between;
   gap: 8mm;
   padding-bottom: 3.5mm;
-  border-bottom: 1px solid var(--cv-ink);
+  border-bottom: 1.5px solid var(--cv-wine);
 }
 
 .cv-name {
   color: var(--cv-ink);
-  font-size: 20pt;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-serif);
+  font-size: 22pt;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   line-height: 1.1;
 }
 
@@ -97,7 +101,7 @@
   margin-bottom: 1.6mm;
   padding-bottom: 1mm;
   border-bottom: 1px solid var(--cv-rule);
-  color: var(--cv-ink);
+  color: var(--cv-wine);
   font-size: 8.5pt;
   font-weight: 600;
   letter-spacing: 0.08em;

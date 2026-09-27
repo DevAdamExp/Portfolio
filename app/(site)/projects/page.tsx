@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { projects } from "@/content/projects";
-import ProjectList from "../../components/ProjectList";
+import { site } from "@/content/site";
+import ProjectPlates from "../../components/ProjectPlates";
 import Section from "../../components/Section";
 
 export const metadata: Metadata = {
@@ -13,22 +14,24 @@ export default function ProjectsPage() {
   const products = projects.filter((p) => p.kind !== "AI agent");
 
   return (
-    <>
-      <header className="fade-in">
-        <h1 className="text-[1.75rem] font-semibold tracking-[-0.02em] text-fg md:text-[2rem]">Projects</h1>
-        <p className="mt-3 text-pretty text-muted">
-          Products and client platforms I have built end to end, and the AI agents I have designed for real business
-          workflows. Each one has a write-up of the problem, how the system fits together, what I built and the stack.
+    <div className="container-page pt-[clamp(2.5rem,1rem+3.5vw,4.5rem)]">
+      <header className="max-w-[52rem]">
+        <p className="eyebrow fade-in">Work · {projects.length} projects</p>
+        <h1 className="display-page fade-in mt-4" style={{ "--i": 1 } as React.CSSProperties}>
+          Projects
+        </h1>
+        <p className="lead fade-in mt-6 max-w-[40rem]" style={{ "--i": 2 } as React.CSSProperties}>
+          {site.projectsPage.intro}
         </p>
       </header>
 
-      <Section title="Products & platforms" className="!mt-14">
-        <ProjectList items={products} />
+      <Section id="products" title={site.projectsPage.products} className="!mt-[clamp(3.5rem,2rem+5vw,6rem)]">
+        <ProjectPlates items={products} />
       </Section>
 
-      <Section title="AI & voice agents" description="Agents that talk to customers and act on business systems through tools.">
-        <ProjectList items={agents} />
+      <Section id="agents" title={site.projectsPage.agents} description={site.projectsPage.agentsDescription}>
+        <ProjectPlates items={agents} />
       </Section>
-    </>
+    </div>
   );
 }

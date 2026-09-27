@@ -16,24 +16,24 @@ export const languages: Language[] = [
 
 /** Shown above the principles in the "How I work" section. */
 export const principlesIntro =
-  "I care about clear architecture, typed contracts from database to UI, and software that is simple to operate once it ships.";
+  "Plain architecture, typed contracts from the database to the UI, and software that’s easy to run after it ships.";
 
 /** "How I work" on the home page. Keep each one short and concrete. */
 export const principles: Principle[] = [
   {
-    title: "Understand the problem first",
-    body: "I start with the workflow and the people in it — constraints, data and failure modes — before choosing a model or a framework.",
+    title: "Start with the problem, not the model",
+    body: "I learn the workflow and the people in it: the constraints, the data, what tends to go wrong. Then I pick a model or a framework.",
   },
   {
-    title: "Design for the boring path",
-    body: "Clear boundaries, typed contracts and simple infrastructure. Agents get narrow tools, structured outputs and a human in the loop where it matters.",
+    title: "Keep it boring",
+    body: "Clear boundaries, typed contracts and simple infrastructure. Agents get narrow tools, structured outputs and a person in the loop where it matters.",
   },
   {
-    title: "Ship in small, verifiable steps",
-    body: "Working software early, evaluated against real inputs, then iterated. Each release should be easy to review and easy to roll back.",
+    title: "Ship small, then check",
+    body: "Working software early, tested against real inputs, then improved. Each release is easy to review and easy to roll back.",
   },
   {
-    title: "Own it after launch",
-    body: "Logging, monitoring and cost tracking from day one, so the system can be operated, debugged and improved by whoever comes next.",
+    title: "Launch is the start",
+    body: "Logging, monitoring and cost tracking from day one, so whoever runs it next can see what it’s doing and fix it.",
   },
 ];

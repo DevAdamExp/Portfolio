@@ -33,13 +33,13 @@ export default function ResumePage() {
   return (
     <div className="cv-screen">
       <div className="cv-toolbar">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-small text-muted transition-colors hover:text-fg">
           <FiArrowLeft className="size-3.5" aria-hidden />
           Portfolio
         </Link>
         <div className="flex gap-2">
           <PrintButton />
-          <a href={profile.cv.pdf} download className="btn btn-primary">
+          <a href={profile.cv.pdf} download className="btn btn-sm btn-primary">
             <FiDownload className="size-4" aria-hidden />
             Download PDF
           </a>

@@ -153,6 +153,7 @@ export const projects: Project[] = [
     status: "Private",
     role: "AI engineer",
     stack: ["Vapi", "GoHighLevel", "Zapier", "Python"],
+    cover: { scheme: "ink" },
     problem: "HVAC companies were losing jobs to missed calls and slow, manual scheduling.",
     approach: [
       "Built a Vapi agent that qualifies the caller's request and checks live calendar availability.",
@@ -176,6 +177,7 @@ export const projects: Project[] = [
     role: "Frontend engineer",
     links: { live: "https://thegoldenchariot.com" },
     image: { src: "/projects/goldenchariot.png", alt: "The Golden Chariot home page" },
+    cover: { scheme: "paper" },
     stack: ["Next.js", "Framer Motion", "Resend", "Tailwind CSS"],
     problem:
       "The venue needed a digital presence that matched the experience on site and could handle a high volume of booking inquiries.",

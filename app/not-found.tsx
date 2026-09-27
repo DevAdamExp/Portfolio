@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GrooveArt from "./components/art/GrooveArt";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
 
@@ -6,16 +7,26 @@ export default function NotFound() {
   return (
     <>
       <SiteHeader />
-      <main className="container-page py-24">
-        <p className="font-mono text-xs text-subtle">404</p>
-        <h1 className="mt-2 text-2xl font-medium tracking-tight text-fg">This page doesn&apos;t exist.</h1>
-        <p className="mt-3 text-muted">
-          It may have moved during a redesign.{" "}
-          <Link href="/" className="link">
-            Go to the home page
-          </Link>
-          .
-        </p>
+      <main id="main" className="container-page grid-12 items-center gap-y-14 pt-[clamp(2.5rem,1rem+3.5vw,4.5rem)]">
+        <div className="col-span-12 lg:col-span-6">
+          <p className="eyebrow">404</p>
+          <h1 className="display-page mt-4">This page isn&apos;t here.</h1>
+          <p className="lead mt-6 max-w-[30rem]">It may have moved during a redesign.</p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link href="/" className="btn btn-primary">
+              Home page
+            </Link>
+            <Link href="/projects" className="btn btn-secondary">
+              Projects
+            </Link>
+            <Link href="/resume" className="btn btn-secondary">
+              CV
+            </Link>
+          </div>
+        </div>
+        <div className="col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-5 lg:col-start-8">
+          <GrooveArt still title="Groove No. 404" caption="Still life." />
+        </div>
       </main>
       <SiteFooter />
     </>

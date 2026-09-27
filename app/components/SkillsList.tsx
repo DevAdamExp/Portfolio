@@ -3,14 +3,14 @@ import TechList from "./TechList";
 
 export default function SkillsList() {
   return (
-    <dl className="divide-y divide-line border-b border-line">
+    <dl className="grid gap-x-[var(--gap)] gap-y-12 md:grid-cols-2">
       {skills.map((group) => (
-        <div key={group.title} className="grid gap-3 py-6 first:pt-0 sm:grid-cols-[11rem_1fr] sm:gap-6">
+        <div key={group.title} className="reveal min-w-0 border-t border-line pt-6">
           <dt>
-            <p className="font-medium text-fg">{group.title}</p>
-            {group.description && <p className="mt-1 text-sm text-pretty text-subtle">{group.description}</p>}
+            <p className="font-serif text-[1.375rem] font-medium leading-tight tracking-[-0.01em] text-fg">{group.title}</p>
+            {group.description && <p className="mt-2 text-small text-subtle">{group.description}</p>}
           </dt>
-          <dd>
+          <dd className="mt-5">
             <TechList items={group.skills} label={group.title} />
           </dd>
         </div>
