@@ -31,5 +31,7 @@ export const profile: Profile = {
   },
 };
 
-/** Canonical site URL for metadata, sitemap and Open Graph. Set NEXT_PUBLIC_SITE_URL in production. */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+/** Canonical site URL for metadata, sitemap and Open Graph. Production builds default to the live domain; NEXT_PUBLIC_SITE_URL overrides it. */
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.NODE_ENV === "production" ? "https://adam-dev-ai-architect.vercel.app" : "http://localhost:3000");
