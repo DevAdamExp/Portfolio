@@ -21,6 +21,8 @@ import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import type { Project } from "@/content/types";
 import { formatPeriod, hostname } from "@/lib/format";
+import { MdFlight } from "react-icons/md";
+import BoardingPass from "./components/BoardingPass";
 import CountUp from "./components/CountUp";
 import SiteHeader from "./components/SiteHeader";
 import { TechIcon } from "@/lib/tech";
@@ -258,10 +260,15 @@ export default function Home() {
                 <FiDownload className="nudge-y size-[18px]" aria-hidden />
                 Download CV
               </a>
-              <span className="ml-1 inline-flex items-center gap-2 text-[15px] text-subtle">
-                <span className="live-dot" aria-hidden />
-                {profile.location} · open to relocation
-              </span>
+              <a
+                href="#relocate"
+                className="group ml-1 inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-dashed border-ink/50 bg-surface py-2 pl-3 pr-4 text-[14.5px] transition-colors hover:border-solid hover:border-ink"
+              >
+                <span className="font-mono text-[12px] tracking-[0.1em]">ISB</span>
+                <MdFlight className="size-4 rotate-90 text-cobalt transition-transform duration-500 ease-[var(--ease-spring)] group-hover:translate-x-1" aria-hidden />
+                <span className="font-mono text-[12px] tracking-[0.1em] text-cobalt">YOU</span>
+                <span className="text-subtle">· ready to relocate</span>
+              </a>
             </div>
           </div>
 
@@ -327,9 +334,12 @@ export default function Home() {
           <div className="reveal grid gap-12 rounded-[28px] rounded-tl-none bg-ink p-7 text-paper sm:p-10 lg:p-16 xl:grid-cols-2 xl:gap-16">
             <div className="flex flex-col">
               <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-band-muted">{proudOf.meta}</p>
-              <h2 className="mt-5 font-display text-[clamp(2rem,1.5rem+2vw,3.25rem)] font-bold leading-[1.03] tracking-[-0.035em]">
-                {proudOf.title} <span className="text-marigold">{proudOf.titleAccent}</span>
+              <h2 className="mt-5 font-display text-[clamp(2.25rem,1.6rem+2.6vw,3.75rem)] font-extrabold leading-[0.98] tracking-[-0.04em]">
+                {proudOf.title}
               </h2>
+              <h3 className="mt-4 font-display text-[clamp(1.25rem,1.1rem+0.6vw,1.625rem)] font-semibold leading-snug tracking-[-0.015em] text-marigold">
+                {proudOf.titleAccent}
+              </h3>
               {proudOf.paragraphs.map((p) => (
                 <p key={p} className="mt-6 text-[clamp(1.0625rem,1rem+0.3vw,1.1875rem)] leading-[1.7] text-[#d9d9df]">
                   {p}
@@ -528,17 +538,14 @@ export default function Home() {
                   <p key={p}>{p}</p>
                 ))}
               </div>
-              <div className="mt-8 grid max-w-[40rem] gap-3.5 sm:grid-cols-2">
-                <div className="rounded-2xl border-[1.5px] border-ink bg-surface px-5 py-4">
-                  <p className="font-mono text-[12px] tracking-[0.1em] text-subtle">LOOKING FOR</p>
-                  <p className="mt-1 font-semibold">{about.lookingFor}</p>
-                </div>
-                <div className="rounded-2xl border-[1.5px] border-ink bg-surface px-5 py-4">
-                  <p className="font-mono text-[12px] tracking-[0.1em] text-subtle">WHERE</p>
-                  <p className="mt-1 font-semibold">{about.where}</p>
-                </div>
+              <div className="mt-8 max-w-[40rem] rounded-2xl border-[1.5px] border-ink bg-surface px-5 py-4">
+                <p className="font-mono text-[12px] tracking-[0.1em] text-subtle">LOOKING FOR</p>
+                <p className="mt-1 font-semibold">{about.lookingFor}</p>
               </div>
             </div>
+          </div>
+          <div className="reveal mt-12">
+            <BoardingPass name={profile.name} />
           </div>
         </section>
 

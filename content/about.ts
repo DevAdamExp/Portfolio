@@ -38,8 +38,8 @@ export const shippedWith = [
 export const proudOf = {
   note: "if you only read one thing, make it this",
   meta: "Remark Studio · 2026 · Architect & lead engineer",
-  title: "A visa CRM that uses AI for assessments,",
-  titleAccent: "without letting the model decide.",
+  title: "A visa CRM, powered by AI.",
+  titleAccent: "But the model never makes the final call.",
   paragraphs: [
     "A visa consultancy ran every case on spreadsheets and WhatsApp and checked eligibility by hand. A model can read a CV quickly, but if it says yes when the answer is no, a real person loses months and money.",
     "So the model only reads and drafts. Fixed rules make the eligibility call, and a consultant approves every positive result.",

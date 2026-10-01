@@ -17,7 +17,7 @@ export default function SiteHeader() {
       <header className="site-header sticky top-0 z-50 border-b border-transparent bg-paper/85 backdrop-blur-md">
         <div className="container-page flex h-[var(--header-h)] items-center justify-between gap-4">
           <Link href="/" aria-label={`${profile.name}, home`} className="group flex items-center">
-            <Wordmark animate className="h-8 w-auto transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-translate-y-0.5 sm:h-9" />
+            <Wordmark className="h-8 w-auto sm:h-9" />
           </Link>
           <SiteNav email={profile.email} cv={profile.cv.pdf} />
         </div>

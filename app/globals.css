@@ -584,6 +584,34 @@
   }
 }
 
+/* ─── Wordmark ──────────────────────────────────────────────────────────────
+   Rest state is "adam." (what reduced-motion visitors see). Every moving part
+   scales from the baseline: .wm-rise grows up, .wm-sink and .wm-drop go down.
+   ─────────────────────────────────────────────────────────────────────────── */
+.wm .wm-rise,
+.wm .wm-sink,
+.wm .wm-drop,
+.wm .wm-dot {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.wm .wm-sink {
+  transform: scaleY(0); /* the e is tucked away while it reads "adam." */
+}
+
+.wm .wm-drop {
+  transform: scaleY(0.53); /* d ascender sunk to an a-stem: 52 / 98 */
+}
+
+.wm .wm-dot {
+  transform-origin: center;
+}
+
+.pass .pass-plane {
+  left: calc(50% - 0.75rem);
+}
+
 /* ─── Motion ────────────────────────────────────────────────────────────────
    Only transform, opacity and clip-path animate. Everything is static for
    visitors who ask for reduced motion, and visible where an effect isn't
@@ -652,16 +680,65 @@
     animation: ticker 32s linear infinite;
   }
 
-  /* Wordmark: the < and > draw themselves in, then the full stop lands */
-  .wm-chevron {
-    stroke-dasharray: 100;
-    animation: wm-draw 600ms var(--ease-out) 350ms backwards;
+
+  /* Wordmark switch: a left-to-right wave, 60ms per letter */
+  .wm .wm-rise,
+  .wm .wm-sink,
+  .wm .wm-drop,
+  .wm .wm-dot {
+    transition: transform 480ms var(--ease-spring);
+    transition-delay: calc(var(--o, 0) * 60ms);
   }
 
-  .wm-dot {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: pop 500ms var(--ease-spring) 850ms backwards;
+  /* On load: start as "code", then settle */
+  .wm .wm-rise {
+    animation: wm-rise 560ms var(--ease-spring) backwards;
+    animation-delay: calc(650ms + var(--o, 0) * 70ms);
+  }
+
+  .wm .wm-drop {
+    animation: wm-drop 560ms var(--ease-spring) backwards;
+    animation-delay: calc(650ms + var(--o, 0) * 70ms);
+  }
+
+  .wm .wm-sink {
+    animation: wm-sink 360ms var(--ease-in-out) backwards;
+    animation-delay: calc(600ms + var(--o, 0) * 70ms);
+  }
+
+  .wm .wm-dot {
+    animation: wm-dot 420ms var(--ease-spring) backwards;
+    animation-delay: calc(700ms + var(--o, 0) * 70ms);
+  }
+
+  /* Hover: back to "code" */
+  .group:hover .wm .wm-rise,
+  .group:focus-visible .wm .wm-rise,
+  .group:hover .wm .wm-dot,
+  .group:focus-visible .wm .wm-dot {
+    transform: scale(1, 0);
+  }
+
+  .group:hover .wm .wm-dot,
+  .group:focus-visible .wm .wm-dot {
+    transform: scale(0);
+  }
+
+  .group:hover .wm .wm-sink,
+  .group:focus-visible .wm .wm-sink,
+  .group:hover .wm .wm-drop,
+  .group:focus-visible .wm .wm-drop {
+    transform: scaleY(1);
+  }
+
+  /* Boarding pass: the plane flies the dashed route on hover */
+  .pass .pass-plane {
+    left: 0;
+    transition: left 900ms var(--ease-in-out);
+  }
+
+  .pass:hover .pass-plane {
+    left: calc(100% - 1.5rem);
   }
 
   /* Mobile menu: sheet fades down, items rise in turn */
@@ -878,16 +955,34 @@
   }
 }
 
-@keyframes wm-draw {
-  from {
-    stroke-dashoffset: 100;
-  }
-}
-
 @keyframes header-lift {
   to {
     border-bottom-color: rgb(23 23 26 / 0.12);
     box-shadow: 0 10px 30px -18px rgb(23 23 26 / 0.35);
+  }
+}
+
+@keyframes wm-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes wm-drop {
+  from {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wm-sink {
+  from {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wm-dot {
+  from {
+    transform: scale(0);
   }
 }
 
