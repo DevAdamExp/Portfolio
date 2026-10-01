@@ -240,7 +240,7 @@ export default function Home() {
                 <path d="M42 5l9 7-10 5" />
               </svg>
               <div className="pop" style={v({ "--d": "1600ms" })}>
-                <p className="rounded-2xl border-[1.5px] border-ink bg-surface px-4 py-2.5 font-display text-[clamp(1.25rem,1.05rem+0.8vw,1.625rem)] font-bold leading-tight tracking-[-0.02em] shadow-[4px_4px_0_var(--ink)]">
+                <p className="rounded-2xl border-[1.5px] border-ink bg-surface px-4 py-2.5 font-display text-[clamp(1.25rem,1.05rem+0.8vw,1.625rem)] font-bold leading-tight tracking-[-0.02em] shadow-[4px_4px_0_var(--shadow-ink)]">
                   {hero.role}
                 </p>
                 <p className="hand mt-2 pl-2 text-[22px] text-cobalt">{hero.roleLine}</p>
@@ -331,7 +331,7 @@ export default function Home() {
           <span className="tab bg-marigold">
             <FiStar className="size-3.5 fill-ink" aria-hidden />A project I’m proud of
           </span>
-          <div className="reveal grid gap-12 rounded-[28px] rounded-tl-none bg-ink p-7 text-paper sm:p-10 lg:p-16 xl:grid-cols-2 xl:gap-16">
+          <div className="keep-dark reveal grid gap-12 rounded-[28px] rounded-tl-none bg-ink p-7 text-paper sm:p-10 lg:p-16 xl:grid-cols-2 xl:gap-16">
             <div className="flex flex-col">
               <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-band-muted">{proudOf.meta}</p>
               <h2 className="mt-5 font-display text-[clamp(2.25rem,1.6rem+2.6vw,3.75rem)] font-extrabold leading-[0.98] tracking-[-0.04em]">
@@ -402,7 +402,7 @@ export default function Home() {
                     width={3840}
                     height={2160}
                     sizes="(min-width: 640px) 400px, 100vw"
-                    className={`reveal aspect-video w-full rounded-2xl border-[1.5px] border-ink object-cover shadow-[5px_5px_0_var(--ink)] ${["-rotate-1", "rotate-[0.5deg]", "rotate-1"][i]}`}
+                    className={`reveal aspect-video w-full rounded-2xl border-[1.5px] border-ink object-cover shadow-[5px_5px_0_var(--shadow-ink)] ${["-rotate-1", "rotate-[0.5deg]", "rotate-1"][i]}`}
                   />
                 ))}
               </div>
@@ -475,7 +475,7 @@ export default function Home() {
             <p className="text-[18px] text-muted">{habits.intro}</p>
           </div>
           <div className="relative mt-14">
-            <svg aria-hidden viewBox="0 0 100 10" preserveAspectRatio="none" className="ants absolute inset-x-[6%] top-[30px] hidden h-6 w-[88%] xl:block" fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round">
+            <svg aria-hidden viewBox="0 0 100 10" preserveAspectRatio="none" className="ants absolute inset-x-[6%] top-[30px] hidden h-6 w-[88%] xl:block" fill="none" stroke="var(--edge)" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round">
               <path vectorEffect="non-scaling-stroke" d="M0 5 C 15 0, 20 10, 33 5 S 52 0, 66 5 S 85 10, 100 5" />
             </svg>
             <ol className="relative grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
@@ -485,7 +485,7 @@ export default function Home() {
                 return (
                   <li
                     key={h.title}
-                    className={`reveal lift flex flex-col gap-3.5 rounded-[22px] border-[1.5px] border-ink p-6 ${dark ? "bg-ink text-paper" : "bg-surface"}`}
+                    className={`reveal lift flex flex-col gap-3.5 rounded-[22px] border-[1.5px] border-ink p-6 ${dark ? "keep-dark bg-ink text-paper" : "bg-surface"}`}
                     style={v({ animationDelay: `${i * 60}ms` })}
                   >
                     <span className={`grid size-[60px] place-items-center rounded-2xl border-[1.5px] ${dark ? "border-marigold" : "border-ink"} ${habitTints[i]} text-ink`}>
@@ -580,7 +580,7 @@ export default function Home() {
                 return (
                   <li key={`${job.company}-${job.start}`} className="grid gap-4 pl-9 md:grid-cols-2 md:gap-18 md:pl-0">
                     <div
-                      className={`reveal lift relative rounded-[22px] border-[1.5px] border-ink p-6 shadow-[6px_6px_0_var(--ink)] sm:p-7 ${first ? "bg-butter" : "bg-surface"} ${right ? "md:col-start-2" : ""}`}
+                      className={`reveal lift relative rounded-[22px] border-[1.5px] border-ink p-6 shadow-[6px_6px_0_var(--shadow-ink)] sm:p-7 ${first ? "bg-butter" : "bg-surface"} ${right ? "md:col-start-2" : ""}`}
                     >
                       <span aria-hidden className="absolute -left-[33px] top-8 size-3.5 rounded-full border-2 border-ink bg-paper md:hidden" />
                       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
@@ -647,7 +647,7 @@ export default function Home() {
                     return (
                       <li
                         key={tool}
-                        className={`group relative flex flex-col items-center gap-2 rounded-2xl border px-1.5 pb-3 pt-4 text-center transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-spring)] hover:-translate-y-1 hover:border-ink hover:shadow-[3px_3px_0_var(--ink)] ${daily ? "border-ink bg-paper" : "border-line bg-surface"}`}
+                        className={`group relative flex flex-col items-center gap-2 rounded-2xl border px-1.5 pb-3 pt-4 text-center transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-spring)] hover:-translate-y-1 hover:border-ink hover:shadow-[3px_3px_0_var(--shadow-ink)] ${daily ? "border-ink bg-paper" : "border-line bg-surface"}`}
                       >
                         {daily && (
                           <span className="absolute right-2 top-2 size-2.5 rounded-full border-[1.5px] border-ink bg-marigold" aria-label="Daily driver" />
@@ -667,7 +667,7 @@ export default function Home() {
 
         {/* ─── THE END ──────────────────────────────────────────────────── */}
         <section id="contact" aria-labelledby="end-title" className="container-page pb-16">
-          <div className="reveal grid items-end gap-12 rounded-[32px] border-[1.5px] border-ink bg-surface p-8 shadow-[8px_8px_0_var(--ink)] sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:p-18">
+          <div className="reveal grid items-end gap-12 rounded-[32px] border-[1.5px] border-ink bg-surface p-8 shadow-[8px_8px_0_var(--shadow-ink)] sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:p-18">
             <div>
               <h2 id="end-title" className="font-display text-[clamp(2.75rem,1.8rem+4vw,5.625rem)] font-extrabold leading-[0.92] tracking-[-0.05em]">
                 {ending.title}

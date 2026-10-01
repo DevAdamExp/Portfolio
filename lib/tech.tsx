@@ -46,6 +46,8 @@ interface TechEntry {
   icon?: Icon;
   /** SVG in /public/logos/tech/, for tools without a Simple Icons logo. */
   logo?: string;
+  /** Black logo file that needs inverting on the dark theme. */
+  invertDark?: boolean;
   /** Brand colour. Leave out for black-and-white brands; they follow the text colour. */
   color?: string;
   /** Lighter variant for dark mode when the brand colour is too dark to see. */
@@ -100,7 +102,7 @@ const registry: Record<string, TechEntry> = {
   Pydantic: { icon: SiPydantic, color: "#E92063" },
   Claude: { icon: SiAnthropic, color: "#D97757" },
   Gemini: { icon: SiGooglegemini, color: "#8E75B2" },
-  OpenRouter: { logo: "/logos/tech/openrouter.png" },
+  OpenRouter: { logo: "/logos/tech/openrouter.png", invertDark: true },
   Vapi: { logo: "/logos/tech/vapi.svg" },
   Twilio: { icon: SiTwilio, color: "#F22F46" },
   ElevenLabs: { icon: SiElevenlabs },
@@ -133,7 +135,7 @@ export function TechIcon({ name, className = "size-4" }: { name: string; classNa
 
   if (entry?.logo) {
     // eslint-disable-next-line @next/next/no-img-element -- tiny static SVG, no optimisation needed
-    return <img src={entry.logo} alt="" aria-hidden className={`shrink-0 ${className}`} />;
+    return <img src={entry.logo} alt="" aria-hidden className={`shrink-0 ${entry.invertDark ? "dark-invert" : ""} ${className}`} />;
   }
 
   return (

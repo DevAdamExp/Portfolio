@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import ThemeToggle from "./ThemeToggle";
 import { FiDownload, FiMail, FiMenu, FiX } from "react-icons/fi";
 
 const links = [
@@ -95,6 +96,7 @@ export default function SiteNav({ email, cv }: { email: string; cv: string }) {
           <FiDownload className="nudge-y size-4" aria-hidden />
           CV
         </a>
+        <ThemeToggle />
         <a href={`mailto:${email}`} className="btn btn-sm btn-highlight hidden sm:inline-flex">
           <FiMail className="size-4" aria-hidden />
           Email me

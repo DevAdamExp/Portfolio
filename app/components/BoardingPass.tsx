@@ -6,7 +6,7 @@ import { MdFlight } from "react-icons/md";
  */
 export default function BoardingPass({ name }: { name: string }) {
   return (
-    <div id="relocate" className="pass group relative flex flex-col overflow-hidden rounded-[22px] border-[1.5px] border-ink bg-surface shadow-[6px_6px_0_var(--ink)] sm:flex-row">
+    <div id="relocate" className="pass group relative flex flex-col overflow-hidden rounded-[22px] border-[1.5px] border-ink bg-surface shadow-[6px_6px_0_var(--shadow-ink)] sm:flex-row">
       {/* Main ticket */}
       <div className="flex-1 p-6 sm:p-7">
         <div className="flex items-center justify-between gap-4 font-mono text-[11.5px] tracking-[0.14em] text-subtle">
@@ -54,8 +54,8 @@ export default function BoardingPass({ name }: { name: string }) {
 
       {/* Tear-off stub */}
       <div className="relative flex items-center justify-between gap-4 border-t-2 border-dashed border-ink/30 bg-marigold px-6 py-5 sm:w-[11.5rem] sm:flex-col sm:items-start sm:justify-center sm:border-l-2 sm:border-t-0 sm:py-6">
-        <span aria-hidden className="absolute -left-3 -top-3 hidden size-6 rounded-full border-[1.5px] border-ink bg-paper sm:block" />
-        <span aria-hidden className="absolute -bottom-3 -left-3 hidden size-6 rounded-full border-[1.5px] border-ink bg-paper sm:block" />
+        <span aria-hidden className="absolute -left-3 -top-3 hidden size-6 rounded-full border-[1.5px] border-line-strong bg-bg sm:block" />
+        <span aria-hidden className="absolute -bottom-3 -left-3 hidden size-6 rounded-full border-[1.5px] border-line-strong bg-bg sm:block" />
         <div>
           <p className="font-mono text-[10.5px] tracking-[0.12em]">SEAT</p>
           <p className="font-display text-[26px] font-extrabold leading-none tracking-[-0.03em]">Your team</p>

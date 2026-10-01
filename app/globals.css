@@ -47,6 +47,10 @@
   --band: var(--ink);
   --band-fg: var(--paper);
   --band-muted: #c9c9d1;
+  --rule: rgb(23 23 26 / 0.045);
+  --cobalt-text: var(--cobalt);
+  --edge: var(--ink); /* card and button outlines */
+  --shadow-ink: var(--ink); /* hard offset shadows */
   color-scheme: light;
 
   --font-body: var(--font-text), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -70,7 +74,102 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --shadow-hard: 4px 4px 0 var(--ink);
+  --shadow-hard: 4px 4px 0 var(--shadow-ink);
+}
+
+/* ─── Night notebook ────────────────────────────────────────────────────────
+   Same system after dark: ink and paper swap roles, stickers become deep
+   tints, cobalt text lightens for contrast. Follows the system setting unless
+   the visitor picked a theme with the toggle (data-theme on <html>).
+   ─────────────────────────────────────────────────────────────────────────── */
+:root[data-theme="dark"] {
+  --paper: #111114;
+  --ink: #efebe2; /* 15.6:1 on paper */
+  --surface: #1a1a1f;
+  --surface-sunk: #24242b;
+  --fg-muted: #cfcbc2; /* 11.4:1 */
+  --fg-subtle: #a19e96; /* 6.9:1 */
+  --accent-hover: #b3c0ff;
+  --accent-fill-hover: #ffffff;
+  --live: #4cc38a;
+  --border: rgb(239 235 226 / 0.14);
+  --band-muted: #3a3a44;
+  --rule: rgb(239 235 226 / 0.035);
+  --cobalt-text: #9aabff; /* 7.4:1 on paper */
+  --ring: #9aabff;
+  --edge: rgb(239 235 226 / 0.13);
+  --border-strong: rgb(239 235 226 / 0.13);
+  --shadow-ink: #000;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --paper: #111114;
+  --ink: #efebe2; /* 15.6:1 on paper */
+  --surface: #1a1a1f;
+  --surface-sunk: #24242b;
+  --fg-muted: #cfcbc2; /* 11.4:1 */
+  --fg-subtle: #a19e96; /* 6.9:1 */
+  --accent-hover: #b3c0ff;
+  --accent-fill-hover: #ffffff;
+  --live: #4cc38a;
+  --border: rgb(239 235 226 / 0.14);
+  --band-muted: #3a3a44;
+  --rule: rgb(239 235 226 / 0.035);
+  --cobalt-text: #9aabff; /* 7.4:1 on paper */
+  --ring: #9aabff;
+  --edge: rgb(239 235 226 / 0.13);
+  --border-strong: rgb(239 235 226 / 0.13);
+  --shadow-ink: #000;
+  color-scheme: dark;
+  }
+}
+
+/* Things that must stay the same in both themes */
+:is(.bg-marigold, .bg-butter, .bg-mint, .bg-sky, .bg-blush, .bg-lilac, .btn-highlight, .note-card) {
+  /* marigold surfaces read the same in both themes: dark text, dark buttons */
+  --ink: #17171a;
+  --paper: #f4f1ea;
+  --edge: #17171a;
+  color: var(--ink);
+}
+
+/* Panels that are dark by design stay dark (lifted), with light text */
+:root[data-theme="dark"] .keep-dark {
+  --ink: #1f1f25;
+  --paper: #efebe2;
+  --band-muted: #c9c9d1;
+}
+
+/* Sticky notes stay real paper-yellow */
+
+/* Tailwind ink outlines soften on dark */
+:root[data-theme="dark"] :is(.border-ink, .border-line-strong) {
+  border-color: var(--edge);
+}
+
+/* Black brand logos turn light on dark */
+:root[data-theme="dark"] .dark-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Cobalt as text gets the lighter tint */
+.text-cobalt {
+  color: var(--cobalt-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .keep-dark {
+    --ink: #1f1f25;
+    --paper: #efebe2;
+    --band-muted: #c9c9d1;
+  }
+
+
+  :root:not([data-theme="light"]) .dark-invert {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 @theme inline {
@@ -120,7 +219,7 @@
   body {
     background-color: var(--bg);
     /* Faint ruled notebook lines. Cards sit on solid white, so text never runs over them. */
-    background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgb(23 23 26 / 0.045) 31px 32px);
+    background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--rule) 31px 32px);
     font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: 1.65;
@@ -267,7 +366,7 @@
     gap: 0.625rem;
     min-height: 3.25rem;
     padding-inline: 1.5rem;
-    border: 1.5px solid var(--ink);
+    border: 1.5px solid var(--edge);
     border-radius: 999px;
     font-size: 1rem;
     font-weight: 600;
@@ -325,18 +424,18 @@
   .btn-highlight {
     background: var(--marigold);
     color: var(--ink);
-    box-shadow: 3px 3px 0 var(--ink);
+    box-shadow: 3px 3px 0 var(--shadow-ink);
   }
 
   .btn-highlight:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0 var(--ink);
+    box-shadow: 5px 5px 0 var(--shadow-ink);
   }
 
   .btn-highlight:active,
   .btn-secondary:active {
     transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0 var(--ink);
+    box-shadow: 1px 1px 0 var(--shadow-ink);
   }
 
   .btn-light {
@@ -373,7 +472,7 @@
 
   /* Cards, chips, lists */
   .card {
-    border: 1.5px solid var(--ink);
+    border: 1.5px solid var(--edge);
     border-radius: 1.375rem;
     background: var(--surface);
     transition:
@@ -384,7 +483,7 @@
   a.card:hover,
   .lift:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0 var(--ink);
+    box-shadow: 6px 6px 0 var(--shadow-ink);
   }
 
   .lift {
@@ -399,7 +498,7 @@
     gap: 0.4375rem;
     height: 2rem;
     padding-inline: 0.75rem;
-    border: 1.5px solid var(--ink);
+    border: 1.5px solid var(--edge);
     border-radius: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
@@ -510,7 +609,7 @@
   /* Sticky note (not Tailwind's position: sticky) */
   .note-card {
     background: var(--butter);
-    border: 1.5px solid var(--ink);
+    border: 1.5px solid var(--edge);
     box-shadow: var(--shadow-hard);
     font-family: var(--font-note);
     line-height: 1.1;
@@ -992,5 +1091,48 @@
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+/* ─── Theme toggle ──────────────────────────────────────────────────────── */
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+  }
+}
+
+/* The new theme spreads out in a circle from the toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root[data-theme-switching]::view-transition-new(root) {
+  animation: theme-reveal 620ms var(--ease-in-out);
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--theme-x, 100%) var(--theme-y, 0));
+  }
+  to {
+    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 100%) var(--theme-y, 0));
   }
 }
