@@ -5,13 +5,13 @@ import { site } from "@/content/site";
 import SocialLinks from "./SocialLinks";
 
 const links = [
-  { href: "/projects", label: "Work" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#skills", label: "Skills" },
+  { href: "/#work", label: "Work" },
+  { href: "/#how", label: "How I build" },
+  { href: "/#journey", label: "Journey" },
   { href: "/resume", label: "CV" },
 ];
 
-/** Every page ends with the wine contact card, then a quiet footer. */
+/** Every inner page ends with the ink contact card, then a quiet footer. */
 export default function SiteFooter() {
   const updated = new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 
@@ -29,7 +29,7 @@ export default function SiteFooter() {
               <FiMail className="size-4 shrink-0" aria-hidden />
               <span className="truncate">{profile.email}</span>
             </a>
-            <a href={profile.cv.pdf} className="btn btn-ghost" download>
+            <a href={profile.cv.pdf} className="btn btn-highlight" download>
               <FiDownload className="size-4" aria-hidden />
               Download CV
             </a>

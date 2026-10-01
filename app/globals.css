@@ -1,114 +1,89 @@
 @import "tailwindcss";
 
-/* Dark mode follows the data-theme attribute set by the inline script in layout.tsx. */
+/* The site is always "paper"; dark: variants only apply under an explicit data-theme, which is never set. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ───────────────────────────────────────────────────────────────────────────
-   Design tokens — the single source of truth for colour, type and space.
-   Light is the default; "velvet night" (dark) applies from the system
-   setting or the toggle.
+   Field Notes — an engineer's notebook: paper, ink, tape and sticky notes.
+   Strict structure underneath, a little hand-drawn warmth on top.
 
-   Colour roles: wine = something you can act on, ink = content,
-   green = live. Contrast (WCAG) against --bg is noted.
+   The site is always "paper" (light). Colour roles:
+     ink      = content, borders, primary actions
+     cobalt   = emphasis and links
+     marigold = the one thing to click (CV / email) and the proud-project tab
+     stickers = tags, tape and notes only, always with ink text
+     live     = status dots only (3.8:1, never text)
+   Contrast against paper is noted.
    ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --bg: #fbfaf8;
+  --paper: #f4f1ea;
+  --ink: #17171a; /* 15.9:1 */
+  --cobalt: #2747d9; /* 6.2:1, white on it 7.0:1 */
+  --marigold: #f1b52e; /* ink on it 9.7:1 */
+  --butter: #f8e39a;
+  --mint: #bde5d0;
+  --sky: #cfdffa;
+  --blush: #f7cfd6;
+  --lilac: #dcd3f5;
+
+  /* Roles used across every page */
+  --bg: var(--paper);
   --surface: #ffffff;
-  --surface-sunk: #f3f1ed;
-  --fg: #121319; /* 17.8:1 */
-  --fg-muted: #3d3f4b; /* running text, 10.0:1 */
-  --fg-subtle: #666977; /* meta, 5.2:1 */
-  --accent: #7b1e34; /* wine, 9.7:1 */
-  --accent-hover: #5f1427;
-  --accent-fill: #7b1e34; /* primary buttons */
-  --accent-fill-hover: #5f1427;
-  --accent-fill-fg: #ffffff;
-  --navy: #1e2f55;
-  --live: #1f6b46;
-  --border: rgb(18 19 25 / 0.1);
-  --border-strong: rgb(18 19 25 / 0.2);
-  --ring: #7b1e34;
-  --band: #5e1427; /* the contact card */
-  --band-fg: #f7f3ec;
-  --band-muted: #e8d9d6;
+  --surface-sunk: #ece8df;
+  --fg: var(--ink);
+  --fg-muted: #33333b; /* running text, 11.1:1 */
+  --fg-subtle: #5c5c66; /* meta, 5.9:1 */
+  --accent: var(--cobalt);
+  --accent-hover: #1c36ae;
+  --accent-fill: var(--ink);
+  --accent-fill-hover: #2c2c33;
+  --accent-fill-fg: var(--paper);
+  --navy: var(--cobalt);
+  --live: #1f8a5b;
+  --border: rgb(23 23 26 / 0.14);
+  --border-strong: var(--ink);
+  --ring: var(--cobalt);
+  --band: var(--ink);
+  --band-fg: var(--paper);
+  --band-muted: #c9c9d1;
   color-scheme: light;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b0e15;
-    --surface: #11151f;
-    --surface-sunk: #171c28;
-    --fg: #f2f1ee; /* 17.1:1 */
-    --fg-muted: #c6c7cf; /* 11.5:1 */
-    --fg-subtle: #9a9caa; /* 7.1:1 */
-    --accent: #e0788a; /* velvet rose, 6.6:1 */
-    --accent-hover: #eb95a4;
-    --accent-fill: #a3263d;
-    --accent-fill-hover: #b3304a;
-    --accent-fill-fg: #f4efe7;
-    --navy: #9db3e0;
-    --live: #6ccb9a;
-    --border: rgb(242 241 238 / 0.09);
-    --border-strong: rgb(242 241 238 / 0.18);
-    --ring: #e0788a;
-    --band: #3f0e1b;
-    --band-fg: #f4efe7;
-    --band-muted: #e3cfd2;
-    color-scheme: dark;
-  }
-}
+  --font-body: var(--font-text), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code: var(--font-label), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-head: var(--font-display), var(--font-body);
+  --font-note: var(--font-hand), "Comic Sans MS", cursive;
 
-:root[data-theme="dark"] {
-  --bg: #0b0e15;
-  --surface: #11151f;
-  --surface-sunk: #171c28;
-  --fg: #f2f1ee;
-  --fg-muted: #c6c7cf;
-  --fg-subtle: #9a9caa;
-  --accent: #e0788a;
-  --accent-hover: #eb95a4;
-  --accent-fill: #a3263d;
-  --accent-fill-hover: #b3304a;
-  --accent-fill-fg: #f4efe7;
-  --navy: #9db3e0;
-  --live: #6ccb9a;
-  --border: rgb(242 241 238 / 0.09);
-  --border-strong: rgb(242 241 238 / 0.18);
-  --ring: #e0788a;
-  --band: #3f0e1b;
-  --band-fg: #f4efe7;
-  --band-muted: #e3cfd2;
-  color-scheme: dark;
-}
+  /* Fluid type, 360px → 1440px viewport */
+  --step--1: clamp(0.875rem, 0.8542rem + 0.0926vw, 0.9375rem); /* 14 → 15 */
+  --step-0: clamp(1.0625rem, 1.0417rem + 0.0926vw, 1.125rem); /* 17 → 18 body */
+  --step-1: clamp(1.1875rem, 1.1042rem + 0.3704vw, 1.4375rem); /* 19 → 23 lead */
+  --step-2: clamp(1.3125rem, 1.2083rem + 0.463vw, 1.625rem); /* 21 → 26 */
+  --step-3: clamp(2rem, 1.5833rem + 1.8519vw, 3.25rem); /* 32 → 52 */
+  --step-4: clamp(2.5rem, 1.75rem + 3.3333vw, 4.75rem); /* 40 → 76 */
+  --step-5: clamp(3.25rem, 2.0833rem + 5.1852vw, 7rem); /* 52 → 112 hero */
 
-:root {
-  /* One family: Geist for everything, Geist Mono only for small metadata. */
-  --font-body: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-code: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --gutter: clamp(1.25rem, 0.5rem + 3.3333vw, 3rem);
+  --space-section: clamp(5.5rem, 4rem + 6.6667vw, 9rem);
+  --header-h: 4.25rem;
 
-  /* Fluid type scale, linear from a 360px to a 1440px viewport. */
-  --step--1: clamp(0.875rem, 0.8542rem + 0.0926vw, 0.9375rem); /* 14 → 15px */
-  --step-0: clamp(1.0625rem, 1.0417rem + 0.0926vw, 1.125rem); /* 17 → 18px, body */
-  --step-1: clamp(1.1875rem, 1.1458rem + 0.1852vw, 1.3125rem); /* 19 → 21px, lead */
-  --step-2: clamp(1.25rem, 1.2083rem + 0.1852vw, 1.375rem); /* 20 → 22px, item titles */
-  --step-3: clamp(1.5rem, 1.3667rem + 0.5926vw, 2rem); /* 24 → 32px, section titles */
-  --step-4: clamp(2rem, 1.7333rem + 1.1852vw, 3rem); /* 32 → 48px, page titles */
-  --step-5: clamp(2.25rem, 1.85rem + 1.7778vw, 3.75rem); /* 36 → 60px, home headline */
-
-  /* Space */
-  --gutter: clamp(1.25rem, 0.8333rem + 1.8519vw, 2.5rem);
-  --space-section: clamp(5rem, 4rem + 4.4444vw, 8rem);
-  --header-h: 4rem;
-
-  /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-hard: 4px 4px 0 var(--ink);
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-cobalt: var(--cobalt);
+  --color-marigold: var(--marigold);
+  --color-butter: var(--butter);
+  --color-mint: var(--mint);
+  --color-sky: var(--sky);
+  --color-blush: var(--blush);
+  --color-lilac: var(--lilac);
   --color-surface: var(--surface);
   --color-surface-sunk: var(--surface-sunk);
   --color-fg: var(--fg);
@@ -125,14 +100,14 @@
   --color-band-muted: var(--band-muted);
   --font-sans: var(--font-body);
   --font-mono: var(--font-code);
+  --font-display: var(--font-head);
+  --font-hand: var(--font-note);
   --text-small: var(--step--1);
   --text-body: var(--step-0);
   --text-lead: var(--step-1);
 }
 
-/* ───────────────────────────────────────────────────────────────────────────
-   Base
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─── Base ──────────────────────────────────────────────────────────────── */
 
 @layer base {
   html {
@@ -143,7 +118,9 @@
   }
 
   body {
-    background: var(--bg);
+    background-color: var(--bg);
+    /* Faint ruled notebook lines. Cards sit on solid white, so text never runs over them. */
+    background-image: repeating-linear-gradient(to bottom, transparent 0 31px, rgb(23 23 26 / 0.045) 31px 32px);
     font-family: var(--font-body);
     font-size: var(--step-0);
     line-height: 1.65;
@@ -156,15 +133,21 @@
     text-wrap: pretty;
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   ::selection {
-    background: var(--accent);
-    color: var(--bg);
+    background: var(--marigold);
+    color: var(--ink);
   }
 
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   a {
@@ -182,69 +165,63 @@
   }
 }
 
-/* ───────────────────────────────────────────────────────────────────────────
-   Components
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─── Shared components (home, project pages, 404) ──────────────────────── */
 
 @layer components {
-  /* The page container: 64rem of content plus fluid gutters. */
   .container-page {
     width: 100%;
-    max-width: calc(64rem + 2 * var(--gutter));
+    max-width: calc(75rem + 2 * var(--gutter));
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
 
-  /* Comfortable line length for running text. */
   .measure {
-    max-width: 42rem;
+    max-width: 40rem;
   }
 
-  /* ─── Type ─────────────────────────────────────────────────────────────── */
-
+  /* Type */
   .display-hero {
+    font-family: var(--font-head);
     font-size: var(--step-5);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
     color: var(--fg);
   }
 
   .display-page {
+    font-family: var(--font-head);
     font-size: var(--step-4);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
     color: var(--fg);
   }
 
   .section-title {
+    font-family: var(--font-head);
     font-size: var(--step-3);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--fg);
   }
 
   .item-title {
+    font-family: var(--font-head);
     font-size: var(--step-2);
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--fg);
   }
 
   .lead {
     font-size: var(--step-1);
-    line-height: 1.6;
+    line-height: 1.55;
     color: var(--fg-muted);
   }
 
-  /* Small mono metadata: dates, kinds, flows. */
   .meta {
     font-family: var(--font-code);
     font-size: 0.8125rem;
@@ -252,22 +229,27 @@
     color: var(--fg-subtle);
   }
 
-  /* Small uppercase label above a heading. */
   .eyebrow {
     font-family: var(--font-code);
     font-size: 0.75rem;
     font-weight: 500;
     line-height: 1.4;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--fg-subtle);
   }
 
-  /* ─── Links and buttons ────────────────────────────────────────────────── */
+  /* Margin notes: decoration only, never the only place a fact lives. */
+  .hand {
+    font-family: var(--font-note);
+    font-weight: 500;
+    line-height: 1.1;
+  }
 
+  /* Links and buttons */
   .link {
     text-decoration-line: underline;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 1.5px;
     text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
     transition:
       color 150ms ease,
@@ -282,30 +264,47 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 2.75rem;
-    padding-inline: 1.125rem;
-    border: 1px solid transparent; /* visible in forced-colours mode */
-    border-radius: 0.625rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
+    gap: 0.625rem;
+    min-height: 3.25rem;
+    padding-inline: 1.5rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
     line-height: 1;
     white-space: nowrap;
     transition:
+      transform 180ms var(--ease-out),
+      box-shadow 180ms var(--ease-out),
       background-color 150ms ease,
-      border-color 150ms ease,
       color 150ms ease;
   }
 
+  .btn svg {
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .btn:hover svg.nudge-x {
+    transform: translateX(3px);
+  }
+
+  .btn:hover svg.nudge-y {
+    transform: translateY(3px);
+  }
+
+  .btn:hover svg.nudge-xy {
+    transform: translate(2px, -2px);
+  }
+
   .btn-sm {
-    height: 2.375rem;
-    padding-inline: 0.875rem;
+    min-height: 2.5rem;
+    padding-inline: 1rem;
     font-size: 0.875rem;
   }
 
   .btn-primary {
-    background: var(--accent-fill);
-    color: var(--accent-fill-fg);
+    background: var(--ink);
+    color: var(--paper);
   }
 
   .btn-primary:hover {
@@ -313,40 +312,54 @@
   }
 
   .btn-secondary {
-    border-color: var(--border-strong);
     background: var(--surface);
-    color: var(--fg);
+    color: var(--ink);
   }
 
   .btn-secondary:hover {
-    border-color: var(--fg-subtle);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard);
   }
 
-  /* Buttons on the wine contact card */
+  /* The one thing to click on a screen. */
+  .btn-highlight {
+    background: var(--marigold);
+    color: var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .btn-highlight:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .btn-highlight:active,
+  .btn-secondary:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
   .btn-light {
-    background: var(--band-fg);
-    color: var(--band);
-  }
-
-  .btn-light:hover {
-    background: #ffffff;
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
   }
 
   .btn-ghost {
-    border-color: color-mix(in srgb, var(--band-fg) 40%, transparent);
-    color: var(--band-fg);
+    border-color: color-mix(in srgb, var(--paper) 45%, transparent);
+    color: var(--paper);
   }
 
   .btn-ghost:hover {
-    border-color: var(--band-fg);
+    border-color: var(--paper);
   }
 
   .icon-btn {
     display: grid;
     place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.625rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
     color: var(--fg-muted);
     transition:
       background-color 150ms ease,
@@ -358,17 +371,26 @@
     color: var(--fg);
   }
 
-  /* ─── Cards, chips and lists ───────────────────────────────────────────── */
-
+  /* Cards, chips, lists */
   .card {
-    border: 1px solid var(--border);
-    border-radius: 1rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 1.375rem;
     background: var(--surface);
-    transition: border-color 150ms ease;
+    transition:
+      transform 220ms var(--ease-out),
+      box-shadow 220ms var(--ease-out);
   }
 
-  a.card:hover {
-    border-color: var(--border-strong);
+  a.card:hover,
+  .lift:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .lift {
+    transition:
+      transform 220ms var(--ease-out),
+      box-shadow 220ms var(--ease-out);
   }
 
   .chip {
@@ -376,10 +398,11 @@
     align-items: center;
     gap: 0.4375rem;
     height: 2rem;
-    padding-inline: 0.6875rem;
-    border: 1px solid var(--border);
+    padding-inline: 0.75rem;
+    border: 1.5px solid var(--ink);
     border-radius: 0.5rem;
     font-size: 0.875rem;
+    font-weight: 500;
     line-height: 1;
     color: var(--fg);
     background: var(--surface);
@@ -391,11 +414,12 @@
     padding-inline: 0.5625rem;
     gap: 0.375rem;
     font-size: 0.8125rem;
+    border-width: 1px;
   }
 
   .prose-list {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.625rem;
   }
 
   .prose-list > li {
@@ -407,48 +431,291 @@
     content: "";
     position: absolute;
     left: 0.125rem;
-    top: calc(0.82em - 1px);
-    width: 0.5rem;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--accent);
+    top: 0.72em;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 2px;
+    background: var(--cobalt);
+    transform: rotate(45deg);
   }
 
-  /* Green "current" / "live" marker. */
   .live-dot {
+    position: relative;
     display: inline-block;
     flex-shrink: 0;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
     background: var(--live);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 20%, transparent);
   }
 
-  /* Focus rings on the wine contact card use the card's text colour. */
   #contact {
-    --ring: var(--band-fg);
+    --ring: var(--paper);
+  }
+
+  /* ─── Field Notes pieces ──────────────────────────────────────────────── */
+
+  /* Hidden until scroll-driven animation fills it; stays hidden where unsupported. */
+  .scroll-progress {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  /* "02 ─────────── selected work" */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-head .rule {
+    flex: 1;
+    height: 1.5px;
+    background: var(--ink);
+    transform-origin: left;
+  }
+
+  /* Photos pinned up with tape */
+  .polaroid {
+    position: relative;
+    margin: 0;
+    background: #fff;
+    padding: 0.875rem 0.875rem 3.5rem;
+    box-shadow:
+      0 1px 0 rgb(0 0 0 / 0.04),
+      0 28px 50px -22px rgb(23 23 26 / 0.4);
+    rotate: var(--tilt, 2deg);
+  }
+
+  .polaroid figcaption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0.9rem;
+    text-align: center;
+    font-family: var(--font-note);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #4b4b55;
+  }
+
+  .tape {
+    position: absolute;
+    z-index: 2;
+    width: 5.5rem;
+    height: 1.625rem;
+    background: color-mix(in srgb, var(--tape, var(--butter)) 88%, transparent);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+  }
+
+  /* Sticky note (not Tailwind's position: sticky) */
+  .note-card {
+    background: var(--butter);
+    border: 1.5px solid var(--ink);
+    box-shadow: var(--shadow-hard);
+    font-family: var(--font-note);
+    line-height: 1.1;
+    rotate: -6deg;
+    transition: rotate 300ms var(--ease-spring);
+  }
+
+  .note-card:hover {
+    rotate: -2deg;
+  }
+
+  /* Folder tabs on project cards */
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.875rem 0.875rem 0 0;
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Screenshot inside a little browser frame */
+  .browser {
+    overflow: hidden;
+    border-radius: 0.875rem;
+    background: #fff;
+    rotate: var(--tilt, 1.5deg);
+    box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.45);
+    transition:
+      rotate 400ms var(--ease-spring),
+      translate 400ms var(--ease-spring);
+  }
+
+  .group:hover .browser {
+    rotate: 0deg;
+    translate: 0 -6px;
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 2rem;
+    padding-inline: 0.75rem;
+    background: #eceae4;
+  }
+
+  .browser-bar i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+
+  /* "Shipped with" ticker */
+  .ticker {
+    display: flex;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .ticker-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+    align-items: center;
   }
 }
 
-/* ───────────────────────────────────────────────────────────────────────────
-   Motion — a quiet fade on page load and a short rise as sections scroll
-   in. Only opacity and transform animate, on screens only, and nothing
-   moves for visitors who ask for reduced motion.
+/* ─── Motion ────────────────────────────────────────────────────────────────
+   Only transform, opacity and clip-path animate. Everything is static for
+   visitors who ask for reduced motion, and visible where an effect isn't
+   supported.
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (prefers-reduced-motion: no-preference) {
+  /* Load-in */
   .fade-in {
-    animation: fade-in 600ms var(--ease-out) backwards;
-    animation-delay: calc(var(--i, 0) * 70ms);
+    animation: fade-in 700ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 80ms);
   }
 
-  /* Content is always visible where scroll-driven animations aren't supported. */
+  /* Hero name: each letter rises in turn */
+  .letters > span {
+    display: inline-block;
+    animation: letter-in 750ms var(--ease-spring) backwards;
+    animation-delay: calc(150ms + var(--l, 0) * 35ms);
+  }
+
+  /* Old titles get struck through, one after another… */
+  .strike {
+    position: relative;
+  }
+
+  .strike::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: 55%;
+    height: 2px;
+    background: currentColor;
+    transform-origin: left;
+    animation: strike 450ms var(--ease-in-out) both;
+    animation-delay: var(--d, 900ms);
+  }
+
+  /* …then the current title pops in. */
+  .pop {
+    animation: pop 600ms var(--ease-spring) backwards;
+    animation-delay: var(--d, 1500ms);
+  }
+
+  /* Photos settle like they've just been pinned up */
+  .settle {
+    animation: settle 900ms var(--ease-spring) backwards;
+    animation-delay: var(--d, 300ms);
+  }
+
+  .tape-in {
+    animation: tape-in 400ms var(--ease-out) backwards;
+    animation-delay: var(--d, 1000ms);
+  }
+
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--live);
+    animation: ping 2s var(--ease-out) infinite;
+  }
+
+  .ticker-track {
+    animation: ticker 32s linear infinite;
+  }
+
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  /* Marching dashes on the habits line */
+  .ants path {
+    animation: ants 1.2s linear infinite;
+  }
+
+  /* A dot runs down the "model → rules → person" flow */
+  .flow-dot {
+    animation: flow 3.6s var(--ease-in-out) infinite;
+  }
+
+  .float {
+    animation: float 6s var(--ease-in-out) infinite;
+  }
+
+  /* Scroll-driven effects, where supported */
   @supports (animation-timeline: view()) {
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 20%;
+      animation-range: entry 0% entry 28%;
+    }
+
+    .reveal-x {
+      animation: reveal-x linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .section-head .rule {
+      animation: rule linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+
+    /* The journey's dashed path draws itself as you scroll */
+    .draw-down {
+      animation: draw-down linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 70%;
+    }
+
+    /* Hand-drawn underline */
+    .scribble path {
+      stroke-dasharray: 400;
+      animation: scribble linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 40%;
+    }
+
+    .count {
+      animation: count-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 20% entry 70%;
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      animation: progress linear both;
+      animation-timeline: scroll(root);
     }
   }
 }
@@ -456,41 +723,138 @@
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
+  }
+}
+
+@keyframes letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(6deg);
+  }
+}
+
+@keyframes strike {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotate(-3deg);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    rotate: 12deg;
+    transform: translateY(-24px) scale(1.04);
+  }
+}
+
+@keyframes tape-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0.3);
+  }
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ants {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes flow {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px);
   }
 }
 
 @keyframes reveal {
   from {
     opacity: 0.001;
-    transform: translateY(16px);
+    transform: translateY(28px);
   }
 }
 
-/* The theme toggle reveals the new theme in a circle where view transitions are supported. */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-:root[data-theme-switching]::view-transition-new(root) {
-  animation: theme-reveal 560ms var(--ease-in-out);
-}
-
-@keyframes theme-reveal {
+@keyframes reveal-x {
   from {
-    clip-path: circle(0 at var(--theme-x, 100%) var(--theme-y, 0));
+    opacity: 0.001;
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes draw-down {
+  from {
+    clip-path: inset(0 0 100% 0);
   }
   to {
-    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 100%) var(--theme-y, 0));
+    clip-path: inset(0 0 0 0);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
+@keyframes scribble {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes count-pop {
+  from {
+    opacity: 0.001;
+    transform: translateY(16px) scale(0.92);
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }

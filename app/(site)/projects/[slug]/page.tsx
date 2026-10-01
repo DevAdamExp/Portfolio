@@ -127,8 +127,34 @@ export default async function ProjectPage({ params }: Props) {
         ))}
       </dl>
 
-      {project.image && (
-        <figure className="reveal mt-12 overflow-hidden rounded-2xl border border-line bg-surface">
+      {project.gallery ? (
+        <div className="mt-12 grid gap-5">
+          <Image
+            src={project.gallery[0].src}
+            alt={project.gallery[0].alt}
+            width={3840}
+            height={2160}
+            sizes="(min-width: 1248px) 1200px, 100vw"
+            priority
+            className="reveal aspect-video w-full rounded-[22px] border-[1.5px] border-ink object-cover shadow-[6px_6px_0_var(--ink)]"
+          />
+          <div className="grid gap-5 sm:grid-cols-2">
+            {project.gallery.slice(1).map((shot) => (
+              <Image
+                key={shot.src}
+                src={shot.src}
+                alt={shot.alt}
+                width={3840}
+                height={2160}
+                sizes="(min-width: 640px) 600px, 100vw"
+                className="reveal aspect-video w-full rounded-[18px] border-[1.5px] border-ink object-cover"
+              />
+            ))}
+          </div>
+          {project.slug === "visa-crm" && <p className="meta">Screens from a demo tenant with fictional data. The real system is private.</p>}
+        </div>
+      ) : project.image && (
+        <figure className="reveal mt-12 overflow-hidden rounded-[22px] border-[1.5px] border-ink bg-surface shadow-[6px_6px_0_var(--ink)]">
           <Image
             src={project.image.src}
             alt={project.image.alt}
@@ -136,7 +162,7 @@ export default async function ProjectPage({ params }: Props) {
             height={1000}
             sizes="(min-width: 1088px) 1024px, 100vw"
             priority
-            className="h-auto w-full"
+            className="aspect-[16/10] w-full object-cover object-top"
           />
         </figure>
       )}

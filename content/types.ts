@@ -67,6 +67,8 @@ export interface Experience {
   stack: string[];
   /** Project slugs from content/projects.ts. */
   projects?: string[];
+  /** A short hand-written margin note beside this stop on the home page journey. */
+  note?: string;
   /** Hide an entry from the CV while keeping it on the site. Defaults to true. */
   onCv?: boolean;
 }
@@ -101,6 +103,8 @@ export interface Project {
   links?: { live?: string; repo?: string };
   /** Real screenshots only, ideally 16:10 and around 1600px wide. */
   image?: { src: string; alt: string };
+  /** Designed product shots (16:9, 3840px). The first one is the card/OG image. */
+  gallery?: { src: string; alt: string }[];
   stack: string[];
   /** The problem, in the user's or business's terms. */
   problem: string;
@@ -108,6 +112,8 @@ export interface Project {
   approach: string[];
   /** Results. Only add numbers you can back up. */
   outcomes?: string[];
+  /** The hardest problem on the project, in one short line. Shown on home cards. */
+  hardest?: string;
   /** How the system fits together, in request order. Shown as a diagram on cards and the project page. */
   architecture?: FlowStep[];
   /** Show on the CV under "Selected projects". */
@@ -133,11 +139,6 @@ export interface Education {
 export interface Language {
   name: string;
   level: string;
-}
-
-export interface Principle {
-  title: string;
-  body: string;
 }
 
 /** Copy for the site's frame: section intros, the contact card and the 404 page. */

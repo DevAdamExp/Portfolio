@@ -1,22 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Caveat, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { profile, siteUrl } from "@/content/profile";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-  display: "swap",
-});
+// Field Notes type: a characterful display face, a calm reading face,
+// a hand for margin notes and a mono for labels.
+const display = Bricolage_Grotesque({ variable: "--font-display", subsets: ["latin"], display: "swap" });
+const body = Instrument_Sans({ variable: "--font-text", subsets: ["latin"], display: "swap" });
+const hand = Caveat({ variable: "--font-hand", subsets: ["latin"], weight: ["500", "700"], display: "swap", preload: false });
+const mono = JetBrains_Mono({ variable: "--font-label", subsets: ["latin"], weight: ["500"], display: "swap", preload: false });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  preload: false,
-});
-
-const description = `${profile.name} is a full-stack engineer building agentic AI systems, real-time voice agents and production web platforms with Python, FastAPI, Next.js and TypeScript.`;
+const description = `${profile.name} is a full-stack developer with an edge in agentic AI, building end-to-end products with Next.js, Python, FastAPI and React Native.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -61,26 +55,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbfaf8" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0e15" },
-  ],
+  themeColor: "#f4f1ea",
 };
-
-// Runs before paint so the page never flashes the wrong theme.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})()`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${geist.variable} ${geistMono.variable}`}
+      className={`${display.variable} ${body.variable} ${hand.variable} ${mono.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body>{children}</body>
     </html>
   );

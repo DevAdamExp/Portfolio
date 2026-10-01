@@ -6,15 +6,15 @@ export const profile: Profile = {
   // The words after " — " are set in wine italic on the home page.
   headline: "I build AI agents that do real work — and the software that makes them dependable.",
   intro:
-    "They answer support calls, draft company-formation documents and book service jobs straight into a calendar. I build the whole system: the model loop, the tools it calls, the APIs behind it and the screens people use.",
-  coreStack: ["Python", "FastAPI", "TypeScript", "Next.js", "LangGraph", "OpenAI Agents SDK"],
+    "They answer support calls, assess visa applications and book service jobs straight into a calendar. I build the whole system: the model loop, the tools it calls, the APIs behind it and the screens people use.",
+  coreStack: ["Python", "FastAPI", "TypeScript", "Next.js", "React Native", "OpenAI Agents SDK"],
   cvSummary:
-    "Full-stack engineer with 2+ years shipping production web platforms and agentic AI systems: Next.js and TypeScript front ends, Python/FastAPI services, LLM orchestration with the OpenAI Agents SDK and LangGraph, real-time voice agents on LiveKit and Vapi, and the Docker, Redis and Nginx infrastructure behind them.",
+    "Full Stack AI Engineer with 2+ years building production web, mobile and agentic AI systems. Strong in TypeScript, Next.js, Python and FastAPI, with hands-on experience in multi-agent LLM pipelines, voice agents, React Native and healthcare (FHIR) apps. Open to relocation.",
   location: "Islamabad, Pakistan",
   email: "chaudhrayadam@gmail.com",
   phone: "+92 303 8705165",
   // Optional line shown next to your current role, e.g. "Open to new opportunities".
-  availability: undefined,
+  availability: "Open to relocation",
   photo: { src: "/images/portrait.jpg", alt: "Portrait of Muhammad Adam" },
   links: {
     github: {

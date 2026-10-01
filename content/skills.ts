@@ -8,21 +8,21 @@ export const skills: SkillGroup[] = [
   {
     title: "AI & agents",
     description: "LLM agents with tool use, retrieval and structured outputs, plus real-time voice agents.",
-    skills: ["OpenAI Agents SDK", "LangGraph", "LangChain", "CrewAI", "MCP", "LiveKit", "Vapi", "Pinecone"],
+    skills: ["OpenAI Agents SDK", "LangGraph", "MCP", "OpenRouter", "Vapi", "LiveKit", "Twilio"],
   },
   {
     title: "Backend",
     description: "Typed APIs, background jobs and data models built for correctness under load.",
-    skills: ["Python", "FastAPI", "Django", "Node.js", "PostgreSQL", "MongoDB", "Redis"],
+    skills: ["Python", "FastAPI", "Django", "PostgreSQL", "MongoDB", "Redis", "Firebase"],
   },
   {
-    title: "Frontend",
+    title: "Frontend & mobile",
     description: "Fast, accessible interfaces with server rendering and shared types end to end.",
-    skills: ["TypeScript", "Next.js", "React", "Tailwind CSS"],
+    skills: ["TypeScript", "Next.js", "React", "React Native", "Expo"],
   },
   {
     title: "Infrastructure",
     description: "Containerised services, CI/CD and the proxies and caches that keep them fast.",
-    skills: ["Docker", "Nginx", "Dapr", "GitHub Actions", "Vercel", "Fly.io", "Git"],
+    skills: ["GCP", "Docker", "Nginx", "GitHub Actions", "Vercel", "Playwright"],
   },
 ];

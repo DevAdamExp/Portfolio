@@ -19,7 +19,6 @@ export const site: SiteCopy = {
       title: "Skills",
       description: "Grouped by where each tool sits in the stack.",
     },
-    // The description for "How I work" is `principlesIntro` in education.ts.
     approach: { title: "How I work" },
   },
   dayToDay: "Day to day:",

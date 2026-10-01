@@ -10,7 +10,8 @@ TypeScript flags a missing or misspelled field when you run `npm run build`.
 | `experience.ts` | Work history (newest first) |
 | `projects.ts` | Projects, their detail pages, what is featured / on the CV |
 | `skills.ts` | Skill groups and the logos next to them |
-| `education.ts` | Education, languages, and the "How I work" principles |
+| `education.ts` | Education and languages |
+| `about.ts` | Home page: tagline, "What I'm looking for", the project you're proud of, contact line |
 | `site.ts` | Section titles and intros, the `/projects` intro, the contact card at the end of every page, the 404 page |
 | `types.ts` | The schema for all of the above, with comments on every field |
 
