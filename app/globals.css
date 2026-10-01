@@ -132,6 +132,11 @@
   --ink: #17171a;
   --paper: #f4f1ea;
   --edge: #17171a;
+  --fg-muted: #33333b;
+  --fg-subtle: #5c5c66;
+  --border: rgb(23 23 26 / 0.14);
+  --cobalt-text: #2747d9;
+  --live: #1f8a5b;
   color: var(--ink);
 }
 
@@ -140,6 +145,8 @@
   --ink: #1f1f25;
   --paper: #efebe2;
   --band-muted: #c9c9d1;
+  --band: #1f1f25;
+  --band-fg: #efebe2;
 }
 
 /* Sticky notes stay real paper-yellow */
@@ -164,6 +171,8 @@
     --ink: #1f1f25;
     --paper: #efebe2;
     --band-muted: #c9c9d1;
+    --band: #1f1f25;
+    --band-fg: #efebe2;
   }
 
 

@@ -18,7 +18,7 @@ export default function SiteFooter() {
   return (
     <footer className="mt-[var(--space-section)]">
       <section id="contact" aria-labelledby="contact-title" className="container-page">
-        <div className="reveal rounded-3xl bg-band px-6 py-12 text-band-fg sm:px-12 sm:py-16">
+        <div className="keep-dark reveal rounded-3xl bg-band px-6 py-12 text-band-fg sm:px-12 sm:py-16">
           <p className="eyebrow text-band-muted">{site.contact.eyebrow}</p>
           <h2 id="contact-title" className="display-page mt-4 max-w-[20ch] text-band-fg">
             {site.contact.heading}
