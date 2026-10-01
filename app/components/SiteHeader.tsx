@@ -4,7 +4,7 @@ import { profile } from "@/content/profile";
 
 const nav = [
   { href: "/#work", label: "Work" },
-  { href: "/#how", label: "How I build", className: "hidden lg:inline-flex" },
+  { href: "/#how", label: "How I work", className: "hidden lg:inline-flex" },
   { href: "/#journey", label: "Journey", className: "hidden md:inline-flex" },
   { href: "/resume", label: "CV" },
 ];

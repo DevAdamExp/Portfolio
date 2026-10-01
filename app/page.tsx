@@ -66,20 +66,20 @@ function FeatureCard({ project, index }: { project: Project; index: number }) {
         Project {String(index + 1).padStart(2, "0")} · {project.kind === "Product" ? "Product" : "Client work"}
       </span>
       <div
-        className={`grid items-center gap-10 rounded-[28px] p-7 sm:p-10 lg:gap-14 lg:p-14 ${t.fill} ${flip ? "md:rounded-tl-[28px] lg:grid-cols-[1.1fr_0.9fr]" : "rounded-tl-none lg:grid-cols-[0.9fr_1.1fr]"}`}
+        className={`grid items-center gap-10 rounded-[28px] p-7 sm:p-10 lg:p-14 xl:gap-14 ${t.fill} ${flip ? "md:rounded-tl-[28px] xl:grid-cols-[1.1fr_0.9fr]" : "rounded-tl-none xl:grid-cols-[0.9fr_1.1fr]"}`}
       >
-        <div className={flip ? "lg:order-2" : ""}>
+        <div className={flip ? "xl:order-2" : ""}>
           <h3 className="font-display text-[clamp(2.5rem,1.8rem+2.8vw,4rem)] font-extrabold leading-none tracking-[-0.04em]">
             {project.name}
           </h3>
           <p className={`mt-4 text-[clamp(1.0625rem,1rem+0.3vw,1.1875rem)] leading-relaxed ${t.sub}`}>{project.description}</p>
-          <dl className="mt-6 grid grid-cols-[7.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 text-[16px]">
+          <dl className="mt-6 grid gap-x-4 gap-y-1 text-[16px] sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-y-3">
             <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>MY ROLE</dt>
-            <dd>{project.role}</dd>
+            <dd className="mb-2 sm:mb-0">{project.role}</dd>
             {project.hardest && (
               <>
                 <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>HARDEST PART</dt>
-                <dd>{project.hardest}</dd>
+                <dd className="mb-2 sm:mb-0">{project.hardest}</dd>
               </>
             )}
             <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>STACK</dt>
@@ -104,7 +104,7 @@ function FeatureCard({ project, index }: { project: Project; index: number }) {
             </Link>
           </div>
         </div>
-        <div className={`relative ${flip ? "lg:order-1" : ""}`}>
+        <div className={`relative ${flip ? "xl:order-1" : ""}`}>
           <span aria-hidden className="tape left-10 -top-3 z-10 -rotate-6" style={v({ "--tape": flip ? "#ffffff" : "var(--butter)" })} />
           {project.gallery ? (
             <div className="flex flex-col gap-3">
@@ -324,7 +324,7 @@ export default function Home() {
           <span className="tab bg-marigold">
             <FiStar className="size-3.5 fill-ink" aria-hidden />A project I’m proud of
           </span>
-          <div className="reveal grid gap-12 rounded-[28px] rounded-tl-none bg-ink p-7 text-paper sm:p-10 lg:grid-cols-2 lg:gap-16 lg:p-16">
+          <div className="reveal grid gap-12 rounded-[28px] rounded-tl-none bg-ink p-7 text-paper sm:p-10 lg:p-16 xl:grid-cols-2 xl:gap-16">
             <div className="flex flex-col">
               <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-band-muted">{proudOf.meta}</p>
               <h2 className="mt-5 font-display text-[clamp(2rem,1.5rem+2vw,3.25rem)] font-bold leading-[1.03] tracking-[-0.035em]">
@@ -465,10 +465,10 @@ export default function Home() {
             <p className="text-[18px] text-muted">{habits.intro}</p>
           </div>
           <div className="relative mt-14">
-            <svg aria-hidden viewBox="0 0 100 10" preserveAspectRatio="none" className="ants absolute inset-x-[6%] top-[30px] hidden h-6 w-[88%] lg:block" fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round">
+            <svg aria-hidden viewBox="0 0 100 10" preserveAspectRatio="none" className="ants absolute inset-x-[6%] top-[30px] hidden h-6 w-[88%] xl:block" fill="none" stroke="var(--ink)" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round">
               <path vectorEffect="non-scaling-stroke" d="M0 5 C 15 0, 20 10, 33 5 S 52 0, 66 5 S 85 10, 100 5" />
             </svg>
-            <ol className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <ol className="relative grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {habits.items.map((h, i) => {
                 const Icon = habitIcons[i];
                 const dark = "dark" in h && h.dark;
@@ -481,7 +481,7 @@ export default function Home() {
                     <span className={`grid size-[60px] place-items-center rounded-2xl border-[1.5px] ${dark ? "border-marigold" : "border-ink"} ${habitTints[i]} text-ink`}>
                       <Icon className="size-7" aria-hidden />
                     </span>
-                    <p className={`font-mono text-[12px] tracking-[0.1em] ${dark ? "text-band-muted" : "text-subtle"}`}>HABIT {String(i + 1).padStart(2, "0")}</p>
+                    <p className={`font-mono text-[12px] tracking-[0.1em] ${dark ? "text-band-muted" : "text-subtle"}`}>{String(i + 1).padStart(2, "0")}</p>
                     <h3 className="font-display text-[25px] font-bold leading-[1.15] tracking-[-0.02em]">{h.title}</h3>
                     <p className={`text-[16px] ${dark ? "text-[#d9d9df]" : "text-muted"}`}>{h.body}</p>
                     <p className={`mt-auto rounded-xl px-3.5 py-3 text-[14.5px] leading-normal ${dark ? "bg-[#23232a] text-[#d9d9df]" : "bg-paper"}`}>
@@ -545,7 +545,7 @@ export default function Home() {
         {/* ─── FIT ──────────────────────────────────────────────────────── */}
         <section aria-labelledby="fit-title" className="container-page -mt-[calc(var(--space-section)/2)] pb-[var(--space-section)]">
           <h3 id="fit-title" className="font-display text-[clamp(1.5rem,1.3rem+0.8vw,2rem)] font-bold tracking-[-0.025em]">{about.fitTitle}</h3>
-          <ol className="mt-6 grid gap-4 md:grid-cols-3">
+          <ol className="mt-6 grid gap-4 lg:grid-cols-3">
             {about.fit.map((f, i) => (
               <li key={f.need} className="reveal lift rounded-[22px] border-[1.5px] border-ink bg-surface p-6" style={v({ animationDelay: `${i * 60}ms` })}>
                 <p className="hand text-[22px] text-cobalt">you: “{f.need.toLowerCase()}”</p>

@@ -12,7 +12,7 @@ export const hero = {
   role: "Full Stack Developer",
   roleLine: "with an edge in agentic AI",
   promise:
-    "I build products end to end, from the database to the screen, in Next.js, Python and FastAPI. When AI earns its place in a product, I build it in properly: with rules, reviews and tests, so it doesn’t let your users down.",
+    "I build web and mobile products end to end with Next.js, React Native, Python and FastAPI. Lately that often includes AI features, built with the same tests and checks as everything else.",
   photoCaption: "thinking about edge cases, probably",
   sticky: "ships the AI and the boring bits",
 };
@@ -41,8 +41,8 @@ export const proudOf = {
   title: "A visa CRM that uses AI for assessments,",
   titleAccent: "without letting the model decide.",
   paragraphs: [
-    "A visa consultancy was running every case on spreadsheets and WhatsApp, and checking each person’s eligibility by hand. The easy answer is “just ask a model”. But here a wrong yes costs someone months and real money.",
-    "So I split the job. The model reads and drafts. A rules engine makes the call. A person signs off. Around that sits a back office that has to get money right, every single time.",
+    "A visa consultancy ran every case on spreadsheets and WhatsApp and checked eligibility by hand. A model can read a CV quickly, but if it says yes when the answer is no, a real person loses months and money.",
+    "So the model only reads and drafts. Fixed rules make the eligibility call, and a consultant approves every positive result.",
   ],
   steps: [
     { title: "The model reads", body: "Parses the CV, suggests countries and digs up official requirements.", note: "never the final word" },
@@ -59,37 +59,37 @@ export const proudOf = {
 export const work = {
   note: "selected work",
   title: "Things I’ve shipped",
-  intro: "Live products first. For each one: what I owned, and the hardest problem I hit.",
+  intro: "What I owned on each one, and the hardest problem.",
   moreTitle: "More work",
-  moreIntro: "Voice agents, healthcare and client work. The private ones I’m happy to walk you through on a call.",
+  moreIntro: "Voice agents, healthcare and client sites. Happy to walk through the private ones on a call.",
   moreNote: "psst, the NDA ones are the fun ones",
 };
 
 export const habits = {
-  note: "how I build agents",
-  title: "Four habits, every build",
-  intro: "Same order every time, and each one comes with a real example. A habit without proof is just a slogan.",
+  note: "how I work",
+  title: "How I work, day to day",
+  intro: "Not principles. Just what I actually do, with where you can see it.",
   items: [
     {
-      title: "Map the work first",
-      body: "Before any model: who does what, where it breaks, and what a mistake actually costs.",
-      practice: "Visa cases lived on spreadsheets and WhatsApp, so the CRM came before the AI.",
+      title: "I write it down first",
+      body: "Before I code, I sketch the data, the screens and what can go wrong. It saves me rewrites.",
+      practice: "The medication app shipped with about 30 docs: runbooks, test plans, a privacy assessment.",
     },
     {
-      title: "Small tools, typed outputs",
-      body: "Agents get a short list of narrow, typed tools, not free rein.",
-      practice: "The HVAC agent gets exactly nine functions. Nothing else.",
+      title: "Small commits, every day",
+      body: "I push small, working changes often, so nothing sits half-done and reviews stay easy.",
+      practice: "Around 1,000 commits on the CRM in its first few months.",
     },
     {
-      title: "Rules and people decide",
-      body: "Hard rules for anything that matters, and a human check for the rest.",
-      practice: "One rule file per country, plus maker–checker sign-off.",
+      title: "Tests before trust",
+      body: "If it handles money, bookings or health data, it doesn’t ship until a test covers it.",
+      practice: "2,600+ backend tests on the CRM, and a 48-step end-to-end suite on the app.",
       dark: true,
     },
     {
-      title: "Measure from day one",
-      body: "Benchmarks, eval sets, cost caps and logs before launch, not after.",
-      practice: "Founderflow’s models were picked by benchmark; the CRM caps cost per run.",
+      title: "AI drafts, people decide",
+      body: "Models are good at reading and drafting. Final calls go to rules or a person.",
+      practice: "Eligibility comes from rule files per country; every “yes” is approved by a consultant.",
     },
   ],
 };
@@ -99,26 +99,25 @@ export const about = {
   title: "A team to grow with,",
   titleAccent: "for the long run.",
   paragraphs: [
-    "Hey, I’m Adam. I’m looking for a long-term home: an established company with a real product, real users and engineering that’s in good order. Somewhere I can stay for years, own something meaningful, and keep getting better.",
-    "What matters to me is simple. Stable work and fair pay. Managers who make clear decisions. And room to bring new ideas, AI included, into a product people already rely on.",
-    "I’ve done the startup and agency sprint. Now I want to put that pace into a team that thinks in years, not weeks.",
+    "Hey, I’m Adam. So far I’ve worked at agencies, startups and on contracts, often on several things at once. I’ve learned a lot that way, and now I want to settle into one team.",
+    "I’m looking for an established company with a real product and good engineering practices: stable work, fair pay, managers who decide clearly, and room to suggest improvements, including AI where it helps.",
   ],
-  lookingFor: "A long-term full-stack or AI engineering role at an established company",
+  lookingFor: "A long-term full-stack role at an established company",
   where: "Remote, or relocating, happily",
   photoCaption: "off-screen, clearing my head",
   fitTitle: "If you’re hiring, here’s what you get",
   fit: [
     {
       need: "You need features shipped end to end",
-      answer: "I own the whole slice: schema, API, UI, tests and deploy. No hand-offs, no half-finished tickets.",
+      answer: "I can take a feature from the database to the screen, with tests, and deploy it.",
     },
     {
       need: "You want AI that holds up with real customers",
-      answer: "Rules decide, models assist, people review. I’ve shipped it with cost caps, evals and audit logs.",
+      answer: "I’ve shipped AI with cost limits, evaluations and audit logs, and humans approving the risky parts.",
     },
     {
       need: "You want someone who sticks around",
-      answer: "I’m looking to stay and grow with one team for years, not to hop to the next thing.",
+      answer: "That’s exactly what I’m looking for: one team, for years.",
     },
   ],
 };
@@ -131,7 +130,7 @@ export const journey = {
 export const toolkit = {
   note: "toolkit",
   title: "The stack I ship with",
-  intro: "Grouped by layer, from the agent on top to the infrastructure underneath. Marked tools are the ones I use every day.",
+  intro: "What I’ve used in production, grouped by layer. Dotted ones I use every day.",
   daily: ["Python", "FastAPI", "TypeScript", "Next.js", "OpenAI Agents SDK", "PostgreSQL", "Docker"],
   layers: [
     {
@@ -164,6 +163,6 @@ export const toolkit = {
 export const ending = {
   title: "You’ve reached the end.",
   subtitle: "Or the beginning.",
-  note: "tell me what you’re building, and what keeps breaking",
+  note: "tell me what you’re building",
   openTo: "Long-term roles · remote or relocation",
 };

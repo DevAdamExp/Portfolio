@@ -6,7 +6,7 @@ import SocialLinks from "./SocialLinks";
 
 const links = [
   { href: "/#work", label: "Work" },
-  { href: "/#how", label: "How I build" },
+  { href: "/#how", label: "How I work" },
   { href: "/#journey", label: "Journey" },
   { href: "/resume", label: "CV" },
 ];
