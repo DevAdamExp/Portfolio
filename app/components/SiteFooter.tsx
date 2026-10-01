@@ -45,9 +45,9 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2 text-small text-muted">
+          <nav aria-label="Footer" className="-my-2.5 flex flex-wrap gap-x-5 text-small text-muted">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} className="transition-colors hover:text-fg">
+              <Link key={link.href} href={link.href} className="-mx-1.5 px-1.5 py-2.5 transition-colors hover:text-fg">
                 {link.label}
               </Link>
             ))}

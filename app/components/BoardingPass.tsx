@@ -9,8 +9,8 @@ export default function BoardingPass({ name }: { name: string }) {
     <div id="relocate" className="pass group relative flex flex-col overflow-hidden rounded-[22px] border-[1.5px] border-ink bg-surface shadow-[6px_6px_0_var(--shadow-ink)] sm:flex-row">
       {/* Main ticket */}
       <div className="flex-1 p-6 sm:p-7">
-        <div className="flex items-center justify-between gap-4 font-mono text-[11.5px] tracking-[0.14em] text-subtle">
-          <span>BOARDING PASS · RELOCATION</span>
+        <div className="flex items-center justify-between gap-4 font-mono text-[12px] tracking-[0.14em] text-subtle">
+          <span>BOARDING PASS<span className="hidden sm:inline"> · RELOCATION</span></span>
           <span className="shrink-0 whitespace-nowrap rounded-md bg-mint px-2 py-0.5 text-ink">ONE-WAY</span>
         </div>
 
@@ -31,19 +31,19 @@ export default function BoardingPass({ name }: { name: string }) {
 
         <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-dashed border-line pt-5 text-[14.5px] sm:grid-cols-4">
           <div>
-            <dt className="font-mono text-[10.5px] tracking-[0.12em] text-subtle">PASSENGER</dt>
+            <dt className="font-mono text-[12px] tracking-[0.12em] text-subtle">PASSENGER</dt>
             <dd className="mt-0.5 font-semibold">{name}</dd>
           </div>
           <div>
-            <dt className="font-mono text-[10.5px] tracking-[0.12em] text-subtle">ROLE</dt>
+            <dt className="font-mono text-[12px] tracking-[0.12em] text-subtle">ROLE</dt>
             <dd className="mt-0.5 font-semibold">Full-stack · AI</dd>
           </div>
           <div>
-            <dt className="font-mono text-[10.5px] tracking-[0.12em] text-subtle">STAY</dt>
+            <dt className="font-mono text-[12px] tracking-[0.12em] text-subtle">STAY</dt>
             <dd className="mt-0.5 font-semibold">Long-term</dd>
           </div>
           <div>
-            <dt className="font-mono text-[10.5px] tracking-[0.12em] text-subtle">STATUS</dt>
+            <dt className="font-mono text-[12px] tracking-[0.12em] text-subtle">STATUS</dt>
             <dd className="mt-0.5 inline-flex items-center gap-1.5 font-semibold">
               <span className="live-dot" aria-hidden />
               Ready to board
@@ -57,7 +57,7 @@ export default function BoardingPass({ name }: { name: string }) {
         <span aria-hidden className="absolute -left-3 -top-3 hidden size-6 rounded-full border-[1.5px] border-line-strong bg-bg sm:block" />
         <span aria-hidden className="absolute -bottom-3 -left-3 hidden size-6 rounded-full border-[1.5px] border-line-strong bg-bg sm:block" />
         <div>
-          <p className="font-mono text-[10.5px] tracking-[0.12em]">SEAT</p>
+          <p className="font-mono text-[12px] tracking-[0.12em]">SEAT</p>
           <p className="font-display text-[26px] font-extrabold leading-none tracking-[-0.03em]">Your team</p>
         </div>
         <p className="hand text-[20px] leading-tight sm:mt-3">no return ticket,<br />I’m here to stay</p>

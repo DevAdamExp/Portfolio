@@ -11,7 +11,7 @@ export type YearMonth = `${number}-${string}`;
 export interface SocialLink {
   label: string;
   href: string;
-  /** Shown on the CV instead of the full URL, e.g. "github.com/AdamChoudary". */
+  /** Shown on the CV instead of the full URL, e.g. "github.com/DevAdamExp". */
   display?: string;
 }
 

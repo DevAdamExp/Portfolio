@@ -32,10 +32,10 @@ const v = (vars: Record<string, string | number>) => vars as React.CSSProperties
 /** "02 ────────── selected work" */
 function SectionHead({ index, note }: { index: string; note: string }) {
   return (
-    <div className="section-head mb-7">
+    <div className="section-head mb-7 flex-wrap gap-y-1 sm:flex-nowrap">
       <span className="font-mono text-[13px] tracking-[0.12em]">{index}</span>
       <span className="rule" aria-hidden />
-      <span className="hand text-[26px] text-muted">{note}</span>
+      <span className="hand w-full text-right text-[23px] leading-tight text-muted sm:w-auto sm:text-[26px]">{note}</span>
     </div>
   );
 }
@@ -76,18 +76,18 @@ function FeatureCard({ project, index }: { project: Project; index: number }) {
           </h3>
           <p className={`mt-4 text-[clamp(1.0625rem,1rem+0.3vw,1.1875rem)] leading-relaxed ${t.sub}`}>{project.description}</p>
           <dl className="mt-6 grid gap-x-4 gap-y-1 text-[16px] sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-y-3">
-            <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>MY ROLE</dt>
+            <dt className={`pt-0.5 font-mono text-[12px] tracking-[0.1em] ${t.sub}`}>MY ROLE</dt>
             <dd className="mb-2 sm:mb-0">{project.role}</dd>
             {project.hardest && (
               <>
-                <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>HARDEST PART</dt>
+                <dt className={`pt-0.5 font-mono text-[12px] tracking-[0.1em] ${t.sub}`}>HARDEST PART</dt>
                 <dd className="mb-2 sm:mb-0">{project.hardest}</dd>
               </>
             )}
-            <dt className={`pt-0.5 font-mono text-[11.5px] tracking-[0.1em] ${t.sub}`}>STACK</dt>
+            <dt className={`pt-0.5 font-mono text-[12px] tracking-[0.1em] ${t.sub}`}>STACK</dt>
             <dd className="flex flex-wrap gap-1.5">
               {project.stack.slice(0, 4).map((s) => (
-                <span key={s} className={`rounded-full border px-2.5 py-0.5 font-mono text-[11.5px] ${t.pill}`}>
+                <span key={s} className={`rounded-full border px-2.5 py-0.5 font-mono text-[12px] ${t.pill}`}>
                   {s}
                 </span>
               ))}
@@ -173,14 +173,14 @@ function SmallCard({ project, index, tone }: { project: Project; index: number; 
         <p className="mt-3 text-[17px] text-muted">{project.description}</p>
         {project.hardest && (
           <p className="mt-4 rounded-xl bg-paper/80 px-4 py-3 text-[15px]">
-            <span className="font-mono text-[11px] tracking-[0.1em]">HARDEST PART · </span>
+            <span className="font-mono text-[12px] tracking-[0.1em]">HARDEST PART · </span>
             {project.hardest}
           </p>
         )}
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
           <span className="font-mono text-[12px] text-subtle">{project.client?.replace("Built at ", "").toUpperCase()}</span>
           {project.links?.live && (
-            <a href={project.links.live} target="_blank" rel="noreferrer" className="link inline-flex items-center gap-1 font-semibold">
+            <a href={project.links.live} target="_blank" rel="noreferrer" className="link -my-2 inline-flex items-center gap-1 py-2 font-semibold">
               {hostname(project.links.live)}
               <FiArrowUpRight className="size-4" aria-hidden />
             </a>
@@ -251,18 +251,18 @@ export default function Home() {
               {hero.promise}
             </p>
 
-            <div className="fade-in mt-9 flex flex-wrap items-center gap-3" style={v({ "--i": 5 })}>
+            <div className="fade-in mt-9 grid grid-cols-2 items-center gap-3 sm:flex sm:flex-wrap" style={v({ "--i": 5 })}>
               <a href="#work" className="btn btn-primary">
                 See my work
-                <FiArrowDown className="nudge-y size-[18px]" aria-hidden />
+                <FiArrowDown className="nudge-y shrink-0 size-[18px]" aria-hidden />
               </a>
               <a href={profile.cv.pdf} download className="btn btn-secondary">
-                <FiDownload className="nudge-y size-[18px]" aria-hidden />
+                <FiDownload className="nudge-y shrink-0 size-[18px]" aria-hidden />
                 Download CV
               </a>
               <a
                 href="#relocate"
-                className="group ml-1 inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-dashed border-ink/50 bg-surface py-2 pl-3 pr-4 text-[14.5px] transition-colors hover:border-solid hover:border-ink"
+                className="group col-span-2 inline-flex items-center justify-center gap-2.5 rounded-full sm:ml-1 sm:justify-start border-[1.5px] border-dashed border-ink/50 bg-surface py-2 pl-3 pr-4 text-[14.5px] transition-colors hover:border-solid hover:border-ink"
               >
                 <span className="font-mono text-[12px] tracking-[0.1em]">ISB</span>
                 <MdFlight className="size-4 rotate-90 text-cobalt transition-transform duration-500 ease-[var(--ease-spring)] group-hover:translate-x-1" aria-hidden />
@@ -272,7 +272,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[22rem] px-3 pb-8 pt-6 lg:max-w-none">
+          <div className="relative mx-auto w-full max-w-[17.5rem] px-3 pb-8 pt-6 sm:max-w-[22rem] lg:max-w-none">
             <span aria-hidden className="tape tape-in left-12 top-2 -rotate-[7deg]" style={v({ "--d": "1100ms" })} />
             <span aria-hidden className="tape tape-in right-8 top-0 rotate-[8deg]" style={v({ "--tape": "var(--sky)", "--d": "1250ms" })} />
             <figure className="polaroid settle" style={v({ "--tilt": "2deg", "--d": "250ms" })}>
@@ -287,7 +287,7 @@ export default function Home() {
               />
               <figcaption>{hero.photoCaption}</figcaption>
             </figure>
-            <p className="note-card pop absolute -left-6 bottom-28 w-40 px-4 py-3 text-[22px] sm:-left-14" style={v({ "--d": "1900ms" })}>
+            <p className="note-card pop absolute -left-4 bottom-[7.75rem] w-36 px-3.5 py-2.5 text-[20px] sm:-left-14 sm:bottom-28 sm:w-40 sm:px-4 sm:py-3 sm:text-[22px]" style={v({ "--d": "1900ms" })}>
               {hero.sticky}
             </p>
           </div>
@@ -381,11 +381,11 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="mt-6 grid gap-2.5 sm:grid-cols-3">
+              <div className="mt-6 grid gap-2 sm:grid-cols-3 sm:gap-2.5">
                 {proudOf.facts.map((f) => (
-                  <div key={f.label} className="rounded-2xl border border-[#3a3a44] p-4">
-                    <p className="font-display text-[clamp(1.25rem,1rem+0.8vw,1.75rem)] font-extrabold tracking-[-0.03em]">{f.value}</p>
-                    <p className="mt-1 text-[13.5px] leading-snug text-band-muted">{f.label}</p>
+                  <div key={f.label} className="flex items-baseline justify-between gap-4 rounded-2xl border border-[#3a3a44] px-4 py-3 sm:block sm:p-4">
+                    <p className="shrink-0 font-display text-[clamp(1.25rem,1rem+0.8vw,1.75rem)] font-extrabold tracking-[-0.03em]">{f.value}</p>
+                    <p className="text-right text-[13.5px] leading-snug text-band-muted sm:mt-1 sm:text-left">{f.label}</p>
                   </div>
                 ))}
               </div>
@@ -393,7 +393,7 @@ export default function Home() {
           </div>
           {crm?.gallery && (
             <div className="mt-6">
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
                 {crm.gallery.map((shot, i) => (
                   <Image
                     key={shot.src}
@@ -402,11 +402,11 @@ export default function Home() {
                     width={3840}
                     height={2160}
                     sizes="(min-width: 640px) 400px, 100vw"
-                    className={`reveal aspect-video w-full rounded-2xl border-[1.5px] border-ink object-cover shadow-[5px_5px_0_var(--shadow-ink)] ${["-rotate-1", "rotate-[0.5deg]", "rotate-1"][i]}`}
+                    className={`reveal aspect-video w-full rounded-xl border-[1.5px] border-ink object-cover shadow-[4px_4px_0_var(--shadow-ink)] sm:rounded-2xl sm:shadow-[5px_5px_0_var(--shadow-ink)] ${i === 0 ? "col-span-2 sm:col-span-1" : ""} ${["-rotate-1", "rotate-[0.5deg]", "rotate-1"][i]}`}
                   />
                 ))}
               </div>
-              <p className="mt-4 font-mono text-[12px] tracking-[0.08em] text-subtle">SCREENS FROM A DEMO TENANT WITH FICTIONAL DATA · THE REAL SYSTEM IS PRIVATE</p>
+              <p className="mt-4 font-mono text-[12px] tracking-[0.08em] text-subtle">SCREENS FROM A DEMO TENANT WITH FICTIONAL DATA<span className="hidden sm:inline"> · THE REAL SYSTEM IS PRIVATE</span></p>
             </div>
           )}
         </section>
@@ -448,14 +448,14 @@ export default function Home() {
                   <li key={project.slug} className="reveal">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="group grid grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-line py-5 transition-colors hover:bg-surface sm:grid-cols-[2rem_minmax(0,1fr)_7.5rem_1.5rem] sm:px-2"
+                      className="group grid grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-x-4 gap-y-2 border-b border-line py-5 transition-colors hover:bg-surface sm:grid-cols-[2rem_minmax(0,1fr)_7.5rem_1.5rem] sm:px-2"
                     >
-                      <FiFolder className="size-6 transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-12 group-hover:scale-110" aria-hidden />
+                      <FiFolder className="row-span-2 size-6 self-start mt-0.5 sm:row-span-1 sm:mt-0 sm:self-center transition-transform duration-300 ease-[var(--ease-spring)] group-hover:-rotate-12 group-hover:scale-110" aria-hidden />
                       <span>
                         <span className="block text-[19px] font-semibold">{project.name}</span>
                         <span className="block text-[15px] text-muted">{project.tagline}</span>
                       </span>
-                      <span className={`justify-self-start rounded-md px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.08em] ${tag.cls}`}>
+                      <span className={`col-start-2 justify-self-start rounded-md px-2.5 py-1 font-mono text-[12px] uppercase sm:col-start-auto tracking-[0.08em] ${tag.cls}`}>
                         {tag.text}
                       </span>
                       <FiArrowRight className="hidden size-[18px] text-subtle transition-transform duration-300 group-hover:translate-x-1 sm:block" aria-hidden />
@@ -478,14 +478,14 @@ export default function Home() {
             <svg aria-hidden viewBox="0 0 100 10" preserveAspectRatio="none" className="ants absolute inset-x-[6%] top-[30px] hidden h-6 w-[88%] xl:block" fill="none" stroke="var(--edge)" strokeWidth="1.5" strokeDasharray="6 6" strokeLinecap="round">
               <path vectorEffect="non-scaling-stroke" d="M0 5 C 15 0, 20 10, 33 5 S 52 0, 66 5 S 85 10, 100 5" />
             </svg>
-            <ol className="relative grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <ol className="no-scrollbar relative -mx-[var(--gutter)] flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-[var(--gutter)] px-[var(--gutter)] pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-4">
               {habits.items.map((h, i) => {
                 const Icon = habitIcons[i];
                 const dark = "dark" in h && h.dark;
                 return (
                   <li
                     key={h.title}
-                    className={`reveal lift flex flex-col gap-3.5 rounded-[22px] border-[1.5px] border-ink p-6 ${dark ? "keep-dark bg-ink text-paper" : "bg-surface"}`}
+                    className={`reveal lift flex w-[84%] shrink-0 snap-start flex-col gap-3.5 rounded-[22px] border-[1.5px] border-ink p-6 sm:w-auto ${dark ? "keep-dark bg-ink text-paper" : "bg-surface"}`}
                     style={v({ animationDelay: `${i * 60}ms` })}
                   >
                     <span className={`grid size-[60px] place-items-center rounded-2xl border-[1.5px] ${dark ? "border-marigold" : "border-ink"} ${habitTints[i]} text-ink`}>
@@ -502,6 +502,7 @@ export default function Home() {
                 );
               })}
             </ol>
+            <p className="hand mt-2 text-right text-[21px] text-subtle sm:hidden" aria-hidden>swipe for more →</p>
           </div>
         </section>
 
@@ -586,7 +587,7 @@ export default function Home() {
                       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                         <h3 className="font-display text-[clamp(1.5rem,1.3rem+0.8vw,2rem)] font-extrabold tracking-[-0.025em]">{job.company}</h3>
                         {current ? (
-                          <span className="rounded-md bg-mint px-2 py-0.5 font-mono text-[11px] tracking-[0.08em]">NOW</span>
+                          <span className="rounded-md bg-mint px-2 py-0.5 font-mono text-[12px] tracking-[0.08em]">NOW</span>
                         ) : (
                           <span className="font-mono text-[12px] text-subtle">{formatPeriod(job.start, job.end).toUpperCase()}</span>
                         )}
@@ -627,12 +628,12 @@ export default function Home() {
             {toolkit.layers.map((layer, li) => (
               <article
                 key={layer.name}
-                className="reveal lift rounded-[24px] border-[1.5px] border-ink bg-surface p-6 sm:p-7"
+                className="reveal lift rounded-[24px] border-[1.5px] border-ink bg-surface p-5 sm:p-7"
                 style={v({ animationDelay: `${li * 60}ms` })}
               >
                 <header className="flex items-start justify-between gap-4">
                   <div>
-                    <span className={`inline-block rounded-md border-[1.5px] border-ink px-2.5 py-1 font-mono text-[11.5px] uppercase tracking-[0.1em] ${layer.tint}`}>
+                    <span className={`inline-block rounded-md border-[1.5px] border-ink px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.1em] ${layer.tint}`}>
                       {layer.name}
                     </span>
                     <p className="mt-3 text-[15.5px] text-muted">{layer.line}</p>
@@ -641,19 +642,19 @@ export default function Home() {
                     {String(li + 1).padStart(2, "0")}
                   </span>
                 </header>
-                <ul className="mt-6 grid grid-cols-3 gap-2.5 sm:grid-cols-4 lg:grid-cols-5">
+                <ul className="mt-5 grid grid-cols-3 gap-2 sm:mt-6 sm:grid-cols-4 sm:gap-2.5 lg:grid-cols-5">
                   {layer.tools.map((tool) => {
                     const daily = toolkit.daily.includes(tool);
                     return (
                       <li
                         key={tool}
-                        className={`group relative flex flex-col items-center gap-2 rounded-2xl border px-1.5 pb-3 pt-4 text-center transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-spring)] hover:-translate-y-1 hover:border-ink hover:shadow-[3px_3px_0_var(--shadow-ink)] ${daily ? "border-ink bg-paper" : "border-line bg-surface"}`}
+                        className={`group relative flex flex-col items-center gap-1.5 rounded-xl border px-1.5 pb-2.5 pt-3 text-center sm:gap-2 sm:rounded-2xl sm:pb-3 sm:pt-4 transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-spring)] hover:-translate-y-1 hover:border-ink hover:shadow-[3px_3px_0_var(--shadow-ink)] ${daily ? "border-ink bg-paper" : "border-line bg-surface"}`}
                       >
                         {daily && (
                           <span className="absolute right-2 top-2 size-2.5 rounded-full border-[1.5px] border-ink bg-marigold" aria-label="Daily driver" />
                         )}
-                        <span className="grid size-11 place-items-center transition-transform duration-300 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6">
-                          <TechIcon name={tool} className="size-9 object-contain" />
+                        <span className="grid size-9 place-items-center sm:size-11 transition-transform duration-300 ease-[var(--ease-spring)] group-hover:scale-110 group-hover:-rotate-6">
+                          <TechIcon name={tool} className="size-7 object-contain sm:size-9" />
                         </span>
                         <span className="text-[12.5px] font-medium leading-tight">{tool}</span>
                       </li>
@@ -684,7 +685,7 @@ export default function Home() {
             <div className="flex flex-col gap-5 lg:text-right">
               <div>
                 <p className="text-[15px] text-subtle">Mail me</p>
-                <a href={`mailto:${profile.email}`} className="link font-display text-[clamp(1.1875rem,0.95rem+1.1vw,2rem)] font-bold tracking-[-0.02em]">
+                <a href={`mailto:${profile.email}`} className="link -my-2 inline-block py-2 font-display text-[clamp(1.1875rem,0.95rem+1.1vw,2rem)] font-bold tracking-[-0.02em]">
                   {profile.email}
                 </a>
               </div>
@@ -714,7 +715,7 @@ export default function Home() {
           <div className="mt-14 flex flex-col gap-2 font-mono text-[12px] tracking-[0.08em] text-subtle sm:flex-row sm:justify-between">
             <span>© {new Date().getFullYear()} {profile.name.toUpperCase()}</span>
             <span>DESIGNED &amp; BUILT IN ISLAMABAD</span>
-            <Link href="/resume" className="link">READ THE CV ONLINE</Link>
+            <Link href="/resume" className="link -my-2.5 inline-block py-2.5">READ THE CV ONLINE</Link>
           </div>
         </section>
       </main>

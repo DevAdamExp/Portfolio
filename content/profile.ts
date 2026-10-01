@@ -19,8 +19,8 @@ export const profile: Profile = {
   links: {
     github: {
       label: "GitHub",
-      href: "https://github.com/AdamChoudary",
-      display: "github.com/AdamChoudary",
+      href: "https://github.com/DevAdamExp",
+      display: "github.com/DevAdamExp",
     },
     // Add your LinkedIn to show it in the header, footer and CV:
     // linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/<handle>", display: "linkedin.com/in/<handle>" },

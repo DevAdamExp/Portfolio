@@ -82,7 +82,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <article className="container-page pt-[clamp(2.5rem,1.5rem+3vw,4.5rem)]">
       <nav aria-label="Breadcrumb" className="meta flex items-center gap-2">
-        <Link href="/projects" className="inline-flex items-center gap-1.5 transition-colors hover:text-fg">
+        <Link href="/projects" className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 transition-colors hover:text-fg">
           <FiArrowLeft className="size-3.5" aria-hidden />
           Work
         </Link>

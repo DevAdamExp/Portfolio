@@ -33,7 +33,7 @@ export default function ResumePage() {
   return (
     <div className="cv-screen">
       <nav aria-label="CV" className="cv-toolbar">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-small text-muted transition-colors hover:text-fg">
+        <Link href="/" className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-small text-muted transition-colors hover:text-fg">
           <FiArrowLeft className="size-3.5" aria-hidden />
           Portfolio
         </Link>
